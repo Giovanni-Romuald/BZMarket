@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{% static 'img/Logo@.png' %}" type="image/x-icon">
+    <title>BZMarket - Multi-Vendor E-commerce Platform</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <div class="logo-icon">
+                    <img src="./Logo@.png" width="130" style="position: relative; left: 30px;">
+                </div>
+                <div class="logo-text">
+                </div>
+            </div>
+            
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#for-sellers">For Sellers</a></li>
+                    <li><a href="{% url 'shopping' %}">Shopping</a></li>
+                    <li><a href="#for-buyers">For Buyers</a></li>
+                    <li><a href="#technology">Technology</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <div class="header-actions">
+                <div class="user-actions">
+                    <a href="#for-sellers" id="seller-btn" title="Become a seller">
+                        <i class="fas fa-store-alt"></i>
+                    </a>
+                    <a href="{% url 'register' %}"  title="Start shopping">
+                        <i class="fas fa-shopping-bag"></i>
+                    </a>
+                </div>
+                
+                <button class="mobile-menu-btn" id="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section - ENHANCED -->
+    <section class="hero" id="home">
+        <!-- Floating shapes -->
+        <div class="floating-shapes">
+            <div class="shape shape-1"><i class="fas fa-shopping-bag"></i></div>
+            <div class="shape shape-2"><i class="fas fa-truck"></i></div>
+            <div class="shape shape-3"><i class="fas fa-store"></i></div>
+            <div class="shape shape-4"><i class="fas fa-tags"></i></div>
+            <div class="shape shape-5"><i class="fas fa-chart-line"></i></div>
+            <div class="shape shape-6"><i class="fas fa-shield-alt"></i></div>
+        </div>
+        
+        <div class="container hero-content">
+            <div class="hero-badge fade-in">
+                <span class="badge-text">🚀 #1 Platform in France</span>
+                <span class="badge-sub">+10,000 active sellers</span>
+            </div>
+            
+            <h1 class="fade-in">
+                <span class="hero-highlight">BZMarket</span> : The marketplace that 
+                <span class="typewriter" id="typewriter"></span>
+            </h1>
+            
+            <p class="fade-in">
+                Create your online store in 5 minutes or discover thousands of unique products.
+                <br>The first platform that directly connects artisans, creators and consumers.
+            </p>
+            
+            <!-- Visual demonstration -->
+            <div class="hero-demo fade-in">
+                <div class="demo-screen">
+                    <div class="screen-header">
+                        <div class="screen-dots">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+                    <div class="screen-content">
+                        <div class="product-showcase">
+                            <div class="product-item">
+                                <div class="product-image" style="background: linear-gradient(135deg, #FF9A9E 0%, #FAD0C4 100%);"></div>
+                                <div class="product-info">
+                                    <h4>Artisanal Products</h4>
+                                    <p>Unique creations</p>
+                                </div>
+                            </div>
+                            <div class="product-item">
+                                <div class="product-image" style="background: linear-gradient(135deg, #A1C4FD 0%, #C2E9FB 100%);"></div>
+                                <div class="product-info">
+                                    <h4>Eco-friendly Fashion</h4>
+                                    <p>Sustainable clothing</p>
+                                </div>
+                            </div>
+                            <div class="product-item">
+                                <div class="product-image" style="background: linear-gradient(135deg, #FFECD2 0%, #FCB69F 100%);"></div>
+                                <div class="product-info">
+                                    <h4>Local Products</h4>
+                                    <p>Direct from producer</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="hero-buttons fade-in">
+                <a href="#for-sellers" class="btn btn-primary hero-btn">
+                    <i class="fas fa-rocket"></i> Get Started
+                    <span class="btn-sub"></span>
+                </a>
+                <a href="#for-buyers" class="btn btn-outline hero-btn">
+                    <i class="fas fa-play-circle"></i> See Demo
+                </a>
+            </div>
+            
+            <!-- Integrated testimonial -->
+            <div class="hero-testimonial fade-in">
+                <div class="testimonial-content">
+                    <i class="fas fa-quote-left"></i>
+                    <p>"BZMarket allowed me to launch my online store without technical skills. My revenue increased by 300% in 6 months!"</p>
+                    <div class="testimonial-author">
+                        <strong>Marie Dubois</strong>
+                        <span>Jewelry Creator - Paris</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Animated statistics -->
+            <div class="hero-stats fade-in">
+                <div class="stat-item">
+                    <span class="stat-number" data-count="50000">0</span>
+                    <span class="stat-label">Available products</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-count="10000">0</span>
+                    <span class="stat-label">Active sellers</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-count="98">0</span>
+                    <span class="stat-label">Satisfaction rate</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-count="24">0</span>
+                    <span class="stat-label">24/7 Support</span>
+                </div>
+            </div>
+            
+            <!-- Partner logos -->
+            <div class="hero-partners fade-in">
+                <p>Trusted by:</p>
+                <div class="partners-logos">
+                    <div class="partner-logo">🎨 Crafts</div>
+                    <div class="partner-logo">👗 Fashion</div>
+                    <div class="partner-logo">🏠 Home Decor</div>
+                    <div class="partner-logo">🍎 Local Products</div>
+                    <div class="partner-logo">📚 Bookstore</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>Main Features</h2>
+                <p>Discover the features that make our platform the ideal solution for your online business</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-store"></i>
+                    </div>
+                    <h3>Multi-Vendor Stores</h3>
+                    <p>Each seller has their own store with a customizable interface, detailed statistics and complete management tools.</p>
+                </div>
+                
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-boxes"></i>
+                    </div>
+                    <h3>Product Management</h3>
+                    <p>Create, edit and organize your products with quality photos, detailed descriptions, variants and real-time stock management.</p>
+                </div>
+                
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3>Advanced Search</h3>
+                    <p>Intelligent search system with filters by category, price, location and ratings for an optimal shopping experience.</p>
+                </div>
+                
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Responsive Design</h3>
+                    <p>Modern and fluid interface that adapts perfectly to all devices: computers, tablets and smartphones.</p>
+                </div>
+                
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-user-friends"></i>
+                    </div>
+                    <h3>User Area</h3>
+                    <p>Dedicated spaces for buyers (history, favorites, tracking) and sellers (orders, statistics, messages).</p>
+                </div>
+                
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-shipping-fast"></i>
+                    </div>
+                    <h3>Order Tracking</h3>
+                    <p>Complete order management and tracking system for sellers with real-time notifications and updates.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- For Sellers Section -->
+    <section class="for-sellers" id="for-sellers">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>For Sellers</h2>
+                <p>Everything you need to grow your online business</p>
+            </div>
+            
+            <div class="sellers-container">
+                <div class="seller-card fade-in">
+                    <div class="seller-img">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="seller-info">
+                        <h3>Complete Dashboard</h3>
+                        <p class="seller-description">Manage your store with an intuitive dashboard containing all necessary statistics and tools.</p>
+                        <ul class="seller-features">
+                            <li><i class="fas fa-check"></i> Detailed sales statistics</li>
+                            <li><i class="fas fa-check"></i> Real-time stock management</li>
+                            <li><i class="fas fa-check"></i> Performance analysis</li>
+                            <li><i class="fas fa-check"></i> Customizable reports</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="seller-card fade-in">
+                    <div class="seller-img">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <div class="seller-info">
+                        <h3>Management Tools</h3>
+                        <p class="seller-description">A complete suite of tools to efficiently manage all aspects of your online store.</p>
+                        <ul class="seller-features">
+                            <li><i class="fas fa-check"></i> Order and delivery management</li>
+                            <li><i class="fas fa-check"></i> Integrated messaging system</li>
+                            <li><i class="fas fa-check"></i> Return and complaint management</li>
+                            <li><i class="fas fa-check"></i> Shipping cost configuration</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="seller-card fade-in">
+                    <div class="seller-img">
+                        <i class="fas fa-bullhorn"></i>
+                    </div>
+                    <div class="seller-info">
+                        <h3>Marketing & Promotion</h3>
+                        <p class="seller-description">Powerful tools to promote your products and attract more customers.</p>
+                        <ul class="seller-features">
+                            <li><i class="fas fa-check"></i> Coupon and promotion creation</li>
+                            <li><i class="fas fa-check"></i> Email marketing campaigns</li>
+                            <li><i class="fas fa-check"></i> Social media integration</li>
+                            <li><i class="fas fa-check"></i> Loyalty programs</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="view-more-container fade-in">
+                <a href="#contact" class="btn btn-primary">
+                    <i class="fas fa-user-tie"></i> Become a seller now
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- For Buyers Section -->
+    <section class="for-buyers" id="for-buyers">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>For Buyers</h2>
+                <p>A smooth, secure and enjoyable shopping experience</p>
+            </div>
+            
+            <div class="buyers-container">
+                <div class="buyer-card fade-in">
+                    <div class="buyer-content">
+                        <h3><i class="fas fa-search"></i> Easy Discovery</h3>
+                        <p>Browse through thousands of products from local sellers. Use our advanced filters to find exactly what you're looking for.</p>
+                    </div>
+                </div>
+                
+                <div class="buyer-card fade-in">
+                    <div class="buyer-content">
+                        <h3><i class="fas fa-shield-alt"></i> Secure Shopping</h3>
+                        <p>Transactions protected by advanced security protocols. Your personal data and payment information are always secure.</p>
+                    </div>
+                </div>
+                
+                <div class="buyer-card fade-in">
+                    <div class="buyer-content">
+                        <h3><i class="fas fa-star"></i> Reviews & Ratings</h3>
+                        <p>View authentic reviews from other buyers and leave your own feedback to help the community.</p>
+                    </div>
+                </div>
+                
+                <div class="buyer-card fade-in">
+                    <div class="buyer-content">
+                        <h3><i class="fas fa-shipping-fast"></i> Flexible Delivery</h3>
+                        <p>Choice between different delivery options with real-time tracking. Receive your orders where and when you want.</p>
+                    </div>
+                </div>
+                
+                <div class="buyer-card fade-in">
+                    <div class="buyer-content">
+                        <h3><i class="fas fa-heart"></i> Wish Lists</h3>
+                        <p>Create wish lists for your favorite products and receive alerts when their prices drop.</p>
+                    </div>
+                </div>
+                
+                <div class="buyer-card fade-in">
+                    <div class="buyer-content">
+                        <h3><i class="fas fa-history"></i> Purchase History</h3>
+                        <p>Access complete order history, download your invoices and easily track past purchases.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology Section -->
+    <section class="technology" id="technology">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>Advanced Technology</h2>
+                <p>Our platform uses the latest technologies to ensure performance and security</p>
+            </div>
+            
+            <div class="tech-container">
+                <div class="tech-item fade-in">
+                    <i class="fas fa-shield-alt"></i>
+                    <h4>Maximum Security</h4>
+                    <p>SSL/TLS protocols, secure payments and personal data protection.</p>
+                </div>
+                
+                <div class="tech-item fade-in">
+                    <i class="fas fa-bolt"></i>
+                    <h4>Optimal Performance</h4>
+                    <p>High-performance servers and scalable architecture for a smooth experience.</p>
+                </div>
+                
+                <div class="tech-item fade-in">
+                    <i class="fas fa-mobile-alt"></i>
+                    <h4>Mobile First</h4>
+                    <p>Responsive design adapted to all mobile devices and tablets.</p>
+                </div>
+                
+                <div class="tech-item fade-in">
+                    <i class="fas fa-sync-alt"></i>
+                    <h4>Automatic Updates</h4>
+                    <p>System always updated with latest features and fixes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2 class="fade-in">Ready to start your e-commerce adventure?</h2>
+            <p class="fade-in">Join our multi-vendor platform and grow your online business today.</p>
+            <div class="cta-buttons">
+                <a href="#for-sellers" class="btn btn-secondary fade-in">
+                    <i class="fas fa-store-alt"></i> Open a store
+                </a>
+                <a href="#contact" class="btn btn-outline fade-in">
+                    <i class="fas fa-info-circle"></i> Learn more
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <div class="footer-logo">BZMarket</div>
+                    <p class="footer-description">Multi-vendor e-commerce platform offering a complete solution for sellers who want to develop their online activity and buyers looking for a variety of products.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#for-sellers">For Sellers</a></li>
+                        <li><a href="#for-buyers">For Buyers</a></li>
+                        <li><a href="#technology">Technology</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Terms of Use</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-newsletter">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to receive our latest news and special offers</p>
+                    <div class="newsletter-form">
+                        <input type="email" placeholder="Your email">
+                        <button><i class="fas fa-paper-plane"></i></button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 BZMarket - Multi-vendor e-commerce platform. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{% static 'js/index.js' %}">
+      
+    </script>
+</body>
+</html>

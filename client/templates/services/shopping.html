@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{% static 'img/Logo@.png' %}" type="image/x-icon">
+    <title>Shop - BZMarket | Multi-Vendor E-commerce Platform</title>
+    <link rel="stylesheet" href="{% static 'css/shopping.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <div class="logo-icon">
+                    <img src="{% static 'img/Logo@.png' %}" width="90"style="position: relative; left:20px;">
+                </div>
+                <div class="logo-text">
+                    BZMarket
+                </div>
+            </div>
+            
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#products">Products</a></li>
+                    <li><a href="#categories">Categories</a></li>
+                    <li><a href="#sellers">Top Sellers</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <div class="header-actions">
+                <div class="user-actions">
+                    <a href="#cart" id="cart-btn" title="Shopping cart">
+                        <i class="fas fa-shopping-cart"></i>
+                    </a>
+                    <a href="#wishlist" title="Wishlist">
+                        <i class="fas fa-heart"></i>
+                    </a>
+                </div>
+                
+                <button class="mobile-menu-btn" id="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Shopping Hero Section -->
+    <section class="shopping-hero">
+        <div class="container">
+            <h1>Discover Amazing Products on <span class="hero-highlight">BZMarket</span></h1>
+            <p>Browse through thousands of unique products from independent sellers and artisans.</p>
+        </div>
+    </section>
+
+    <!-- Main Shopping Content -->
+    <main class="shopping-main container">
+        <!-- Filters Sidebar -->
+        <aside class="filters-sidebar" id="filters-sidebar">
+            <div class="filters-header">
+                <h3>Filters</h3>
+                <button class="clear-filters" id="clear-filters">Clear All</button>
+            </div>
+            
+            <div class="filter-group">
+                <div class="filter-title">
+                    <h4>Categories</h4>
+                    <i class="fas fa-chevron-down filter-toggle"></i>
+                </div>
+                <div class="filter-options">
+                    <div class="filter-option">
+                        <input type="checkbox" id="cat-fashion" name="category" value="fashion">
+                        <label for="cat-fashion">👗 Fashion & Clothing</label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="checkbox" id="cat-home" name="category" value="home">
+                        <label for="cat-home">🏠 Home & Decor</label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="checkbox" id="cat-art" name="category" value="art">
+                        <label for="cat-art">🎨 Art & Crafts</label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="checkbox" id="cat-tech" name="category" value="tech">
+                        <label for="cat-tech">📱 Electronics</label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="checkbox" id="cat-food" name="category" value="food">
+                        <label for="cat-food">🍎 Food & Beverages</label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="checkbox" id="cat-beauty" name="category" value="beauty">
+                        <label for="cat-beauty">💄 Beauty & Care</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="filter-group">
+                <div class="filter-title">
+                    <h4>Price Range</h4>
+                    <i class="fas fa-chevron-down filter-toggle"></i>
+                </div>
+                <div class="filter-options price-slider">
+                    <div class="price-inputs">
+                        <div class="price-input">
+                            <label for="min-price">Min</label>
+                            <input type="number" id="min-price" value="0" min="0">
+                        </div>
+                        <div class="price-input">
+                            <label for="max-price">Max</label>
+                            <input type="number" id="max-price" value="500" min="0">
+                        </div>
+                    </div>
+                    <div class="slider-container">
+                        <div class="slider-track" id="slider-track"></div>
+                        <div class="slider-thumb" id="slider-thumb-min"></div>
+                        <div class="slider-thumb" id="slider-thumb-max"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="filter-group">
+                <div class="filter-title">
+                    <h4>Rating</h4>
+                    <i class="fas fa-chevron-down filter-toggle"></i>
+                </div>
+                <div class="filter-options">
+                    <div class="filter-option">
+                        <input type="checkbox" id="rating-5" name="rating" value="5">
+                        <label for="rating-5">
+                            <span class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </span>
+                            & up
+                        </label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="checkbox" id="rating-4" name="rating" value="4">
+                        <label for="rating-4">
+                            <span class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </span>
+                            & up
+                        </label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="checkbox" id="rating-3" name="rating" value="3">
+                        <label for="rating-3">
+                            <span class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </span>
+                            & up
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </aside>
+        
+        <!-- Overlay for mobile filters -->
+        <div class="overlay" id="overlay"></div>
+
+        <!-- Products Section -->
+        <section class="products-section">
+            <div class="products-header">
+                <button class="mobile-filters-btn" id="mobile-filters-btn">
+                    <i class="fas fa-filter"></i> Filters
+                </button>
+                
+                <div class="search-container">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" class="search-input" id="search-input" placeholder="Search products, categories, sellers...">
+                </div>
+                
+                <div class="sort-container">
+                    <label for="sort-by">Sort by:</label>
+                    <select class="sort-select" id="sort-by">
+                        <option value="popular">Most Popular</option>
+                        <option value="newest">Newest</option>
+                        <option value="price-low">Price: Low to High</option>
+                        <option value="price-high">Price: High to Low</option>
+                        <option value="rating">Highest Rated</option>
+                        <option value="sales">Best Selling</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="results-info">
+                <div class="results-count">Showing <span id="product-count">24</span> products</div>
+                <div class="filter-tags" id="filter-tags">
+                    <span class="filter-tag">Fashion <i class="fas fa-times"></i></span>
+                    <span class="filter-tag">Under €50 <i class="fas fa-times"></i></span>
+                </div>
+            </div>
+            
+            <!-- Products Grid -->
+            <div class="products-grid" id="products-grid">
+                <!-- Product Card 1 -->
+                <div class="product-card">
+                    <span class="product-badge new">New</span>
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Handmade Leather Bag">
+                        <div class="product-actions">
+                            <button class="product-action-btn" title="Add to wishlist">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                            <button class="product-action-btn" title="Quick view">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <span class="product-category">Fashion & Accessories</span>
+                        <h3 class="product-title">Handmade Leather Crossbody Bag</h3>
+                        <div class="product-rating">
+                            <span class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </span>
+                            <span class="count">(128)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">€89.99</span>
+                            <span class="original-price">€120.00</span>
+                        </div>
+                        <button class="add-to-cart-btn">
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
+                        <div class="product-seller">
+                            <div class="seller-avatar">LD</div>
+                            <span>Leather Dreams • Paris</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product Card 2 -->
+                <div class="product-card">
+                    <span class="product-badge sale">Sale</span>
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Ceramic Plant Pots">
+                        <div class="product-actions">
+                            <button class="product-action-btn" title="Add to wishlist">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                            <button class="product-action-btn" title="Quick view">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <span class="product-category">Home & Decor</span>
+                        <h3 class="product-title">Set of 3 Ceramic Plant Pots</h3>
+                        <div class="product-rating">
+                            <span class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </span>
+                            <span class="count">(64)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">€34.99</span>
+                            <span class="original-price">€45.00</span>
+                        </div>
+                        <button class="add-to-cart-btn">
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
+                        <div class="product-seller">
+                            <div class="seller-avatar">CP</div>
+                            <span>Ceramic Pots • Lyon</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product Card 3 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1612817288484-6f91600674a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Artisanal Honey">
+                        <div class="product-actions">
+                            <button class="product-action-btn" title="Add to wishlist">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                            <button class="product-action-btn" title="Quick view">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <span class="product-category">Food & Beverages</span>
+                        <h3 class="product-title">Artisanal Lavender Honey 500g</h3>
+                        <div class="product-rating">
+                            <span class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </span>
+                            <span class="count">(89)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">€14.50</span>
+                        </div>
+                        <button class="add-to-cart-btn">
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
+                        <div class="product-seller">
+                            <div class="seller-avatar">BH</div>
+                            <span>Bee Happy • Provence</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product Card 4 -->
+                <div class="product-card">
+                    <span class="product-badge popular">Popular</span>
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1364&q=80" alt="Handmade Jewelry">
+                        <div class="product-actions">
+                            <button class="product-action-btn" title="Add to wishlist">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                            <button class="product-action-btn" title="Quick view">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <span class="product-category">Jewelry</span>
+                        <h3 class="product-title">Silver Moonstone Necklace</h3>
+                        <div class="product-rating">
+                            <span class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </span>
+                            <span class="count">(203)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">€65.00</span>
+                        </div>
+                        <button class="add-to-cart-btn">
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
+                        <div class="product-seller">
+                            <div class="seller-avatar">MJ</div>
+                            <span>Moon Jewelry • Marseille</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product Card 5 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1595341888016-a392ef81b7de?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1479&q=80" alt="Eco-friendly Tote Bag">
+                        <div class="product-actions">
+                            <button class="product-action-btn" title="Add to wishlist">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                            <button class="product-action-btn" title="Quick view">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <span class="product-category">Fashion & Accessories</span>
+                        <h3 class="product-title">Organic Cotton Tote Bag</h3>
+                        <div class="product-rating">
+                            <span class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </span>
+                            <span class="count">(47)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">€22.99</span>
+                        </div>
+                        <button class="add-to-cart-btn">
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
+                        <div class="product-seller">
+                            <div class="seller-avatar">EG</div>
+                            <span>Eco Goods • Bordeaux</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product Card 6 -->
+                <div class="product-card">
+                    <span class="product-badge new">New</span>
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1420&q=80" alt="Wireless Headphones">
+                        <div class="product-actions">
+                            <button class="product-action-btn" title="Add to wishlist">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                            <button class="product-action-btn" title="Quick view">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <span class="product-category">Electronics</span>
+                        <h3 class="product-title">Wireless Noise-Canceling Headphones</h3>
+                        <div class="product-rating">
+                            <span class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </span>
+                            <span class="count">(156)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">€129.99</span>
+                            <span class="original-price">€180.00</span>
+                        </div>
+                        <button class="add-to-cart-btn">
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
+                        <div class="product-seller">
+                            <div class="seller-avatar">TA</div>
+                            <span>Tech Avenue • Paris</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product Card 7 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Handmade Soap Set">
+                        <div class="product-actions">
+                            <button class="product-action-btn" title="Add to wishlist">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                            <button class="product-action-btn" title="Quick view">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <span class="product-category">Beauty & Care</span>
+                        <h3 class="product-title">Natural Olive Oil Soap Set</h3>
+                        <div class="product-rating">
+                            <span class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </span>
+                            <span class="count">(92)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">€18.50</span>
+                        </div>
+                        <button class="add-to-cart-btn">
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
+                        <div class="product-seller">
+                            <div class="seller-avatar">NS</div>
+                            <span>Natural Soaps • Nice</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product Card 8 -->
+                <div class="product-card">
+                    <span class="product-badge popular">Popular</span>
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80" alt="Wooden Cutting Board">
+                        <div class="product-actions">
+                            <button class="product-action-btn" title="Add to wishlist">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                            <button class="product-action-btn" title="Quick view">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <span class="product-category">Home & Kitchen</span>
+                        <h3 class="product-title">Bamboo Cutting Board with Juice Groove</h3>
+                        <div class="product-rating">
+                            <span class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </span>
+                            <span class="count">(73)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">€24.99</span>
+                        </div>
+                        <button class="add-to-cart-btn">
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
+                        <div class="product-seller">
+                            <div class="seller-avatar">WC</div>
+                            <span>Wood Crafts • Toulouse</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Pagination -->
+            <div class="pagination">
+                <button class="pagination-btn">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="pagination-btn active">1</button>
+                <button class="pagination-btn">2</button>
+                <button class="pagination-btn">3</button>
+                <button class="pagination-btn">4</button>
+                <button class="pagination-btn">5</button>
+                <button class="pagination-btn">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <div class="footer-logo">BZMarket</div>
+                    <p class="footer-description">Multi-vendor e-commerce platform offering a complete solution for sellers who want to develop their online activity and buyers looking for a variety of products.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="#products">Products</a></li>
+                        <li><a href="#categories">Categories</a></li>
+                        <li><a href="#sellers">Top Sellers</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Terms of Use</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-newsletter">
+                    <h3>Stay Updated</h3>
+                    <p>Subscribe to receive our latest products and special offers</p>
+                    <div class="newsletter-form">
+                        <input type="email" placeholder="Your email">
+                        <button><i class="fas fa-paper-plane"></i></button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 BZMarket - Multi-vendor e-commerce platform. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{% static 'js/shopping.js' %}"></script>
+</body>
+</html>
