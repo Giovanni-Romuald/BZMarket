@@ -36,7 +36,7 @@
             
             <div class="header-actions">
                 <div class="user-actions">
-                    <a href="#for-sellers" id="seller-btn" title="Become a seller">
+                    <a href="{% url 'register_seller' %}" id="seller-btn" title="Become a seller">
                         <i class="fas fa-store-alt"></i>
                     </a>
                     <a href="{% url 'register' %}"  title="Start shopping">
@@ -292,7 +292,7 @@
             </div>
             
             <div class="view-more-container fade-in">
-                <a href="#contact" class="btn btn-primary">
+                <a href="{% url 'register_seller' %}" class="btn btn-primary">
                     <i class="fas fa-user-tie"></i> Become a seller now
                 </a>
             </div>

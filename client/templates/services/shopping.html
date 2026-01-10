@@ -199,335 +199,62 @@
             </div>
             
             <div class="results-info">
-                <div class="results-count">Showing <span id="product-count">24</span> products</div>
-                <div class="filter-tags" id="filter-tags">
-                    <span class="filter-tag">Fashion <i class="fas fa-times"></i></span>
-                    <span class="filter-tag">Under €50 <i class="fas fa-times"></i></span>
-                </div>
+                <div class="results-count">Showing <span id="product-count">{{ nbre_products }}</span> products</div>
+              
             </div>
             
-            <!-- Products Grid -->
-            <div class="products-grid" id="products-grid">
-                <!-- Product Card 1 -->
-                <div class="product-card">
-                    <span class="product-badge new">New</span>
-                    <div class="product-img">
-                        <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Handmade Leather Bag">
-                        <div class="product-actions">
-                            <button class="product-action-btn" title="Add to wishlist">
-                                <i class="fas fa-heart"></i>
-                            </button>
-                            <button class="product-action-btn" title="Quick view">
-                                <i class="fas fa-eye"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="product-info">
-                        <span class="product-category">Fashion & Accessories</span>
-                        <h3 class="product-title">Handmade Leather Crossbody Bag</h3>
-                        <div class="product-rating">
-                            <span class="stars">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star-half-alt"></i>
-                            </span>
-                            <span class="count">(128)</span>
-                        </div>
-                        <div class="product-price">
-                            <span class="current-price">€89.99</span>
-                            <span class="original-price">€120.00</span>
-                        </div>
-                        <button class="add-to-cart-btn">
-                            <i class="fas fa-shopping-cart"></i> Add to Cart
-                        </button>
-                        <div class="product-seller">
-                            <div class="seller-avatar">LD</div>
-                            <span>Leather Dreams • Paris</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Product Card 2 -->
-                <div class="product-card">
-                    <span class="product-badge sale">Sale</span>
-                    <div class="product-img">
-                        <img src="https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Ceramic Plant Pots">
-                        <div class="product-actions">
-                            <button class="product-action-btn" title="Add to wishlist">
-                                <i class="fas fa-heart"></i>
-                            </button>
-                            <button class="product-action-btn" title="Quick view">
-                                <i class="fas fa-eye"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="product-info">
-                        <span class="product-category">Home & Decor</span>
-                        <h3 class="product-title">Set of 3 Ceramic Plant Pots</h3>
-                        <div class="product-rating">
-                            <span class="stars">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </span>
-                            <span class="count">(64)</span>
-                        </div>
-                        <div class="product-price">
-                            <span class="current-price">€34.99</span>
-                            <span class="original-price">€45.00</span>
-                        </div>
-                        <button class="add-to-cart-btn">
-                            <i class="fas fa-shopping-cart"></i> Add to Cart
-                        </button>
-                        <div class="product-seller">
-                            <div class="seller-avatar">CP</div>
-                            <span>Ceramic Pots • Lyon</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Product Card 3 -->
-                <div class="product-card">
-                    <div class="product-img">
-                        <img src="https://images.unsplash.com/photo-1612817288484-6f91600674a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Artisanal Honey">
-                        <div class="product-actions">
-                            <button class="product-action-btn" title="Add to wishlist">
-                                <i class="fas fa-heart"></i>
-                            </button>
-                            <button class="product-action-btn" title="Quick view">
-                                <i class="fas fa-eye"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="product-info">
-                        <span class="product-category">Food & Beverages</span>
-                        <h3 class="product-title">Artisanal Lavender Honey 500g</h3>
-                        <div class="product-rating">
-                            <span class="stars">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="far fa-star"></i>
-                            </span>
-                            <span class="count">(89)</span>
-                        </div>
-                        <div class="product-price">
-                            <span class="current-price">€14.50</span>
-                        </div>
-                        <button class="add-to-cart-btn">
-                            <i class="fas fa-shopping-cart"></i> Add to Cart
-                        </button>
-                        <div class="product-seller">
-                            <div class="seller-avatar">BH</div>
-                            <span>Bee Happy • Provence</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Product Card 4 -->
-                <div class="product-card">
-                    <span class="product-badge popular">Popular</span>
-                    <div class="product-img">
-                        <img src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1364&q=80" alt="Handmade Jewelry">
-                        <div class="product-actions">
-                            <button class="product-action-btn" title="Add to wishlist">
-                                <i class="fas fa-heart"></i>
-                            </button>
-                            <button class="product-action-btn" title="Quick view">
-                                <i class="fas fa-eye"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="product-info">
-                        <span class="product-category">Jewelry</span>
-                        <h3 class="product-title">Silver Moonstone Necklace</h3>
-                        <div class="product-rating">
-                            <span class="stars">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star-half-alt"></i>
-                            </span>
-                            <span class="count">(203)</span>
-                        </div>
-                        <div class="product-price">
-                            <span class="current-price">€65.00</span>
-                        </div>
-                        <button class="add-to-cart-btn">
-                            <i class="fas fa-shopping-cart"></i> Add to Cart
-                        </button>
-                        <div class="product-seller">
-                            <div class="seller-avatar">MJ</div>
-                            <span>Moon Jewelry • Marseille</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Product Card 5 -->
-                <div class="product-card">
-                    <div class="product-img">
-                        <img src="https://images.unsplash.com/photo-1595341888016-a392ef81b7de?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1479&q=80" alt="Eco-friendly Tote Bag">
-                        <div class="product-actions">
-                            <button class="product-action-btn" title="Add to wishlist">
-                                <i class="fas fa-heart"></i>
-                            </button>
-                            <button class="product-action-btn" title="Quick view">
-                                <i class="fas fa-eye"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="product-info">
-                        <span class="product-category">Fashion & Accessories</span>
-                        <h3 class="product-title">Organic Cotton Tote Bag</h3>
-                        <div class="product-rating">
-                            <span class="stars">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="far fa-star"></i>
-                            </span>
-                            <span class="count">(47)</span>
-                        </div>
-                        <div class="product-price">
-                            <span class="current-price">€22.99</span>
-                        </div>
-                        <button class="add-to-cart-btn">
-                            <i class="fas fa-shopping-cart"></i> Add to Cart
-                        </button>
-                        <div class="product-seller">
-                            <div class="seller-avatar">EG</div>
-                            <span>Eco Goods • Bordeaux</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Product Card 6 -->
-                <div class="product-card">
-                    <span class="product-badge new">New</span>
-                    <div class="product-img">
-                        <img src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1420&q=80" alt="Wireless Headphones">
-                        <div class="product-actions">
-                            <button class="product-action-btn" title="Add to wishlist">
-                                <i class="fas fa-heart"></i>
-                            </button>
-                            <button class="product-action-btn" title="Quick view">
-                                <i class="fas fa-eye"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="product-info">
-                        <span class="product-category">Electronics</span>
-                        <h3 class="product-title">Wireless Noise-Canceling Headphones</h3>
-                        <div class="product-rating">
-                            <span class="stars">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star-half-alt"></i>
-                            </span>
-                            <span class="count">(156)</span>
-                        </div>
-                        <div class="product-price">
-                            <span class="current-price">€129.99</span>
-                            <span class="original-price">€180.00</span>
-                        </div>
-                        <button class="add-to-cart-btn">
-                            <i class="fas fa-shopping-cart"></i> Add to Cart
-                        </button>
-                        <div class="product-seller">
-                            <div class="seller-avatar">TA</div>
-                            <span>Tech Avenue • Paris</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Product Card 7 -->
-                <div class="product-card">
-                    <div class="product-img">
-                        <img src="https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Handmade Soap Set">
-                        <div class="product-actions">
-                            <button class="product-action-btn" title="Add to wishlist">
-                                <i class="fas fa-heart"></i>
-                            </button>
-                            <button class="product-action-btn" title="Quick view">
-                                <i class="fas fa-eye"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="product-info">
-                        <span class="product-category">Beauty & Care</span>
-                        <h3 class="product-title">Natural Olive Oil Soap Set</h3>
-                        <div class="product-rating">
-                            <span class="stars">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </span>
-                            <span class="count">(92)</span>
-                        </div>
-                        <div class="product-price">
-                            <span class="current-price">€18.50</span>
-                        </div>
-                        <button class="add-to-cart-btn">
-                            <i class="fas fa-shopping-cart"></i> Add to Cart
-                        </button>
-                        <div class="product-seller">
-                            <div class="seller-avatar">NS</div>
-                            <span>Natural Soaps • Nice</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Product Card 8 -->
-                <div class="product-card">
-                    <span class="product-badge popular">Popular</span>
-                    <div class="product-img">
-                        <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80" alt="Wooden Cutting Board">
-                        <div class="product-actions">
-                            <button class="product-action-btn" title="Add to wishlist">
-                                <i class="fas fa-heart"></i>
-                            </button>
-                            <button class="product-action-btn" title="Quick view">
-                                <i class="fas fa-eye"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="product-info">
-                        <span class="product-category">Home & Kitchen</span>
-                        <h3 class="product-title">Bamboo Cutting Board with Juice Groove</h3>
-                        <div class="product-rating">
-                            <span class="stars">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="far fa-star"></i>
-                            </span>
-                            <span class="count">(73)</span>
-                        </div>
-                        <div class="product-price">
-                            <span class="current-price">€24.99</span>
-                        </div>
-                        <button class="add-to-cart-btn">
-                            <i class="fas fa-shopping-cart"></i> Add to Cart
-                        </button>
-                        <div class="product-seller">
-                            <div class="seller-avatar">WC</div>
-                            <span>Wood Crafts • Toulouse</span>
-                        </div>
-                    </div>
-                </div>
+           <div class="products-grid" id="products-grid">
+    {% for product in products %}
+    <div class="product-card">
+        {% if product.badge %}
+        <span class="product-badge {{ product.badge }}">{{ product.get_badge_display }}</span>
+        {% endif %}
+        <div class="product-img">
+            <img src="{{ product.image.url }}" alt="{{ product.title }}">
+            <div class="product-actions">
+                <button class="product-action-btn" title="Add to wishlist">
+                    <i class="fas fa-heart"></i>
+                </button>
+                <button class="product-action-btn" title="Quick view">
+                    <i class="fas fa-eye"></i>
+                </button>
             </div>
+        </div>
+        <div class="product-info">
+            <span class="product-category">{{ product.category }}</span>
+            <h3 class="product-title">{{ product.title }}</h3>
+            <div class="product-rating">
+                <span class="stars">
+                    {% for i in "12345" %}
+                        {% if forloop.counter <= product.rating|floatformat:0 %}
+                            <i class="fas fa-star"></i>
+                        {% else %}
+                            <i class="far fa-star"></i>
+                        {% endif %}
+                    {% endfor %}
+                </span>
+                <span class="count">({{ product.rating_count }})</span>
+            </div>
+            <div class="product-price">
+                <span class="current-price">€{{ product.price }}</span>
+                {% if product.old_price %}
+                <span class="original-price">€{{ product.old_price }}</span>
+                {% endif %}
+            </div>
+            <button class="add-to-cart-btn">
+                <i class="fas fa-shopping-cart"></i> Add to Cart
+            </button>
+            <div class="product-seller">
+                <div class="seller-avatar">{{ product.seller.first_name|slice:":1" }}{{ product.seller.last_name|slice:":1" }}</div>
+                <span>{{ product.seller.get_full_name }} • {{ product.seller.profile.city }}</span>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+        <p>No products yet.</p>
+    {% endfor %}
+</div>
+
             
             <!-- Pagination -->
             <div class="pagination">

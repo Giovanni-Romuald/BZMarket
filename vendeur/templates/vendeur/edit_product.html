@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BZMarket - Edit Product</title>
+    <link rel="shortcut icon" href="{% static 'img/Logo@.png' %}" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #FF6B35;
+            --primary-dark: #E65100;
+            --primary-light: #FFA726;
+            --secondary: #2C3E50;
+            --secondary-light: #34495E;
+            --light: #FFFFFF;
+            --light-bg: #F9F9F9;
+            --text-dark: #333333;
+            --text-gray: #666666;
+            --text-light: #777777;
+            --white: #FFFFFF;
+            --shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 12px 35px rgba(255, 107, 53, 0.15);
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            --border-radius: 12px;
+            --gradient-primary: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            --gradient-secondary: linear-gradient(135deg, var(--secondary) 0%, var(--secondary-light) 100%);
+            --success: #28a745;
+            --danger: #dc3545;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--light-bg);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-dark);
+            line-height: 1.7;
+        }
+
+        .edit-container {
+            display: flex;
+            width: 100%;
+            max-width: 1400px;
+            min-height: 800px;
+            margin: 30px;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .form-section {
+            flex: 1.2;
+            background: var(--white);
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .form-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient-primary);
+        }
+
+        .floating-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .shape {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border-radius: 20px;
+            background: var(--gradient-primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            opacity: 0.1;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .shape-1 { top: 10%; left: 5%; animation-delay: 0s; }
+        .shape-2 { top: 20%; right: 10%; animation-delay: 1s; }
+        .shape-3 { bottom: 25%; left: 8%; animation-delay: 2s; }
+        .shape-4 { bottom: 15%; right: 15%; animation-delay: 3s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .back-btn {
+            background: none;
+            border: none;
+            color: var(--primary);
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 10px;
+            border-radius: 50%;
+            transition: var(--transition);
+            margin-right: 20px;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 107, 53, 0.1);
+            transform: translateX(-3px);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-icon {
+            height: 50px;
+            width: auto;
+        }
+
+        .logo-text {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 800;
+            font-size: 1.8rem;
+            color: var(--primary);
+        }
+
+        .page-title {
+            margin-bottom: 5px;
+        }
+
+        .page-subtitle {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+            font-weight: 300;
+        }
+
+        .form-content {
+            flex: 1;
+            position: relative;
+            z-index: 2;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+
+        .edit-form {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        .form-group {
+            position: relative;
+        }
+
+        .form-group.full-width {
+            grid-column: span 2;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .required::after {
+            content: '*';
+            color: var(--danger);
+            margin-left: 4px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 15px;
+            background: var(--light-bg);
+            border: 2px solid #e0e0e0;
+            border-radius: var(--border-radius);
+            color: var(--text-dark);
+            font-size: 1rem;
+            transition: var(--transition);
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: var(--white);
+            box-shadow: 0 0 0 4px rgba(255, 107, 53, 0.15);
+        }
+
+        textarea.form-control {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        select.form-control {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23666' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            background-size: 16px;
+            padding-right: 40px;
+        }
+
+        .image-upload {
+            border: 2px dashed #ddd;
+            border-radius: var(--border-radius);
+            padding: 40px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            background: var(--light-bg);
+        }
+
+        .image-upload:hover {
+            border-color: var(--primary);
+            background: rgba(255, 107, 53, 0.05);
+        }
+
+        .image-upload i {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .image-upload p {
+            color: var(--text-gray);
+            margin-bottom: 10px;
+        }
+
+        .image-upload span {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .current-image {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .current-image img {
+            max-width: 200px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .badge-options {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .badge-option {
+            flex: 1;
+            min-width: 120px;
+        }
+
+        .badge-option input {
+            display: none;
+        }
+
+        .badge-label {
+            display: block;
+            padding: 15px;
+            background: var(--light-bg);
+            border: 2px solid #e0e0e0;
+            border-radius: var(--border-radius);
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .badge-label:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .badge-option input:checked + .badge-label {
+            background: var(--gradient-primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .price-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .price-input {
+            position: relative;
+        }
+
+        .price-input::before {
+            content: '$';
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-gray);
+        }
+
+        .price-input .form-control {
+            padding-left: 30px;
+        }
+
+        .discount-badge {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--success);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 20px;
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 2px solid #f0f0f0;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 18px 32px;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            font-size: 1.1rem;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            font-family: 'Poppins', sans-serif;
+            flex: 1;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.7s ease;
+            z-index: -1;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: var(--white);
+            box-shadow: 0 6px 20px rgba(255, 107, 53, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .btn-secondary {
+            background: var(--light-bg);
+            color: var(--text-dark);
+            border: 2px solid #e0e0e0;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .btn-danger {
+            background: var(--danger);
+            color: var(--white);
+        }
+
+        .btn-danger:hover {
+            background: #c82333;
+            transform: translateY(-5px);
+        }
+
+        .preview-section {
+            flex: 1;
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.1) 0%, rgba(44, 62, 80, 0.05) 100%);
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .preview-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(255, 107, 53, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(44, 62, 80, 0.08) 0%, transparent 50%);
+        }
+
+        .preview-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+            color: var(--secondary);
+            position: relative;
+            z-index: 2;
+        }
+
+        .preview-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100px;
+            height: 4px;
+            background: var(--gradient-primary);
+            border-radius: 2px;
+        }
+
+        .product-preview {
+            background: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 2;
+            animation: slideInRight 0.8s ease-out;
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .product-image {
+            height: 300px;
+            background: linear-gradient(45deg, #f8f9fa, #e9ecef);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 8px 16px;
+            border-radius: 4px;
+            color: white;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
+        .badge-new { background: var(--success); }
+        .badge-hot { background: #ff4757; }
+        .badge-sale { background: var(--primary); }
+
+        .product-info {
+            padding: 30px;
+        }
+
+        .product-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--text-dark);
+        }
+
+        .product-category {
+            display: inline-block;
+            background: rgba(44, 62, 80, 0.1);
+            color: var(--secondary);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+
+        .product-description {
+            color: var(--text-gray);
+            margin-bottom: 25px;
+            line-height: 1.8;
+        }
+
+        .product-price {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .current-price {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .old-price {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            text-decoration: line-through;
+        }
+
+        .discount-percent {
+            background: var(--success);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .product-meta {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #f0f0f0;
+        }
+
+        .meta-item {
+            text-align: center;
+        }
+
+        .meta-item i {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .meta-value {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .meta-label {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+        }
+
+        .stock-status {
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .in-stock {
+            background: rgba(40, 167, 69, 0.1);
+            color: var(--success);
+            border: 2px solid var(--success);
+        }
+
+        .out-of-stock {
+            background: rgba(220, 53, 69, 0.1);
+            color: var(--danger);
+            border: 2px solid var(--danger);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @media (max-width: 1200px) {
+            .edit-container {
+                flex-direction: column;
+                max-width: 800px;
+                margin: 20px;
+            }
+            
+            .preview-section {
+                display: none;
+            }
+            
+            .form-section {
+                padding: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .edit-container {
+                margin: 10px;
+            }
+            
+            .form-section {
+                padding: 20px;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-group.full-width {
+                grid-column: span 1;
+            }
+            
+            .price-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-actions {
+                flex-direction: column;
+            }
+            
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            
+            .back-btn {
+                margin-right: 0;
+            }
+        }
+
+        /* Scrollbar Styling */
+        .form-content::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .form-content::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 3px;
+        }
+
+        .form-content::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 3px;
+        }
+
+        .form-content::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-dark);
+        }
+    </style>
+</head>
+<body>
+    <div class="edit-container">
+        <div class="form-section">
+            <div class="floating-shapes">
+                <div class="shape shape-1"><i class="fas fa-box"></i></div>
+                <div class="shape shape-2"><i class="fas fa-tags"></i></div>
+                <div class="shape shape-3"><i class="fas fa-edit"></i></div>
+                <div class="shape shape-4"><i class="fas fa-chart-bar"></i></div>
+            </div>
+
+            <div class="header">
+                <button class="back-btn" onclick="window.history.back()">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <div class="logo">
+                    <img src="{% static 'img/Logo@.png' %}" alt="BZMarket Logo" class="logo-icon">
+                    <div>
+                        <div class="logo-text">BZMarket</div>
+                        <div class="page-title">Edit Product</div>
+                        <div class="page-subtitle">Update your product information</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-content">
+                <form class="edit-form" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    
+                    <div class="form-row">
+                        <div class="form-group full-width">
+                            <label class="form-label required">Product Title</label>
+                            <input type="text" class="form-control" name="title" value="{{ product.title }}" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label required">Category</label>
+                            <select class="form-control" name="category" required>
+                                <option value="">Select Category</option>
+                                <option value="electronics" {% if product.category == 'electronics' %}selected{% endif %}>Electronics</option>
+                                <option value="fashion" {% if product.category == 'fashion' %}selected{% endif %}>Fashion</option>
+                                <option value="home" {% if product.category == 'home' %}selected{% endif %}>Home & Garden</option>
+                                <option value="sports" {% if product.category == 'sports' %}selected{% endif %}>Sports</option>
+                                <option value="books" {% if product.category == 'books' %}selected{% endif %}>Books</option>
+                                <option value="other" {% if product.category == 'other' %}selected{% endif %}>Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label required">Price ($)</label>
+                            <div class="price-input">
+                                <input type="number" class="form-control" name="price" step="0.01" min="0" value="{{ product.price }}" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Old Price ($)</label>
+                            <div class="price-input">
+                                <input type="number" class="form-control" name="old_price" step="0.01" min="0" value="{{ product.old_price|default:'' }}">
+                                {% if product.old_price and product.price < product.old_price %}
+                                <span class="discount-badge">-{{ product.discount_percent }}%</span>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label required">Stock Quantity</label>
+                            <input type="number" class="form-control" name="stock" min="0" value="{{ product.stock }}" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group full-width">
+                            <label class="form-label">Product Badge</label>
+                            <div class="badge-options">
+                                <div class="badge-option">
+                                    <input type="radio" id="badge-none" name="badge" value="" {% if not product.badge %}checked{% endif %}>
+                                    <label for="badge-none" class="badge-label">No Badge</label>
+                                </div>
+                                <div class="badge-option">
+                                    <input type="radio" id="badge-new" name="badge" value="new" {% if product.badge == 'new' %}checked{% endif %}>
+                                    <label for="badge-new" class="badge-label">New</label>
+                                </div>
+                                <div class="badge-option">
+                                    <input type="radio" id="badge-hot" name="badge" value="hot" {% if product.badge == 'hot' %}checked{% endif %}>
+                                    <label for="badge-hot" class="badge-label">Hot</label>
+                                </div>
+                                <div class="badge-option">
+                                    <input type="radio" id="badge-sale" name="badge" value="sale" {% if product.badge == 'sale' %}checked{% endif %}>
+                                    <label for="badge-sale" class="badge-label">Sale</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group full-width">
+                            <label class="form-label required">Description</label>
+                            <textarea class="form-control" name="description" rows="4" required>{{ product.description }}</textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group full-width">
+                            <label class="form-label">Product Image</label>
+                            <div class="image-upload" onclick="document.getElementById('image-input').click()">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <p>Click to upload product image</p>
+                                <span>Recommended size: 800x800px | Max 5MB</span>
+                            </div>
+                            <input type="file" id="image-input" name="image" accept="image/*" style="display: none;" onchange="previewImage(event)">
+                            
+                            {% if product.image %}
+                            <div class="current-image">
+                                <p>Current Image:</p>
+                                <img src="{{ product.image.url }}" alt="{{ product.title }}" id="current-image">
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Status</label>
+                            <div class="form-check">
+                                <label class="badge-label" style="text-align: left; display: flex; align-items: center; gap: 10px;">
+                                    <input type="checkbox" name="is_active" {% if product.is_active %}checked{% endif %} style="display: inline-block; width: auto;">
+                                    Active Product
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary" onclick="window.history.back()">
+                            <i class="fas fa-times"></i> Cancel
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save"></i> Update Product
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="preview-section">
+            <h2 class="preview-title">Live Preview</h2>
+            
+            <div class="product-preview">
+                <div class="product-image">
+                    {% if product.image %}
+                    <img src="{{ product.image.url }}" alt="Product Preview" id="preview-image">
+                    {% else %}
+                    <i class="fas fa-box-open" style="font-size: 4rem; color: #ddd;"></i>
+                    {% endif %}
+                    
+                    {% if product.badge %}
+                    <div class="product-badge badge-{{ product.badge }}">
+                        {{ product.badge|upper }}
+                    </div>
+                    {% endif %}
+                </div>
+                
+                <div class="product-info">
+                    <h3 class="product-title" id="preview-title">{{ product.title }}</h3>
+                    <span class="product-category" id="preview-category">{{ product.category|title }}</span>
+                    
+                    <p class="product-description" id="preview-description">{{ product.description|truncatewords:50 }}</p>
+                    
+                    <div class="product-price">
+                        <span class="current-price" id="preview-price">${{ product.price }}</span>
+                        {% if product.old_price and product.price < product.old_price %}
+                        <span class="old-price">${{ product.old_price }}</span>
+                        <span class="discount-percent">-{{ product.discount_percent }}%</span>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="product-meta">
+                        <div class="meta-item">
+                            <i class="fas fa-star"></i>
+                            <div class="meta-value">{{ product.rating|floatformat:1 }}</div>
+                            <div class="meta-label">Rating</div>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-chart-bar"></i>
+                            <div class="meta-value">{{ product.rating_count }}</div>
+                            <div class="meta-label">Reviews</div>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-user"></i>
+                            <div class="meta-value">{{ product.seller.username }}</div>
+                            <div class="meta-label">Seller</div>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-calendar"></i>
+                            <div class="meta-value">{{ product.created_at|date:"M d, Y" }}</div>
+                            <div class="meta-label">Added</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stock-status {% if product.stock > 0 %}in-stock{% else %}out-of-stock{% endif %}" id="preview-stock">
+                        {% if product.stock > 0 %}
+                        {{ product.stock }} items in stock
+                        {% else %}
+                        Out of stock
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Live preview updates
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get form elements
+            const titleInput = document.querySelector('input[name="title"]');
+            const categorySelect = document.querySelector('select[name="category"]');
+            const priceInput = document.querySelector('input[name="price"]');
+            const oldPriceInput = document.querySelector('input[name="old_price"]');
+            const stockInput = document.querySelector('input[name="stock"]');
+            const descriptionInput = document.querySelector('textarea[name="description"]');
+            const badgeInputs = document.querySelectorAll('input[name="badge"]');
+            const imageInput = document.getElementById('image-input');
+            const activeCheckbox = document.querySelector('input[name="is_active"]');
+
+            // Get preview elements
+            const previewTitle = document.getElementById('preview-title');
+            const previewCategory = document.getElementById('preview-category');
+            const previewPrice = document.getElementById('preview-price');
+            const previewDescription = document.getElementById('preview-description');
+            const previewStock = document.getElementById('preview-stock');
+            const previewImage = document.getElementById('preview-image');
+            const badgeElement = document.querySelector('.product-badge');
+
+            // Update title
+            titleInput.addEventListener('input', function() {
+                previewTitle.textContent = this.value || 'Product Title';
+            });
+
+            // Update category
+            categorySelect.addEventListener('change', function() {
+                const categoryText = this.options[this.selectedIndex].text;
+                previewCategory.textContent = categoryText !== 'Select Category' ? categoryText : 'Category';
+            });
+
+            // Update price
+            priceInput.addEventListener('input', function() {
+                previewPrice.textContent = '$' + (this.value || '0');
+                updateDiscount();
+            });
+
+            // Update old price and discount
+            oldPriceInput.addEventListener('input', updateDiscount);
+
+            function updateDiscount() {
+                const price = parseFloat(priceInput.value) || 0;
+                const oldPrice = parseFloat(oldPriceInput.value) || 0;
+                
+                if (oldPrice > price) {
+                    const discount = Math.round(100 - (price * 100 / oldPrice));
+                    // In a real implementation, you would update the discount display
+                }
+            }
+
+            // Update stock
+            stockInput.addEventListener('input', function() {
+                const stock = parseInt(this.value) || 0;
+                previewStock.textContent = stock > 0 ? stock + ' items in stock' : 'Out of stock';
+                previewStock.className = stock > 0 ? 'stock-status in-stock' : 'stock-status out-of-stock';
+            });
+
+            // Update description
+            descriptionInput.addEventListener('input', function() {
+                previewDescription.textContent = this.value.substring(0, 200) + (this.value.length > 200 ? '...' : '');
+            });
+
+            // Update badge
+            badgeInputs.forEach(input => {
+                input.addEventListener('change', function() {
+                    if (this.checked) {
+                        const badgeValue = this.value;
+                        if (badgeValue && badgeElement) {
+                            badgeElement.className = 'product-badge badge-' + badgeValue;
+                            badgeElement.textContent = badgeValue.toUpperCase();
+                            badgeElement.style.display = 'block';
+                        } else if (badgeElement) {
+                            badgeElement.style.display = 'none';
+                        }
+                    }
+                });
+            });
+
+            // Update image preview
+            imageInput.addEventListener('change', previewImage);
+
+            function previewImage(event) {
+                const reader = new FileReader();
+                const file = event.target.files[0];
+                
+                if (file) {
+                    reader.onload = function(e) {
+                        if (previewImage) {
+                            previewImage.src = e.target.result;
+                            previewImage.style.display = 'block';
+                        }
+                    }
+                    reader.readAsDataURL(file);
+                }
+            }
+        });
+
+        // Form validation
+        document.querySelector('.edit-form').addEventListener('submit', function(e) {
+            const price = parseFloat(document.querySelector('input[name="price"]').value);
+            const oldPrice = parseFloat(document.querySelector('input[name="old_price"]').value) || 0;
+            
+            if (oldPrice > 0 && oldPrice <= price) {
+                e.preventDefault();
+                alert('Old price must be greater than current price for discounts.');
+                return false;
+            }
+            
+            const stock = parseInt(document.querySelector('input[name="stock"]').value);
+            if (stock < 0) {
+                e.preventDefault();
+                alert('Stock cannot be negative.');
+                return false;
+            }
+            
+            return true;
+        });
+
+        // Feature cards hover effect
+        document.querySelectorAll('.meta-item').forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                const icon = this.querySelector('i');
+                icon.style.transform = 'scale(1.2)';
+            });
+            
+            item.addEventListener('mouseleave', function() {
+                const icon = this.querySelector('i');
+                icon.style.transform = '';
+            });
+        });
+    </script>
+</body>
+</html>

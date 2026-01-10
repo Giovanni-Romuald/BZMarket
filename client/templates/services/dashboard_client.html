@@ -1,29 +1,29 @@
 <!DOCTYPE html>
 {% load static %}
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BZMarket - Seller Dashboard</title>
+    <title>BZMarket - Tableau de bord client</title>
     <link rel="shortcut icon" href="{% static 'img/Logo@.png' %}" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #FF6B35; /* Bright orange */
-            --primary-dark: #E65100;
-            --primary-light: #FFA726;
-            --secondary: #2C3E50; /* Dark blue */
+            --primary: #4A6FFF; /* Bleu client */
+            --primary-dark: #3651CC;
+            --primary-light: #6B8AFF;
+            --secondary: #2C3E50;
             --secondary-light: #34495E;
             --accent: #FF5722;
-            --light: #FFFFFF; /* White background */
+            --light: #FFFFFF;
             --light-bg: #F9F9F9;
             --text-dark: #333333;
             --text-gray: #666666;
             --text-light: #777777;
             --white: #FFFFFF;
             --shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-            --shadow-hover: 0 12px 35px rgba(255, 107, 53, 0.15);
+            --shadow-hover: 0 12px 35px rgba(74, 111, 255, 0.15);
             --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             --border-radius: 12px;
             --gradient-primary: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
@@ -80,7 +80,7 @@
             height: 100vh;
             overflow-y: auto;
             box-shadow: var(--shadow);
-            border-right: 1px solid rgba(255, 107, 53, 0.1);
+            border-right: 1px solid rgba(74, 111, 255, 0.1);
         }
         
         .logo {
@@ -106,10 +106,10 @@
             background-clip: text;
         }
         
-        .seller-profile {
+        .client-profile {
             padding: 20px 25px;
             margin-bottom: 30px;
-            border-bottom: 1px solid rgba(255, 107, 53, 0.1);
+            border-bottom: 1px solid rgba(74, 111, 255, 0.1);
             text-align: center;
         }
         
@@ -129,7 +129,7 @@
             border: 3px solid var(--white);
         }
         
-        .seller-profile h3 {
+        .client-profile h3 {
             font-family: 'Poppins', sans-serif;
             font-size: 18px;
             text-align: center;
@@ -137,14 +137,14 @@
             color: var(--text-dark);
         }
         
-        .seller-profile p {
+        .client-profile p {
             text-align: center;
             color: var(--text-gray);
             font-size: 13px;
             opacity: 0.8;
         }
         
-        .seller-status {
+        .client-status {
             display: inline-block;
             background: var(--gradient-primary);
             color: white;
@@ -153,7 +153,7 @@
             font-size: 11px;
             font-weight: 600;
             margin-top: 8px;
-            box-shadow: 0 3px 10px rgba(255, 107, 53, 0.2);
+            box-shadow: 0 3px 10px rgba(74, 111, 255, 0.2);
         }
         
         .nav-menu {
@@ -190,7 +190,7 @@
         }
         
         .nav-link:hover, .nav-link.active {
-            background: linear-gradient(90deg, rgba(255, 107, 53, 0.1) 0%, rgba(255, 107, 53, 0.05) 100%);
+            background: linear-gradient(90deg, rgba(74, 111, 255, 0.1) 0%, rgba(74, 111, 255, 0.05) 100%);
             color: var(--primary);
             transform: translateX(5px);
         }
@@ -215,13 +215,13 @@
             font-size: 12px;
             font-weight: 600;
             margin-left: auto;
-            box-shadow: 0 2px 5px rgba(255, 107, 53, 0.2);
+            box-shadow: 0 2px 5px rgba(74, 111, 255, 0.2);
         }
         
         .logout {
             margin-top: 30px;
             padding: 20px 25px 0;
-            border-top: 1px solid rgba(255, 107, 53, 0.1);
+            border-top: 1px solid rgba(74, 111, 255, 0.1);
         }
         
         /* Main Content Styles */
@@ -295,7 +295,7 @@
         .btn-primary {
             background: var(--gradient-primary);
             color: var(--white);
-            box-shadow: 0 6px 20px rgba(255, 107, 53, 0.3);
+            box-shadow: 0 6px 20px rgba(74, 111, 255, 0.3);
         }
         
         .btn-primary:hover {
@@ -312,24 +312,6 @@
         .btn-secondary:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 30px rgba(44, 62, 80, 0.3);
-        }
-        
-        .add-product-btn {
-            background: var(--gradient-primary);
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            transition: var(--transition);
-        }
-        
-        .add-product-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-hover);
         }
         
         .notification-bell {
@@ -367,7 +349,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 2px 5px rgba(255, 107, 53, 0.3);
+            box-shadow: 0 2px 5px rgba(74, 111, 255, 0.3);
         }
         
         /* Stats Cards */
@@ -394,7 +376,7 @@
         .stat-card:hover {
             transform: translateY(-5px);
             box-shadow: var(--shadow-hover);
-            border-color: rgba(255, 107, 53, 0.2);
+            border-color: rgba(74, 111, 255, 0.2);
         }
         
         .stat-icon {
@@ -411,13 +393,13 @@
             background: var(--gradient-primary);
         }
         
-        .revenue-icon { 
+        .orders-icon { 
             background: linear-gradient(135deg, var(--success) 0%, #2E7D32 100%);
         }
-        .orders-icon { 
+        .spent-icon { 
             background: var(--gradient-primary);
         }
-        .products-icon { 
+        .wishlist-icon { 
             background: var(--gradient-secondary);
         }
         .rating-icon { 
@@ -467,7 +449,7 @@
         .spinner {
             width: 50px;
             height: 50px;
-            border: 5px solid rgba(255, 107, 53, 0.1);
+            border: 5px solid rgba(74, 111, 255, 0.1);
             border-top: 5px solid var(--primary);
             border-radius: 50%;
             animation: spin 1s linear infinite;
@@ -491,12 +473,12 @@
         .shape {
             position: absolute;
             border-radius: 50%;
-            background: linear-gradient(135deg, rgba(255, 107, 53, 0.1), rgba(44, 62, 80, 0.1));
+            background: linear-gradient(135deg, rgba(74, 111, 255, 0.1), rgba(44, 62, 80, 0.1));
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 20px;
-            color: rgba(255, 107, 53, 0.3);
+            color: rgba(74, 111, 255, 0.3);
             animation: float 20s infinite linear;
         }
         
@@ -561,10 +543,10 @@
         th {
             text-align: left;
             padding: 20px;
-            background: rgba(255, 107, 53, 0.05);
+            background: rgba(74, 111, 255, 0.05);
             font-weight: 600;
             color: var(--text-dark);
-            border-bottom: 2px solid rgba(255, 107, 53, 0.1);
+            border-bottom: 2px solid rgba(74, 111, 255, 0.1);
         }
         
         td {
@@ -578,7 +560,7 @@
         }
         
         tr:hover {
-            background: rgba(255, 107, 53, 0.03);
+            background: rgba(74, 111, 255, 0.03);
         }
         
         .status-badge {
@@ -612,7 +594,7 @@
             justify-content: center;
             color: var(--primary);
             font-size: 24px;
-            border: 2px solid rgba(255, 107, 53, 0.1);
+            border: 2px solid rgba(74, 111, 255, 0.1);
         }
         
         /* Charts Container */
@@ -717,7 +699,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: rgba(255, 107, 53, 0.1);
+            background: rgba(74, 111, 255, 0.1);
             color: var(--primary);
             border: none;
             font-weight: 600;
@@ -731,7 +713,7 @@
         }
         
         .pagination-btn:hover:not(.active) {
-            background: rgba(255, 107, 53, 0.2);
+            background: rgba(74, 111, 255, 0.2);
             transform: translateY(-2px);
         }
         
@@ -746,7 +728,7 @@
         .filter-btn {
             padding: 10px 20px;
             border-radius: 8px;
-            border: 1px solid rgba(255, 107, 53, 0.2);
+            border: 1px solid rgba(74, 111, 255, 0.2);
             background: white;
             color: var(--text-gray);
             cursor: pointer;
@@ -759,6 +741,60 @@
             color: white;
             border-color: var(--primary);
             transform: translateY(-2px);
+        }
+        
+        /* Product Cards */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .product-card {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .product-img {
+            height: 180px;
+            background: var(--light-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 60px;
+        }
+        
+        .product-info {
+            padding: 20px;
+        }
+        
+        .product-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: var(--text-dark);
+        }
+        
+        .product-price {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .product-actions {
+            display: flex;
+            gap: 10px;
         }
         
         /* Mobile Menu */
@@ -873,6 +909,10 @@
                 display: block;
                 overflow-x: auto;
             }
+            
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
         
         @media (max-width: 576px) {
@@ -890,6 +930,10 @@
             
             .order-filters {
                 justify-content: center;
+            }
+            
+            .product-grid {
+                grid-template-columns: 1fr;
             }
         }
         
@@ -923,12 +967,7 @@
             to { transform: translateX(100%); opacity: 0; }
         }
         
-        /* Product Actions */
-        .product-actions {
-            display: flex;
-            gap: 5px;
-        }
-        
+        /* Action Buttons */
         .action-btn {
             width: 35px;
             height: 35px;
@@ -936,7 +975,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: rgba(255, 107, 53, 0.1);
+            background: rgba(74, 111, 255, 0.1);
             color: var(--primary);
             border: none;
             cursor: pointer;
@@ -947,36 +986,6 @@
             background: var(--primary);
             color: white;
             transform: scale(1.1);
-        }
-        
-        /* Stock Progress Bar */
-        .stock-progress {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .progress-bar {
-            width: 80px;
-            height: 6px;
-            background: #f0f0f0;
-            border-radius: 3px;
-            overflow: hidden;
-        }
-        
-        .progress-fill {
-            height: 100%;
-            border-radius: 3px;
-            background: var(--success);
-            transition: width 0.3s ease;
-        }
-        
-        .progress-fill.warning {
-            background: var(--warning);
-        }
-        
-        .progress-fill.danger {
-            background: var(--danger);
         }
         
         /* Tooltip */
@@ -1047,10 +1056,10 @@
 <body>
     <!-- Floating shapes -->
     <div class="floating-shapes">
-        <div class="shape shape-1"><i class="fas fa-chart-line"></i></div>
-        <div class="shape shape-2"><i class="fas fa-boxes"></i></div>
-        <div class="shape shape-3"><i class="fas fa-money-bill-wave"></i></div>
-        <div class="shape shape-4"><i class="fas fa-shipping-fast"></i></div>
+        <div class="shape shape-1"><i class="fas fa-shopping-cart"></i></div>
+        <div class="shape shape-2"><i class="fas fa-box-open"></i></div>
+        <div class="shape shape-3"><i class="fas fa-heart"></i></div>
+        <div class="shape shape-4"><i class="fas fa-star"></i></div>
     </div>
     
     <div class="dashboard-container">
@@ -1061,13 +1070,12 @@
                 <h1>BZMarket</h1>
             </div>
             
-            <div class="seller-profile">
-                <div class="avatar">SM</div>
-                {%if user.is_authenticated%}
-                <h3>{{ user.username }}</h3>
-                <p>Seller Account</p>
-                <div class="seller-status">
-                    <i class="fas fa-check-circle"></i> Verified
+            <div class="client-profile">
+                <div class="avatar">JD</div>
+                <h3>Jean Dupont</h3>
+                <p>Client Premium</p>
+                <div class="client-status">
+                    <i class="fas fa-crown"></i> Premium
                 </div>
             </div>
             
@@ -1075,59 +1083,58 @@
                 <li class="nav-item">
                     <a href="#dashboard" class="nav-link active" data-section="dashboard">
                         <i class="fas fa-tachometer-alt"></i>
-                        <span>Dashboard</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#products" class="nav-link" data-section="products">
-                        <i class="fas fa-box"></i>
-                        <span>My Products</span>
-                        <span class="badge">24</span>
+                        <span>Tableau de bord</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="#orders" class="nav-link" data-section="orders">
                         <i class="fas fa-shopping-bag"></i>
-                        <span>Orders</span>
+                        <span>Mes Commandes</span>
+                        <span class="badge">5</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#wishlist" class="nav-link" data-section="wishlist">
+                        <i class="fas fa-heart"></i>
+                        <span>Mes Favoris</span>
                         <span class="badge">12</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{% url 'gerer_profil' %}" class="nav-link">
-                        <i class="fas fa-user"></i>
-                        <span>Profil</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#analytics" class="nav-link" data-section="analytics">
-                        <i class="fas fa-chart-bar"></i>
-                        <span>Analytics</span>
+                    <a href="#history" class="nav-link" data-section="history">
+                        <i class="fas fa-history"></i>
+                        <span>Historique</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="#reviews" class="nav-link" data-section="reviews">
                         <i class="fas fa-star"></i>
-                        <span>Reviews</span>
-                        <span class="badge">8</span>
+                        <span>Mes Avis</span>
+                        <span class="badge">3</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#messages" class="nav-link" data-section="messages">
-                        <i class="fas fa-comments"></i>
-                        <span>Messages</span>
-                        <span class="badge">5</span>
+                    <a href="#recommendations" class="nav-link" data-section="recommendations">
+                        <i class="fas fa-lightbulb"></i>
+                        <span>Recommandations</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#addresses" class="nav-link" data-section="addresses">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Adresses</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="#settings" class="nav-link" data-section="settings">
                         <i class="fas fa-cog"></i>
-                        <span>Settings</span>
+                        <span>Paramètres</span>
                     </a>
                 </li>
                 <li class="nav-item logout">
                     <a href="#" class="nav-link" id="logoutBtn">
                         <i class="fas fa-sign-out-alt"></i>
-                        <span>Logout</span>
+                        <span>Déconnexion</span>
                     </a>
                 </li>
             </ul>
@@ -1140,34 +1147,23 @@
                 <div class="menu-toggle" id="menuToggle">
                     <i class="fas fa-bars"></i>
                 </div>
-                <h2 id="sectionTitle">Seller Dashboard</h2>
+                <h2 id="sectionTitle">Tableau de bord client</h2>
                 <div class="header-actions">
-                    <button class="btn btn-primary" id="addProductBtn">
-                        <i class="fas fa-plus"></i> Add Product
+                    <button class="btn btn-primary" id="shopNowBtn">
+                        <i class="fas fa-shopping-cart"></i> Magasin
                     </button>
-                    <a href="{% url 'logout' %}" class="btn btn-primary" id="logoutBtnHeader">
-                        <i class="fas fa-sign-out-alt"></i> Logout
-                    </a>
-
-                    <a href="{% url 'gerer_profil' %}" class="btn btn-primary" id="logoutBtnHeader">
-                        <i class="fas fa-user"></i> my profile
-                    </a>
-
-                
                     <div class="notification-bell tooltip" id="notificationBell">
                         <i class="fas fa-bell"></i>
-                        <span class="notification-badge">5</span>
-                        <span class="tooltip-text">You have 5 new notifications</span>
+                        <span class="notification-badge">3</span>
+                        <span class="tooltip-text">Vous avez 3 nouvelles notifications</span>
                     </div>
                 </div>
             </div>
             
             <!-- Welcome Banner -->
             <div class="welcome-banner" id="welcomeBanner">
-                <h2>Welcome back, {{ user.username }}</h2>
-                {% endif %}
-                
-                <p>Hello morning</p>
+                <h2>Bon retour, Jean!</h2>
+                <p>Vous avez 2 commandes en cours et 12 produits dans vos favoris. Votre solde fidélité est de 1 250 points.</p>
             </div>
             
             <!-- Content will be loaded here -->
@@ -1175,7 +1171,7 @@
                 <!-- Loading spinner -->
                 <div class="loading-spinner" id="loadingSpinner">
                     <div class="spinner"></div>
-                    <p>Loading content...</p>
+                    <p>Chargement du contenu...</p>
                 </div>
                 
                 <!-- Content will be injected here -->
@@ -1184,63 +1180,53 @@
                     <div class="section-content" id="dashboard-content">
                         <div class="stats-cards">
                             <div class="stat-card">
-                                <div class="stat-icon revenue-icon">
-                                    <i class="fas fa-money-bill-wave"></i>
+                                <div class="stat-icon orders-icon">
+                                    <i class="fas fa-shopping-bag"></i>
                                 </div>
                                 <div class="stat-info">
-                                    <h3>Total Revenue</h3>
-                                    <div class="number" data-count="24500">€0</div>
+                                    <h3>Commandes Actives</h3>
+                                    <div class="number" data-count="5">0</div>
                                     <div class="trend up">
-                                        <i class="fas fa-arrow-up"></i> 12.5% from last month
+                                        <i class="fas fa-arrow-up"></i> 2 cette semaine
                                     </div>
                                 </div>
                             </div>
                             
                             <div class="stat-card">
-                                <div class="stat-icon orders-icon">
-                                    <i class="fas fa-shopping-bag"></i>
+                                <div class="stat-icon spent-icon">
+                                    <i class="fas fa-money-bill-wave"></i>
                                 </div>
                                 <div class="stat-info">
-                                    <h3>Total Orders</h3>
-                                    <div class="number" data-count="156">0</div>
-                                    <div class="trend up">
-                                        <i class="fas fa-arrow-up"></i> 8.3% from last month
+                                    <h3>Dépensé ce mois</h3>
+                                    <div class="number" data-count="1250">€0</div>
+                                    <div class="trend down">
+                                        <i class="fas fa-arrow-down"></i> 15% vs mois dernier
                                     </div>
                                 </div>
                             </div>
                             
-                           <div class="stat-card">
-    <div class="stat-icon products-icon">
-        <i class="fas fa-box"></i>
-    </div>
-    <div class="stat-info">
-        <h3>Active Products</h3>
-        <!-- Nombre dynamique de produits actifs -->
-        <div class="number" data-count="{{ active_products_count }}">{{ active_products_count }}</div>
-
-        <!-- Tendance par rapport au mois dernier -->
-        {% if trend >= 0 %}
-            <div class="trend up">
-                <i class="fas fa-arrow-up"></i> {{ trend }} from last month
-            </div>
-        {% else %}
-            <div class="trend down">
-                <i class="fas fa-arrow-down"></i> {{ trend }} from last month
-            </div>
-        {% endif %}
-    </div>
-</div>
-
+                            <div class="stat-card">
+                                <div class="stat-icon wishlist-icon">
+                                    <i class="fas fa-heart"></i>
+                                </div>
+                                <div class="stat-info">
+                                    <h3>Favoris</h3>
+                                    <div class="number" data-count="12">0</div>
+                                    <div class="trend up">
+                                        <i class="fas fa-arrow-up"></i> 3 nouveaux
+                                    </div>
+                                </div>
+                            </div>
                             
                             <div class="stat-card">
                                 <div class="stat-icon rating-icon">
                                     <i class="fas fa-star"></i>
                                 </div>
                                 <div class="stat-info">
-                                    <h3>Average Rating</h3>
-                                    <div class="number" data-count="4.8">0.0</div>
+                                    <h3>Notes Moyennes</h3>
+                                    <div class="number" data-count="4.7">0.0</div>
                                     <div class="trend up">
-                                        <i class="fas fa-arrow-up"></i> 0.2 from last month
+                                        <i class="fas fa-arrow-up"></i> 0.3 depuis juin
                                     </div>
                                 </div>
                             </div>
@@ -1250,177 +1236,212 @@
                         <div class="quick-stats">
                             <div class="quick-stat">
                                 <div class="quick-stat-icon">
-                                    <i class="fas fa-check-circle"></i>
+                                    <i class="fas fa-box"></i>
                                 </div>
-                                <div class="quick-stat-value">89%</div>
-                                <div class="quick-stat-label">Order Completion</div>
+                                <div class="quick-stat-value">8</div>
+                                <div class="quick-stat-label">Achats réussis</div>
                             </div>
                             <div class="quick-stat">
                                 <div class="quick-stat-icon">
                                     <i class="fas fa-shipping-fast"></i>
                                 </div>
-                                <div class="quick-stat-value">2.1</div>
-                                <div class="quick-stat-label">Avg. Shipping Days</div>
+                                <div class="quick-stat-value">2</div>
+                                <div class="quick-stat-label">En livraison</div>
                             </div>
                             <div class="quick-stat">
                                 <div class="quick-stat-icon">
                                     <i class="fas fa-undo"></i>
                                 </div>
-                                <div class="quick-stat-value">3%</div>
-                                <div class="quick-stat-label">Return Rate</div>
+                                <div class="quick-stat-value">1</div>
+                                <div class="quick-stat-label">Retours</div>
                             </div>
                             <div class="quick-stat">
                                 <div class="quick-stat-icon">
-                                    <i class="fas fa-clock"></i>
+                                    <i class="fas fa-ticket-alt"></i>
                                 </div>
-                                <div class="quick-stat-value">4</div>
-                                <div class="quick-stat-label">Pending Orders</div>
+                                <div class="quick-stat-value">5</div>
+                                <div class="quick-stat-label">Coupons</div>
                             </div>
                         </div>
                         
-                        <!-- Charts -->
-                        <div class="charts-container">
-                            <div class="chart-card">
-                                <div class="chart-header">
-                                    <h3 class="chart-title">Revenue Overview</h3>
-                                    <select class="filter-btn" style="padding: 8px 15px;">
-                                        <option>Last 7 days</option>
-                                        <option>Last 30 days</option>
-                                        <option>Last 90 days</option>
-                                    </select>
+                        <!-- Recommended Products -->
+                        <div class="section-header">
+                            <div>
+                                <h3 class="section-title">Recommandé pour vous</h3>
+                                <p class="section-subtitle">Basé sur votre historique d'achats</p>
+                            </div>
+                            <button class="btn btn-secondary" onclick="showMoreRecommendations()">
+                                Voir plus
+                            </button>
+                        </div>
+                        
+                        <div class="product-grid" id="recommended-products">
+                            <div class="product-card">
+                                <div class="product-img">
+                                    <i class="fas fa-headphones"></i>
                                 </div>
-                                <div style="height: 300px; display: flex; align-items: center; justify-content: center; background: #f9f9f9; border-radius: 8px;">
-                                    <div style="text-align: center;">
-                                        <i class="fas fa-chart-line" style="font-size: 60px; color: #ddd; margin-bottom: 20px;"></i>
-                                        <p style="color: var(--text-gray);">Revenue chart visualization</p>
-                                        <p style="color: var(--text-light); font-size: 14px;">Interactive chart showing revenue trends</p>
+                                <div class="product-info">
+                                    <h4 class="product-title">Casque sans fil</h4>
+                                    <div class="product-price">€129.99</div>
+                                    <div class="rating-stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star-half-alt"></i>
+                                    </div>
+                                    <div class="product-actions">
+                                        <button class="action-btn tooltip" onclick="addToCart('HP-001')">
+                                            <i class="fas fa-cart-plus"></i>
+                                            <span class="tooltip-text">Ajouter au panier</span>
+                                        </button>
+                                        <button class="action-btn tooltip" onclick="addToWishlist('HP-001')">
+                                            <i class="fas fa-heart"></i>
+                                            <span class="tooltip-text">Ajouter aux favoris</span>
+                                        </button>
+                                        <button class="action-btn tooltip" onclick="viewProduct('HP-001')">
+                                            <i class="fas fa-eye"></i>
+                                            <span class="tooltip-text">Voir le produit</span>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
                             
-                            <div class="chart-card">
-                                <div class="chart-header">
-                                    <h3 class="chart-title">Top Products</h3>
+                            <div class="product-card">
+                                <div class="product-img">
+                                    <i class="fas fa-mobile-alt"></i>
                                 </div>
-                                <div style="padding: 10px 0;">
-                                    <div style="display: flex; align-items: center; padding: 15px 0; border-bottom: 1px solid rgba(0,0,0,0.05);">
-                                        <div class="product-image">
-                                            <i class="fas fa-laptop"></i>
-                                        </div>
-                                        <div style="margin-left: 15px; flex: 1;">
-                                            <h4 style="font-family: 'Poppins', sans-serif; font-size: 16px;">Premium Laptop</h4>
-                                            <p style="color: var(--text-gray); font-size: 14px;">12 sales • €3,450 revenue</p>
-                                        </div>
+                                <div class="product-info">
+                                    <h4 class="product-title">Smartphone</h4>
+                                    <div class="product-price">€799.99</div>
+                                    <div class="rating-stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="far fa-star"></i>
                                     </div>
-                                    <div style="display: flex; align-items: center; padding: 15px 0; border-bottom: 1px solid rgba(0,0,0,0.05);">
-                                        <div class="product-image">
-                                            <i class="fas fa-headphones"></i>
-                                        </div>
-                                        <div style="margin-left: 15px; flex: 1;">
-                                            <h4 style="font-family: 'Poppins', sans-serif; font-size: 16px;">Wireless Headphones</h4>
-                                            <p style="color: var(--text-gray); font-size: 14px;">28 sales • €1,120 revenue</p>
-                                        </div>
+                                    <div class="product-actions">
+                                        <button class="action-btn tooltip" onclick="addToCart('SP-002')">
+                                            <i class="fas fa-cart-plus"></i>
+                                            <span class="tooltip-text">Ajouter au panier</span>
+                                        </button>
+                                        <button class="action-btn tooltip" onclick="addToWishlist('SP-002')">
+                                            <i class="fas fa-heart"></i>
+                                            <span class="tooltip-text">Ajouter aux favoris</span>
+                                        </button>
+                                        <button class="action-btn tooltip" onclick="viewProduct('SP-002')">
+                                            <i class="fas fa-eye"></i>
+                                            <span class="tooltip-text">Voir le produit</span>
+                                        </button>
                                     </div>
-                                    <div style="display: flex; align-items: center; padding: 15px 0;">
-                                        <div class="product-image">
-                                            <i class="fas fa-mobile-alt"></i>
-                                        </div>
-                                        <div style="margin-left: 15px; flex: 1;">
-                                            <h4 style="font-family: 'Poppins', sans-serif; font-size: 16px;">Smartphone</h4>
-                                            <p style="color: var(--text-gray); font-size: 14px;">8 sales • €2,800 revenue</p>
-                                        </div>
+                                </div>
+                            </div>
+                            
+                            <div class="product-card">
+                                <div class="product-img">
+                                    <i class="fas fa-laptop"></i>
+                                </div>
+                                <div class="product-info">
+                                    <h4 class="product-title">PC Portable</h4>
+                                    <div class="product-price">€1,199.99</div>
+                                    <div class="rating-stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                    <div class="product-actions">
+                                        <button class="action-btn tooltip" onclick="addToCart('LT-003')">
+                                            <i class="fas fa-cart-plus"></i>
+                                            <span class="tooltip-text">Ajouter au panier</span>
+                                        </button>
+                                        <button class="action-btn tooltip" onclick="addToWishlist('LT-003')">
+                                            <i class="fas fa-heart"></i>
+                                            <span class="tooltip-text">Ajouter aux favoris</span>
+                                        </button>
+                                        <button class="action-btn tooltip" onclick="viewProduct('LT-003')">
+                                            <i class="fas fa-eye"></i>
+                                            <span class="tooltip-text">Voir le produit</span>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         
-                       
-                    
-                  <!-- Products Table -->
-<div class="table-container">
-    <table>
-        <thead>
-            <tr>
-                <th>Product</th>
-                <th>Category</th>
-                <th>Price</th>
-                <th>Stock</th>
-                <th>Status</th>
-                <th>Sales</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for product in products %}
-            <tr>
-                <td>
-                    <div style="display: flex; align-items: center;">
-                        <div class="product-image">
-                            {% if product.image %}
-                                <img src="{{ product.image.url }}" alt="{{ product.title }}" style="width:40px; height:40px; object-fit:cover; border-radius:4px;">
-                            {% else %}
-                                <i class="fas fa-box"></i>
-                            {% endif %}
-                        </div>
-                        <div style="margin-left: 15px;">
-                            <div style="font-weight: 600;">{{ product.title }}</div>
-                            <div style="font-size: 13px; color: var(--text-light);">SKU: {{ product.id }}</div>
-                        </div>
-                    </div>
-                </td>
-                <td>{{ product.category|title }}</td>
-                <td>€{{ product.price }}</td>
-                <td>
-                    <div class="stock-progress">
-                        <div class="progress-bar">
-                            {% with stock_percent=product.stock|floatformat:"0"|add:"0" %}
-                            <div class="progress-fill" style="width: {{ stock_percent }}%;"></div>
-                            {% endwith %}
-                        </div>
-                        <span>{{ product.stock }} left</span>
-                    </div>
-                </td>
-                <td>
-                    {% if product.is_active %}
-                        <span class="status-badge status-active">Active</span>
-                    {% else %}
-                        <span class="status-badge status-inactive">Inactive</span>
-                    {% endif %}
-                </td>
-                <td>{{ product.rating_count }}</td>
-                <td>
-                    <div class="product-actions">
-                        <a href="{% url 'edit_product' product.id %}" class="action-btn tooltip">
-                            <i class="fas fa-edit"></i>
-                            <span class="tooltip-text">Edit Product</span>
-                        </a>
-                        <!-- Preview Product -->
-                   
-                        <a href="{% url 'delete_product' product.id %}" class="action-btn tooltip">
-                            <i class="fas fa-trash"></i>
-                            <span class="tooltip-text">Delete Product</span>
-                        </a>
-                    </div>
-                </td>
-            </tr>
-            {% empty %}
-            <tr>
-                <td colspan="7" style="text-align:center;">You have no products yet.</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-</div>
-
-                        <!-- Pagination -->
-                        <div class="pagination">
-                            <button class="pagination-btn active">1</button>
-                            <button class="pagination-btn">2</button>
-                            <button class="pagination-btn">3</button>
-                            <button class="pagination-btn">4</button>
-                            <button class="pagination-btn">
-                                <i class="fas fa-chevron-right"></i>
-                            </button>
+                        <!-- Recent Orders -->
+                        <div class="table-container">
+                            <div style="padding: 25px; border-bottom: 2px solid rgba(74, 111, 255, 0.1); display: flex; justify-content: space-between; align-items: center;">
+                                <h3 style="font-family: 'Poppins', sans-serif; font-size: 20px; color: var(--text-dark);">
+                                    Commandes récentes
+                                </h3>
+                                <a href="#orders" style="color: var(--primary); font-weight: 600; text-decoration: none;"
+                                   onmouseover="this.style.color='var(--primary-dark)'" 
+                                   onmouseout="this.style.color='var(--primary)'"
+                                   onclick="switchSection('orders')">
+                                    Voir tout <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Commande</th>
+                                        <th>Date</th>
+                                        <th>Produits</th>
+                                        <th>Montant</th>
+                                        <th>Statut</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>#CMD-78951</td>
+                                        <td>18 Nov 2023</td>
+                                        <td>Casque sans fil</td>
+                                        <td>€129.99</td>
+                                        <td>
+                                            <span class="status-badge status-processing">En traitement</span>
+                                        </td>
+                                        <td>
+                                            <button class="action-btn tooltip" onclick="viewOrder('CMD-78951')">
+                                                <i class="fas fa-eye"></i>
+                                                <span class="tooltip-text">Voir détails</span>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>#CMD-78950</td>
+                                        <td>17 Nov 2023</td>
+                                        <td>Smartphone</td>
+                                        <td>€799.99</td>
+                                        <td>
+                                            <span class="status-badge status-shipped">Expédié</span>
+                                        </td>
+                                        <td>
+                                            <button class="action-btn tooltip" onclick="trackOrder('CMD-78950')">
+                                                <i class="fas fa-truck"></i>
+                                                <span class="tooltip-text">Suivre</span>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>#CMD-78949</td>
+                                        <td>16 Nov 2023</td>
+                                        <td>PC Portable</td>
+                                        <td>€1,199.99</td>
+                                        <td>
+                                            <span class="status-badge status-delivered">Livré</span>
+                                        </td>
+                                        <td>
+                                            <button class="action-btn tooltip" onclick="rateOrder('CMD-78949')">
+                                                <i class="fas fa-star"></i>
+                                                <span class="tooltip-text">Noter</span>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                     
@@ -1428,24 +1449,18 @@
                     <div class="section-content" id="orders-content" style="display: none;">
                         <div class="section-header">
                             <div>
-                                <h3 class="section-title">Order Management</h3>
-                                <p class="section-subtitle">Manage and fulfill customer orders</p>
-                            </div>
-                            <div style="display: flex; gap: 10px;">
-                                <button class="btn btn-secondary" onclick="exportOrders()">
-                                    <i class="fas fa-download"></i> Export
-                                </button>
+                                <h3 class="section-title">Mes Commandes</h3>
+                                <p class="section-subtitle">Suivez et gérez vos commandes</p>
                             </div>
                         </div>
                         
                         <!-- Order Filters -->
                         <div class="order-filters">
-                            <button class="filter-btn active">All Orders (12)</button>
-                            <button class="filter-btn">Pending (4)</button>
-                            <button class="filter-btn">Processing (3)</button>
-                            <button class="filter-btn">Shipped (3)</button>
-                            <button class="filter-btn">Delivered (8)</button>
-                            <button class="filter-btn">Cancelled (1)</button>
+                            <button class="filter-btn active">Toutes (5)</button>
+                            <button class="filter-btn">En attente (1)</button>
+                            <button class="filter-btn">En traitement (1)</button>
+                            <button class="filter-btn">Expédié (2)</button>
+                            <button class="filter-btn">Livré (3)</button>
                         </div>
                         
                         <!-- Orders Table -->
@@ -1453,101 +1468,97 @@
                             <table>
                                 <thead>
                                     <tr>
-                                        <th>Order ID</th>
+                                        <th>Commande</th>
                                         <th>Date</th>
-                                        <th>Customer</th>
+                                        <th>Produits</th>
                                         <th>Total</th>
-                                        <th>Status</th>
+                                        <th>Statut</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>#ORD-78951</td>
-                                        <td>Nov 18, 2023</td>
-                                        <td>Alex Johnson</td>
-                                        <td>€1,299.99</td>
+                                        <td>#CMD-78951</td>
+                                        <td>18 Nov 2023</td>
+                                        <td>Casque sans fil</td>
+                                        <td>€129.99</td>
                                         <td>
-                                            <span class="status-badge status-processing">Processing</span>
+                                            <span class="status-badge status-processing">En traitement</span>
                                         </td>
                                         <td>
                                             <div class="product-actions">
-                                                <button class="action-btn tooltip" onclick="fulfillOrder('ORD-78951')">
-                                                    <i class="fas fa-check"></i>
-                                                    <span class="tooltip-text">Fulfill Order</span>
+                                                <button class="action-btn tooltip" onclick="cancelOrder('CMD-78951')">
+                                                    <i class="fas fa-times"></i>
+                                                    <span class="tooltip-text">Annuler</span>
                                                 </button>
-                                                <button class="action-btn tooltip" onclick="viewOrder('ORD-78951')">
+                                                <button class="action-btn tooltip" onclick="viewOrder('CMD-78951')">
                                                     <i class="fas fa-eye"></i>
-                                                    <span class="tooltip-text">View Details</span>
+                                                    <span class="tooltip-text">Détails</span>
                                                 </button>
                                             </div>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>#ORD-78950</td>
-                                        <td>Nov 17, 2023</td>
-                                        <td>Sarah Williams</td>
-                                        <td>€179.99</td>
+                                        <td>#CMD-78950</td>
+                                        <td>17 Nov 2023</td>
+                                        <td>Smartphone</td>
+                                        <td>€799.99</td>
                                         <td>
-                                            <span class="status-badge status-shipped">Shipped</span>
+                                            <span class="status-badge status-shipped">Expédié</span>
                                         </td>
                                         <td>
                                             <div class="product-actions">
-                                                <button class="action-btn tooltip" onclick="trackOrder('ORD-78950')">
+                                                <button class="action-btn tooltip" onclick="trackOrder('CMD-78950')">
                                                     <i class="fas fa-truck"></i>
-                                                    <span class="tooltip-text">Track Shipment</span>
+                                                    <span class="tooltip-text">Suivre</span>
                                                 </button>
-                                                <button class="action-btn tooltip" onclick="viewOrder('ORD-78950')">
+                                                <button class="action-btn tooltip" onclick="viewOrder('CMD-78950')">
                                                     <i class="fas fa-eye"></i>
-                                                    <span class="tooltip-text">View Details</span>
+                                                    <span class="tooltip-text">Détails</span>
                                                 </button>
                                             </div>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>#ORD-78949</td>
-                                        <td>Nov 16, 2023</td>
-                                        <td>Michael Brown</td>
-                                        <td>€1,099.99</td>
+                                        <td>#CMD-78949</td>
+                                        <td>16 Nov 2023</td>
+                                        <td>PC Portable</td>
+                                        <td>€1,199.99</td>
                                         <td>
-                                            <span class="status-badge status-delivered">Delivered</span>
+                                            <span class="status-badge status-delivered">Livré</span>
                                         </td>
                                         <td>
                                             <div class="product-actions">
-                                                <button class="action-btn tooltip" onclick="completeOrder('ORD-78949')">
-                                                    <i class="fas fa-check-double"></i>
-                                                    <span class="tooltip-text">Mark Complete</span>
+                                                <button class="action-btn tooltip" onclick="returnOrder('CMD-78949')">
+                                                    <i class="fas fa-undo"></i>
+                                                    <span class="tooltip-text">Retour</span>
                                                 </button>
-                                                <button class="action-btn tooltip" onclick="viewOrder('ORD-78949')">
-                                                    <i class="fas fa-eye"></i>
-                                                    <span class="tooltip-text">View Details</span>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>#ORD-78948</td>
-                                        <td>Nov 15, 2023</td>
-                                        <td>Emma Davis</td>
-                                        <td>€249.99</td>
-                                        <td>
-                                            <span class="status-badge status-pending">Pending</span>
-                                        </td>
-                                        <td>
-                                            <div class="product-actions">
-                                                <button class="action-btn tooltip" onclick="processOrder('ORD-78948')">
-                                                    <i class="fas fa-cogs"></i>
-                                                    <span class="tooltip-text">Process Order</span>
-                                                </button>
-                                                <button class="action-btn tooltip" onclick="viewOrder('ORD-78948')">
-                                                    <i class="fas fa-eye"></i>
-                                                    <span class="tooltip-text">View Details</span>
+                                                <button class="action-btn tooltip" onclick="rateOrder('CMD-78949')">
+                                                    <i class="fas fa-star"></i>
+                                                    <span class="tooltip-text">Noter</span>
                                                 </button>
                                             </div>
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
+                        </div>
+                    </div>
+                    
+                    <!-- Wishlist Content -->
+                    <div class="section-content" id="wishlist-content" style="display: none;">
+                        <div class="section-header">
+                            <div>
+                                <h3 class="section-title">Mes Favoris</h3>
+                                <p class="section-subtitle">Produits sauvegardés pour plus tard</p>
+                            </div>
+                            <button class="btn btn-primary" onclick="clearWishlist()">
+                                <i class="fas fa-trash"></i> Vider la liste
+                            </button>
+                        </div>
+                        
+                        <div class="product-grid" id="wishlist-products">
+                            <!-- Wishlist products will be loaded here -->
                         </div>
                     </div>
                     
@@ -1572,7 +1583,7 @@
                 if(this.id === 'logoutBtn') {
                     // Logout action
                     e.preventDefault();
-                    showNotification('Logged out successfully!', 'success');
+                    showNotification('Déconnexion réussie!', 'success');
                     setTimeout(() => {
                         window.location.href = 'index.html';
                     }, 1500);
@@ -1595,19 +1606,21 @@
             document.querySelectorAll('.nav-link').forEach(item => {
                 item.classList.remove('active');
             });
+            document.querySelector(`[data-section="${sectionId}"]`).classList.add('active');
             
             // Update title
             const sectionTitle = document.getElementById('sectionTitle');
             const titles = {
-                'dashboard': 'Seller Dashboard',
-                'products': 'Product Management',
-                'orders': 'Order Management',
-                'analytics': 'Analytics & Reports',
-                'reviews': 'Customer Reviews',
-                'messages': 'Customer Messages',
-                'settings': 'Settings'
+                'dashboard': 'Tableau de bord client',
+                'orders': 'Mes Commandes',
+                'wishlist': 'Mes Favoris',
+                'history': 'Historique d\'achats',
+                'reviews': 'Mes Avis',
+                'recommendations': 'Recommandations',
+                'addresses': 'Mes Adresses',
+                'settings': 'Paramètres du compte'
             };
-            sectionTitle.textContent = titles[sectionId] || 'Seller Dashboard';
+            sectionTitle.textContent = titles[sectionId] || 'Tableau de bord client';
             
             // Hide all sections
             document.querySelectorAll('.section-content').forEach(section => {
@@ -1622,7 +1635,7 @@
                 // If section doesn't exist yet, show dashboard
                 document.getElementById('dashboard-content').style.display = 'block';
                 document.querySelector('[data-section="dashboard"]').classList.add('active');
-                sectionTitle.textContent = 'Seller Dashboard';
+                sectionTitle.textContent = 'Tableau de bord client';
                 sectionId = 'dashboard';
             }
             
@@ -1658,11 +1671,11 @@
                 case 'dashboard':
                     initializeDashboard();
                     break;
-                case 'products':
-                    initializeProducts();
-                    break;
                 case 'orders':
                     initializeOrders();
+                    break;
+                case 'wishlist':
+                    initializeWishlist();
                     break;
             }
         }
@@ -1678,34 +1691,8 @@
                     e.stopPropagation();
                     const action = this.getAttribute('onclick');
                     if (!action) {
-                        const icon = this.querySelector('i');
-                        if (icon && icon.classList.contains('fa-eye')) {
-                            showNotification('View details feature loaded!', 'success');
-                        } else if (icon && icon.classList.contains('fa-truck')) {
-                            showNotification('Track shipment feature loaded!', 'success');
-                        } else if (icon && icon.classList.contains('fa-check')) {
-                            showNotification('Mark as complete feature loaded!', 'success');
-                        } else if (icon && icon.classList.contains('fa-cogs')) {
-                            showNotification('Process order feature loaded!', 'success');
-                        }
+                        showNotification('Action effectuée avec succès!', 'success');
                     }
-                });
-            });
-        }
-        
-        // Products initialization
-        function initializeProducts() {
-            // Add product button
-            document.getElementById('addNewProduct').addEventListener('click', function() {
-                showAddProductModal();
-            });
-            
-            // Filter buttons
-            document.querySelectorAll('.order-filters .filter-btn').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-                    this.classList.add('active');
-                    showNotification(`Filtered by: ${this.textContent}`, 'info');
                 });
             });
         }
@@ -1713,515 +1700,137 @@
         // Orders initialization
         function initializeOrders() {
             // Filter buttons
-            document.querySelectorAll('.order-filters .filter-btn').forEach(btn => {
+            document.querySelectorAll('#orders-content .filter-btn').forEach(btn => {
                 btn.addEventListener('click', function() {
                     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
                     this.classList.add('active');
                     const filterText = this.textContent.split('(')[0].trim();
-                    showNotification(`Showing ${filterText} orders`, 'info');
+                    showNotification(`Filtrage: ${filterText}`, 'info');
                 });
             });
         }
         
-        // Order action functions
-        function viewOrder(orderId) {
-            showNotification(`Viewing order ${orderId} details`, 'info');
+        // Wishlist initialization
+        function initializeWishlist() {
+            // Load wishlist products
+            loadWishlistProducts();
         }
         
-        function trackOrder(orderId) {
-            showNotification(`Tracking shipment for order ${orderId}`, 'info');
-        }
-        
-        function completeOrder(orderId) {
-            showNotification(`Order ${orderId} marked as complete!`, 'success');
-        }
-        
-        function processOrder(orderId) {
-            showNotification(`Processing order ${orderId}`, 'info');
-        }
-        
-        function fulfillOrder(orderId) {
-            showNotification(`Order ${orderId} fulfilled successfully!`, 'success');
-        }
-        
-        function exportOrders() {
-            showNotification('Exporting orders data...', 'info');
-            setTimeout(() => {
-                showNotification('Orders exported successfully!', 'success');
-            }, 1000);
-        }
-        
-        // Product action functions
-        function editProduct(sku) {
-            showNotification(`Editing product ${sku}`, 'info');
-        }
-        
-        function viewProduct(sku) {
-            showNotification(`Previewing product ${sku}`, 'info');
-        }
-        
-        function deleteProduct(sku) {
-            if (confirm(`Are you sure you want to delete product ${sku}? This action cannot be undone.`)) {
-                showNotification(`Product ${sku} deleted successfully!`, 'success');
-            }
-        }
-  function showAddProductModal() {
-    const modalHtml = `
-    <div id="addProductModal" class="modal-overlay">
-        <div class="modal-container">
-            <div class="modal-header">
-                <h3 class="modal-title">Add New Product</h3>
-                <button type="button" class="modal-close-btn" onclick="closeModal()">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M18 6L6 18M6 6l12 12"/>
-                    </svg>
-                </button>
-            </div>
-
-            <form method="POST" action="{% url 'add_product' %}" enctype="multipart/form-data" class="modal-form">
-                <input type="hidden" name="csrfmiddlewaretoken" value="${getCSRFToken()}">
-
-                <div class="modal-body">
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label class="form-label">Product Name *</label>
-                            <input type="text" name="title" required class="form-input" placeholder="Enter product name">
+        function loadWishlistProducts() {
+            const wishlistContainer = document.getElementById('wishlist-products');
+            if (!wishlistContainer) return;
+            
+            const products = [
+                { id: 'WH-001', name: 'Montre connectée', price: '€249.99', icon: 'fa-clock', rating: 4.5 },
+                { id: 'WH-002', name: 'Enceinte Bluetooth', price: '€89.99', icon: 'fa-volume-up', rating: 4.2 },
+                { id: 'WH-003', name: 'Clavier mécanique', price: '€119.99', icon: 'fa-keyboard', rating: 4.8 },
+                { id: 'WH-004', name: 'Souris gaming', price: '€79.99', icon: 'fa-mouse', rating: 4.3 }
+            ];
+            
+            wishlistContainer.innerHTML = '';
+            products.forEach(product => {
+                const stars = getStarRating(product.rating);
+                const productCard = `
+                    <div class="product-card">
+                        <div class="product-img">
+                            <i class="fas ${product.icon}"></i>
                         </div>
-
-                       <div class="form-group">
-                            <label class="form-label">Category *</label>
-                            <select name="category" class="form-select" required>
-                                <option value="">Select a category</option>
-                                <option value="fashion">👗 Fashion & Clothing</option>
-                                <option value="home">🏠 Home & Decor</option>
-                                <option value="art">🎨 Art & Crafts</option>
-                                <option value="tech">📱 Electronics</option>
-                                <option value="food">🍎 Food & Beverages</option>
-                                <option value="beauty">💄 Beauty & Care</option>
-                            </select>
-                        </div>
-
-
-                        <div class="form-group">
-                            <label class="form-label">Price (€) *</label>
-                            <input type="number" step="0.01" name="price" required class="form-input" placeholder="0.00" min="0">
-                        </div>
-
-                        <div class="form-group">
-                            <label class="form-label">Old Price (€)</label>
-                            <input type="number" step="0.01" name="old_price" class="form-input" placeholder="0.00" min="0">
-                        </div>
-
-                        <div class="form-group">
-                            <label class="form-label">Stock</label>
-                            <input type="number" name="stock" value="1" class="form-input" min="0" placeholder="Quantity available">
-                        </div>
-
-                        <div class="form-group">
-                            <label class="form-label">Badge</label>
-                            <select name="badge" class="form-select">
-                                <option value="">-- None --</option>
-                                <option value="new">New</option>
-                                <option value="hot">Hot</option>
-                                <option value="sale">Sale</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group full-width">
-                            <label class="form-label">Description</label>
-                            <textarea name="description" class="form-textarea" rows="4" placeholder="Enter product description"></textarea>
-                        </div>
-
-                        <div class="form-group full-width">
-                            <label class="form-label">Product Image *</label>
-                            <div class="file-upload-container">
-                                <input type="file" name="image" required class="form-file" accept="image/*">
-                                <div class="file-upload-hint">Supported formats: JPG, PNG, WebP. Max 5MB</div>
+                        <div class="product-info">
+                            <h4 class="product-title">${product.name}</h4>
+                            <div class="product-price">${product.price}</div>
+                            <div class="rating-stars">
+                                ${stars}
+                            </div>
+                            <div class="product-actions">
+                                <button class="action-btn tooltip" onclick="addToCart('${product.id}')">
+                                    <i class="fas fa-cart-plus"></i>
+                                    <span class="tooltip-text">Ajouter au panier</span>
+                                </button>
+                                <button class="action-btn tooltip" onclick="removeFromWishlist('${product.id}')">
+                                    <i class="fas fa-trash"></i>
+                                    <span class="tooltip-text">Retirer des favoris</span>
+                                </button>
+                                <button class="action-btn tooltip" onclick="viewProduct('${product.id}')">
+                                    <i class="fas fa-eye"></i>
+                                    <span class="tooltip-text">Voir le produit</span>
+                                </button>
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" onclick="closeModal()">Cancel</button>
-                    <button type="submit" class="btn btn-primary">
-                        <span>Add Product</span>
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M12 5v14M5 12h14"/>
-                        </svg>
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <style>
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(4px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 10000;
-            padding: 20px;
-            animation: fadeIn 0.3s ease;
-        }
-
-        .modal-container {
-            background: white;
-            border-radius: 16px;
-            width: 100%;
-            max-width: 800px;
-            max-height: 90vh;
-            display: flex;
-            flex-direction: column;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            animation: slideUp 0.3s ease;
-            overflow: hidden; /* Important pour contenir le contenu */
-        }
-
-        .modal-header {
-            padding: 24px 30px;
-            border-bottom: 1px solid #e5e7eb;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-shrink: 0; /* Empêche le header de rétrécir */
-        }
-
-        .modal-title {
-            font-size: 26px;
-            font-weight: 600;
-            color: #1f2937;
-            margin: 0;
-        }
-
-        .modal-close-btn {
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 8px;
-            border-radius: 8px;
-            color: #6b7280;
-            transition: all 0.2s ease;
-        }
-
-        .modal-close-btn:hover {
-            background: #f3f4f6;
-            color: #1f2937;
-        }
-
-        .modal-body {
-            padding: 30px;
-            overflow-y: auto; /* Permet le défilement vertical */
-            flex: 1; /* Prend tout l'espace disponible */
-            max-height: calc(90vh - 140px); /* Calcule la hauteur maximale */
-        }
-
-        .modal-form {
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-        }
-
-        .form-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-        }
-
-        .form-group {
-            margin-bottom: 0;
-        }
-
-        .form-group.full-width {
-            grid-column: span 2;
-        }
-
-        .form-label {
-            display: block;
-            font-size: 14px;
-            font-weight: 500;
-            color: #374151;
-            margin-bottom: 8px;
-        }
-
-        .form-label:after {
-            content: " *";
-            color: #ef4444;
-            opacity: 0;
-        }
-
-        .form-label[for*="required"]:after,
-        input[required] + .form-label:after,
-        select[required] + .form-label:after {
-            opacity: 1;
-        }
-
-        .form-input,
-        .form-select,
-        .form-textarea {
-            width: 100%;
-            padding: 12px 16px;
-            border: 2px solid #e5e7eb;
-            border-radius: 10px;
-            font-size: 15px;
-            transition: all 0.2s ease;
-            background: white;
-        }
-
-        .form-input:focus,
-        .form-select:focus,
-        .form-textarea:focus {
-            outline: none;
-            border-color: #3b82f6;
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-        }
-
-        .form-input::placeholder,
-        .form-textarea::placeholder {
-            color: #9ca3af;
-        }
-
-        .form-textarea {
-            resize: vertical;
-            min-height: 100px;
-        }
-
-        .form-file {
-            width: 100%;
-            padding: 12px;
-            border: 2px dashed #d1d5db;
-            border-radius: 10px;
-            background: #f9fafb;
-            cursor: pointer;
-        }
-
-        .form-file:hover {
-            border-color: #9ca3af;
-        }
-
-        .form-file:focus {
-            outline: none;
-            border-color: #3b82f6;
-            border-style: solid;
-        }
-
-        .file-upload-hint {
-            font-size: 13px;
-            color: #6b7280;
-            margin-top: 6px;
-        }
-
-        .modal-footer {
-            padding: 24px 30px;
-            border-top: 1px solid #e5e7eb;
-            display: flex;
-            justify-content: flex-end;
-            gap: 12px;
-            background: #f9fafb;
-            border-radius: 0 0 16px 16px;
-            flex-shrink: 0; /* Empêche le footer de rétrécir */
-        }
-
-        .btn {
-            padding: 12px 24px;
-            border-radius: 10px;
-            font-size: 15px;
-            font-weight: 500;
-            border: none;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-
-        .btn-secondary {
-            background: white;
-            color: #374151;
-            border: 2px solid #d1d5db;
-        }
-
-        .btn-secondary:hover {
-            background: #f3f4f6;
-            border-color: #9ca3af;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background: linear-gradient(135deg, #2563eb, #1e40af);
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
-        }
-
-        .btn-primary:active {
-            transform: translateY(0);
-        }
-
-        /* Fermer le modal en cliquant sur l'overlay */
-        .modal-overlay {
-            cursor: pointer;
+                `;
+                wishlistContainer.innerHTML += productCard;
+            });
         }
         
-        .modal-container {
-            cursor: default;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
+        function getStarRating(rating) {
+            let stars = '';
+            const fullStars = Math.floor(rating);
+            const hasHalfStar = rating % 1 >= 0.5;
+            
+            for (let i = 1; i <= 5; i++) {
+                if (i <= fullStars) {
+                    stars += '<i class="fas fa-star"></i>';
+                } else if (i === fullStars + 1 && hasHalfStar) {
+                    stars += '<i class="fas fa-star-half-alt"></i>';
+                } else {
+                    stars += '<i class="far fa-star"></i>';
+                }
             }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Scrollbar personnalisée pour le modal-body */
-        .modal-body::-webkit-scrollbar {
-            width: 8px;
+            return stars;
         }
         
-        .modal-body::-webkit-scrollbar-track {
-            background: #f1f1f1;
-            border-radius: 4px;
+        // Order action functions
+        function viewOrder(orderId) {
+            showNotification(`Affichage des détails de la commande ${orderId}`, 'info');
         }
         
-        .modal-body::-webkit-scrollbar-thumb {
-            background: #c1c1c1;
-            border-radius: 4px;
+        function trackOrder(orderId) {
+            showNotification(`Suivi de la commande ${orderId}`, 'info');
         }
         
-        .modal-body::-webkit-scrollbar-thumb:hover {
-            background: #a8a8a8;
-        }
-
-        @media (max-width: 768px) {
-            .modal-container {
-                max-width: 95%;
-                max-height: 85vh;
+        function cancelOrder(orderId) {
+            if (confirm(`Annuler la commande ${orderId}?`)) {
+                showNotification(`Commande ${orderId} annulée!`, 'success');
             }
-            
-            .modal-body {
-                max-height: calc(85vh - 140px);
-            }
-            
-            .form-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .form-group.full-width {
-                grid-column: span 1;
-            }
-            
-            .modal-header,
-            .modal-body,
-            .modal-footer {
-                padding: 20px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .modal-container {
-                max-height: 90vh;
-            }
-            
-            .modal-body {
-                max-height: calc(90vh - 140px);
-            }
-            
-            .form-grid {
-                gap: 16px;
-            }
-            
-            .modal-footer {
-                flex-direction: column-reverse;
-            }
-            
-            .btn {
-                width: 100%;
-            }
-        }
-    </style>
-    `;
-    
-    document.body.insertAdjacentHTML('beforeend', modalHtml);
-    
-    // Ajouter l'écouteur pour fermer avec la touche Échap
-    document.addEventListener('keydown', handleEscapeKey);
-    
-    // Ajouter l'écouteur pour fermer en cliquant sur l'overlay
-    const overlay = document.getElementById('addProductModal');
-    overlay.addEventListener('click', function(e) {
-        if (e.target === overlay) {
-            closeModal();
-        }
-    });
-}
-
-function handleEscapeKey(e) {
-    if (e.key === 'Escape') {
-        closeModal();
-    }
-}
-
-function closeModal() {
-    const modal = document.getElementById('addProductModal');
-    if (modal) {
-        // Animation de fermeture
-        modal.style.animation = 'fadeOut 0.2s ease forwards';
-        
-        setTimeout(() => {
-            modal.remove();
-            // Supprimer l'écouteur d'événement
-            document.removeEventListener('keydown', handleEscapeKey);
-        }, 200);
-    }
-}
-
-// Ajouter les animations CSS si elles n'existent pas
-if (!document.querySelector('#modal-animations')) {
-    const style = document.createElement('style');
-    style.id = 'modal-animations';
-    style.textContent = `
-        @keyframes fadeOut {
-            from { 
-                opacity: 1;
-            }
-            to { 
-                opacity: 0;
-            }
-        }
-    `;
-    document.head.appendChild(style);
-}
-
-        
-        function closeModal() {
-            const modal = document.querySelector('div[style*="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5)"]');
-            if (modal) modal.remove();
         }
         
-        function submitProduct() {
-            closeModal();
-            showNotification('Product added successfully!', 'success');
+        function returnOrder(orderId) {
+            showNotification(`Démarrage du retour pour la commande ${orderId}`, 'info');
+        }
+        
+        function rateOrder(orderId) {
+            showNotification(`Noter la commande ${orderId}`, 'info');
+        }
+        
+        // Product action functions
+        function addToCart(productId) {
+            showNotification(`Produit ${productId} ajouté au panier!`, 'success');
+        }
+        
+        function addToWishlist(productId) {
+            showNotification(`Produit ${productId} ajouté aux favoris!`, 'success');
+        }
+        
+        function removeFromWishlist(productId) {
+            if (confirm(`Retirer ce produit des favoris?`)) {
+                showNotification(`Produit ${productId} retiré des favoris`, 'info');
+            }
+        }
+        
+        function clearWishlist() {
+            if (confirm(`Vider toute votre liste de favoris?`)) {
+                showNotification(`Liste de favoris vidée!`, 'success');
+                const container = document.getElementById('wishlist-products');
+                if (container) container.innerHTML = '<p style="text-align: center; padding: 40px; color: var(--text-gray);">Votre liste de favoris est vide</p>';
+            }
+        }
+        
+        function viewProduct(productId) {
+            showNotification(`Affichage du produit ${productId}`, 'info');
+        }
+        
+        function showMoreRecommendations() {
+            showNotification('Chargement de plus de recommandations...', 'info');
         }
         
         // Counter animations
@@ -2333,12 +1942,15 @@ if (!document.querySelector('#modal-animations')) {
         
         // Notifications bell click
         document.getElementById('notificationBell').addEventListener('click', function() {
-            showNotification('You have 5 unread notifications', 'info');
+            showNotification('Vous avez 3 notifications non lues', 'info');
         });
         
-        // Add product button
-        document.getElementById('addProductBtn').addEventListener('click', function() {
-            showAddProductModal();
+        // Shop now button
+        document.getElementById('shopNowBtn').addEventListener('click', function() {
+            showNotification('Redirection vers le magasin...', 'info');
+            setTimeout(() => {
+                window.location.href = 'shop.html';
+            }, 1000);
         });
         
         // Initialize dashboard on load
@@ -2349,7 +1961,7 @@ if (!document.querySelector('#modal-animations')) {
             // Add typewriter effect to welcome banner
             const banner = document.getElementById('welcomeBanner');
             if (banner) {
-                const text = "Welcome back, Sarah!";
+                const text = "Bon retour, Jean!";
                 let i = 0;
                 const typeWriter = () => {
                     if (i < text.length) {
@@ -2370,14 +1982,6 @@ if (!document.querySelector('#modal-animations')) {
                 banner.style.transform = 'translateY(0)';
             }, 500);
         });
-
-
-        function getCSRFToken() {
-            return document.cookie.split('; ')
-            .find(row => row.startsWith('csrftoken='))
-            ?.split('=')[1];
-}
-
     </script>
 </body>
 </html>
