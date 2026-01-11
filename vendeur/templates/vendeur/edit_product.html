@@ -835,12 +835,7 @@
                             </div>
                             <input type="file" id="image-input" name="image" accept="image/*" style="display: none;" onchange="previewImage(event)">
                             
-                            {% if product.image %}
-                            <div class="current-image">
-                                <p>Current Image:</p>
-                                <img src="{{ product.image.url }}" alt="{{ product.title }}" id="current-image">
-                            </div>
-                            {% endif %}
+                        
                         </div>
                     </div>
 

@@ -9,6 +9,8 @@ from datetime import datetime
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.hashers import check_password
+from django.contrib.auth.decorators import login_required
+
 
 
 
@@ -87,11 +89,10 @@ def login_user(request):
 
     return render(request, "pageAuth/login.html")
 
-
+@login_required(login_url='login')
 def logout_user(request):
     logout(request)
-    return redirect("login")
-
+    return redirect("home")
 
 def shopping(request):
     products = Product.objects.all()
@@ -102,6 +103,7 @@ def shopping(request):
         'nbre_products': product_nbre
     }
     return render(request, 'services/shopping.html', context)
+
 
 def register_seller(request):
 
@@ -152,7 +154,7 @@ def register_seller(request):
 
     return render(request, "pageAuth/registerSeller.html")
 
-
+@login_required(login_url='login')
 def gerer_profil(request):
     user = request.user  # utilisateur connecté
 
@@ -191,7 +193,7 @@ def gerer_profil(request):
     # GET : afficher le formulaire avec les valeurs actuelles
     return render(request, "services/gererProfil.html", {"user": user})
 
-
+@login_required(login_url='login')
 def dashboard(request):
     return render(request, 'services/dashboard_client.html')
 
@@ -201,7 +203,7 @@ def get_cart(user):
     cart, created = Cart.objects.get_or_create(user=user)
     return cart
 
-
+@login_required(login_url='login')
 def add_to_cart(request, slug):
     product = get_object_or_404(Product, slug=slug)
     cart = get_cart(request.user)
@@ -214,7 +216,7 @@ def add_to_cart(request, slug):
 
     return redirect("shopping")
 
-
+@login_required(login_url='login')
 def cart_detail(request):
     cart, _ = Cart.objects.get_or_create(user=request.user)
     return render(request, "services/panier.html", {"cart": cart})
@@ -235,6 +237,7 @@ def remove_from_cart(request, item_id):
     except CartItem.DoesNotExist:
         return JsonResponse({"success": False, "error": "Item not found"}, status=404)
 
+@login_required(login_url='login')
 def update_cart_item(request, item_id):
     try:
         data = json.loads(request.body)

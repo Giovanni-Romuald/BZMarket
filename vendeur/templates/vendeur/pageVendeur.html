@@ -9,6 +9,7 @@
     <link rel="shortcut icon" href="{% static 'img/Logo@.png' %}" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/message.css' %}">
     
     <!-- SECTION: Styles CSS -->
     <style>
@@ -1056,6 +1057,17 @@
 </head>
 
 <body>
+
+    {% if messages %}
+                        <div class="messages-container">
+                            {% for message in messages %}
+                            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                                {{ message }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
     <!-- SECTION: Éléments flottants décoratifs -->
     <div class="floating-shapes">
         <div class="shape shape-1"><i class="fas fa-chart-line"></i></div>
@@ -1076,7 +1088,7 @@
             <div class="seller-profile">
                 <div class="avatar">SM</div>
                 {% if user.is_authenticated %}
-                <h3>{{ user.username }}</h3>
+                <h3>{{ user.first_name }} {{user.last_name}}</h3>
                 <p>Seller Account</p>
                 <div class="seller-status">
                     <i class="fas fa-check-circle"></i> Verified
@@ -1090,13 +1102,7 @@
                         <span>Dashboard</span>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="#products" class="nav-link" data-section="products">
-                        <i class="fas fa-box"></i>
-                        <span>My Products</span>
-                        <span class="badge">24</span>
-                    </a>
-                </li>
+            
                 <li class="nav-item">
                     <a href="#orders" class="nav-link" data-section="orders">
                         <i class="fas fa-shopping-bag"></i>
@@ -1104,26 +1110,10 @@
                         <span class="badge">12</span>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="{% url 'gerer_profil' %}" class="nav-link">
-                        <i class="fas fa-user"></i>
-                        <span>Profil</span>
-                    </a>
-                </li>
-                
-                <li class="nav-item">
-                    <a href="#analytics" class="nav-link" data-section="analytics">
-                        <i class="fas fa-chart-bar"></i>
-                        <span>Analytics</span>
-                    </a>
-                </li>
               
-                <li class="nav-item logout">
-                    <a href="{% url 'logout' %}" class="nav-link" id="logoutBtn">
-                        <i class="fas fa-sign-out-alt"></i>
-                        <span>Logout</span>
-                    </a>
-                </li>
+                
+            
+           
                 {% endif %}
             </ul>
         </aside>
@@ -1159,7 +1149,10 @@
             <!-- SECTION: Bannière de bienvenue -->
             <div class="welcome-banner" id="welcomeBanner">
                 <h2>Welcome back, {{ user.username }}</h2>
-                <p>Hello morning</p>
+                <p>
+                    Good morning! Today is a new opportunity to improve, to grow, and to achieve more. 
+                    Give your best and let your results speak for you.
+                </p>
             </div>
             
             <!-- SECTION: Conteneur de contenu dynamique -->
@@ -1194,7 +1187,7 @@
                                 </div>
                                 <div class="stat-info">
                                     <h3>Total Orders</h3>
-                                    <div class="number" data-count="156">0</div>
+                                    <div class="number" data-count="{{ active_products_count }}">{{ active_products_count }}</div>
                                     <div class="trend up">
                                         <i class="fas fa-arrow-up"></i> 8.3% from last month
                                     </div>
@@ -1483,6 +1476,8 @@
     <div class="overlay" id="overlay"></div>
     
     <!-- SECTION: Scripts JavaScript -->
+
+    <script src="{% static 'js/message.js' %}"></script>
     <script>
         // SECTION: Variables globales
         let currentSection = 'dashboard';
@@ -2231,7 +2226,7 @@
             
             const banner = document.getElementById('welcomeBanner');
             if (banner) {
-                const text = "Welcome back, Sarah!";
+                const text = "Welcome back, {{ request.user.first_name }}!";
                 let i = 0;
                 const typeWriter = () => {
                     if (i < text.length) {

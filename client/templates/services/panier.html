@@ -8,6 +8,7 @@
     <link rel="shortcut icon" href="{% static 'img/Logo@.png' %}" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/message.css' %}">
     <style>
         :root {
             --primary: #FF6B35;
@@ -531,83 +532,6 @@
             transform: translateX(-5px);
         }
 
-        /* Recommended Products */
-        .recommended-section {
-            margin-top: 60px;
-            padding-top: 40px;
-            border-top: 2px solid #f0f0f0;
-        }
-
-        .recommended-title {
-            font-family: 'Poppins', sans-serif;
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--secondary);
-            margin-bottom: 30px;
-        }
-
-        .recommended-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 30px;
-        }
-
-        .product-card {
-            background: var(--white);
-            border-radius: var(--border-radius);
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-        }
-
-        .product-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-hover);
-        }
-
-        .product-img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-
-        .product-card-content {
-            padding: 20px;
-        }
-
-        .product-card-title {
-            font-family: 'Poppins', sans-serif;
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 10px;
-            color: var(--secondary);
-        }
-
-        .product-card-price {
-            font-family: 'Poppins', sans-serif;
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 15px;
-        }
-
-        .product-card-btn {
-            display: block;
-            width: 100%;
-            padding: 12px;
-            background: var(--gradient-secondary);
-            color: white;
-            border: none;
-            border-radius: var(--border-radius);
-            cursor: pointer;
-            transition: var(--transition);
-            font-weight: 600;
-        }
-
-        .product-card-btn:hover {
-            background: var(--secondary-light);
-        }
-
         /* Footer */
         .footer {
             margin-top: 60px;
@@ -710,10 +634,6 @@
             .quantity-control {
                 justify-content: center;
             }
-            
-            .recommended-grid {
-                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            }
         }
 
         @media (max-width: 480px) {
@@ -733,6 +653,17 @@
     </style>
 </head>
 <body>
+
+    {% if messages %}
+                        <div class="messages-container">
+                            {% for message in messages %}
+                            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                                {{ message }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
     <div class="container">
         <!-- Header -->
         <header class="header">
@@ -797,7 +728,7 @@
                             </p>
                         </div>
                         
-                        <div class="price">{{ item.product.price }} FCFA</div>
+                        <div class="price" data-price-fcfa="{{ item.product.price }}">${{ item.product.price|floatformat:2 }}</div>
                         
                         <div class="quantity-control">
                             <button class="quantity-btn minus" onclick="updateQuantity({{ item.id }}, -1)">-</button>
@@ -806,7 +737,7 @@
                             <button class="quantity-btn plus" onclick="updateQuantity({{ item.id }}, 1)">+</button>
                         </div>
                         
-                        <div class="subtotal" id="subtotal-{{ item.id }}">{{ item.subtotal }} FCFA</div>
+                        <div class="subtotal" id="subtotal-{{ item.id }}" data-subtotal-fcfa="{{ item.subtotal }}">${{ item.subtotal|floatformat:2 }}</div>
                         
                         <button class="remove-btn" onclick="removeItem({{ item.id }})">
                             <i class="fas fa-trash"></i>
@@ -823,25 +754,25 @@
                 <div class="summary-items">
                     <div class="summary-row">
                         <span class="summary-label">Subtotal</span>
-                        <span class="summary-value" id="summarySubtotal">{{ cart.total }} FCFA</span>
+                        <span class="summary-value" id="summarySubtotal" data-subtotal-fcfa="{{ cart.total }}">${{ cart.total|floatformat:2 }}</span>
                     </div>
                     <div class="summary-row">
                         <span class="summary-label">Shipping</span>
-                        <span class="summary-value" id="shippingCost">0 FCFA</span>
+                        <span class="summary-value" id="shippingCost">$0.00</span>
                     </div>
                     <div class="summary-row">
-                        <span class="summary-label">Tax</span>
-                        <span class="summary-value" id="taxAmount">0 FCFA</span>
+                        <span class="summary-label">Tax (18%)</span>
+                        <span class="summary-value" id="taxAmount">$0.00</span>
                     </div>
                     <div class="summary-row">
                         <span class="summary-label">Discount</span>
-                        <span class="summary-value" id="discountAmount">0 FCFA</span>
+                        <span class="summary-value" id="discountAmount">$0.00</span>
                     </div>
                 </div>
                 
                 <div class="summary-row summary-total">
                     <span>Total</span>
-                    <span id="summaryTotal">{{ cart.total }} FCFA</span>
+                    <span id="summaryTotal" data-total-fcfa="{{ cart.total }}">${{ cart.total|floatformat:2 }}</span>
                 </div>
 
                 <!-- Discount Code -->
@@ -878,14 +809,6 @@
             </div>
         </div>
 
-        <!-- Recommended Products -->
-        <div class="recommended-section">
-            <h2 class="recommended-title">Frequently Bought Together</h2>
-            <div class="recommended-grid" id="recommendedProducts">
-                <!-- Products will be loaded dynamically via JavaScript -->
-            </div>
-        </div>
-
         <!-- Footer -->
         <footer class="footer">
             <div class="footer-logo">BZMarket</div>
@@ -899,7 +822,7 @@
             <p class="copyright">&copy; 2024 BZMarket. All rights reserved.</p>
         </footer>
     </div>
-
+    <script src = "{% static 'js/message.js' %}"></script>
     <script>
         // Initialize cart data
         let cartData = {
@@ -929,103 +852,111 @@
             }
         }
 
-       function updateQuantity(itemId, change) {
-        const input = document.querySelector(`.cart-item[data-item-id="${itemId}"] .quantity-input`);
-        let quantity = parseInt(input.value) + change;
+        function updateQuantity(itemId, change) {
+            const input = document.querySelector(`.cart-item[data-item-id="${itemId}"] .quantity-input`);
+            let quantity = parseInt(input.value) + change;
 
-        if (quantity < 1) quantity = 1;
-        if (quantity > parseInt(input.max)) quantity = parseInt(input.max);
+            if (quantity < 1) quantity = 1;
+            if (quantity > parseInt(input.max)) quantity = parseInt(input.max);
 
-        input.value = quantity;
-        updateQuantityInput(itemId, quantity);
-    }
+            input.value = quantity;
+            updateQuantityInput(itemId, quantity);
+        }
 
-   function updateQuantityInput(itemId, quantity) {
-    quantity = parseInt(quantity);
-    if (quantity < 1) quantity = 1;
+        function updateQuantityInput(itemId, quantity) {
+            quantity = parseInt(quantity);
+            if (quantity < 1) quantity = 1;
 
-    fetch("{% url 'update_cart_item' 0 %}".replace("0", itemId), {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            "X-CSRFToken": "{{ csrf_token }}"
-        },
-        body: JSON.stringify({quantity: quantity})
-    })
-    .then(r => r.json())
-    .then(data => {
-        if (!data.success) return;
+            fetch("{% url 'update_cart_item' 0 %}".replace("0", itemId), {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRFToken": "{{ csrf_token }}"
+                },
+                body: JSON.stringify({quantity: quantity})
+            })
+            .then(r => r.json())
+            .then(data => {
+                if (!data.success) return;
 
-        // Update subtotal line
-        document.getElementById(`subtotal-${itemId}`).textContent =
-            data.subtotal + " FCFA";
+                // Update subtotal line (convert from FCFA to USD)
+                const subtotalInDollars = (data.subtotal / 600).toFixed(2);
+                document.getElementById(`subtotal-${itemId}`).textContent = "$" + subtotalInDollars;
+                document.getElementById(`subtotal-${itemId}`).dataset.subtotalFcfa = data.subtotal;
 
-        // Update summary subtotal
-        const subtotal = data.cart_total;
-        document.getElementById("summarySubtotal").textContent =
-            subtotal + " FCFA";
+                // Update summary subtotal (convert from FCFA to USD)
+                const subtotal = data.cart_total;
+                const subtotalDollars = (subtotal / 600).toFixed(2);
+                document.getElementById("summarySubtotal").textContent = "$" + subtotalDollars;
+                document.getElementById("summarySubtotal").dataset.subtotalFcfa = subtotal;
 
-        // Shipping: 0 si subtotal > 50000 FCFA, sinon 1500
-        const shipping = subtotal > 50000 ? 0 : 1500;
-        document.getElementById('shippingCost').textContent =
-            shipping + " FCFA";
+                // Shipping: 0 si subtotal > 50000 FCFA, sinon 1500 FCFA
+                const shippingFcfa = subtotal > 50000 ? 0 : 1500;
+                const shippingDollars = (shippingFcfa / 600).toFixed(2);
+                document.getElementById('shippingCost').textContent = "$" + shippingDollars;
 
-        // Tax: 18%
-        const tax = subtotal * 0.18;
-        document.getElementById('taxAmount').textContent =
-            tax.toFixed(2) + " FCFA";
+                // Tax: 18% (en FCFA puis converti en USD)
+                const taxFcfa = subtotal * 0.18;
+                const taxDollars = (taxFcfa / 600).toFixed(2);
+                document.getElementById('taxAmount').textContent = "$" + taxDollars;
 
-        // Total
-        const total = subtotal + shipping + tax;
-        document.getElementById("summaryTotal").textContent =
-            total.toFixed(2) + " FCFA";
-    })
-    .catch(error => console.error("Error:", error));
-}
+                // Total (en FCFA puis converti en USD)
+                const totalFcfa = subtotal + shippingFcfa + taxFcfa;
+                const totalDollars = (totalFcfa / 600).toFixed(2);
+                document.getElementById("summaryTotal").textContent = "$" + totalDollars;
+                document.getElementById("summaryTotal").dataset.totalFcfa = totalFcfa;
+            })
+            .catch(error => console.error("Error:", error));
+        }
 
         // Remove item from cart
-   function removeItem(itemId) {
-    if (!confirm('Are you sure you want to remove this item from your cart?')) return;
+        function removeItem(itemId) {
+            if (!confirm('Are you sure you want to remove this item from your cart?')) return;
 
-    // Utilisation de l'URL Django avec reverse
-    const url = "{% url 'remove_from_cart' 0 %}".replace("0", itemId);
+            const url = "{% url 'remove_from_cart' 0 %}".replace("0", itemId);
 
-    fetch(url, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'X-CSRFToken': '{{ csrf_token }}'
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': '{{ csrf_token }}'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (!data.success) return;
+
+                // Supprimer la ligne de l'item
+                const itemElement = document.querySelector(`.cart-item[data-item-id="${itemId}"]`);
+                if (itemElement) itemElement.remove();
+
+                // Mettre à jour le sous-total et le total (convertir en USD)
+                const subtotal = data.cart_total;
+                const subtotalDollars = (subtotal / 600).toFixed(2);
+                document.getElementById("summarySubtotal").textContent = "$" + subtotalDollars;
+                document.getElementById("summarySubtotal").dataset.subtotalFcfa = subtotal;
+
+                // Shipping: 0 si subtotal > 50000 FCFA, sinon 1500 FCFA
+                const shippingFcfa = subtotal > 50000 ? 0 : 1500;
+                const shippingDollars = (shippingFcfa / 600).toFixed(2);
+                document.getElementById('shippingCost').textContent = "$" + shippingDollars;
+
+                // Tax: 18% (en FCFA puis converti en USD)
+                const taxFcfa = subtotal * 0.18;
+                const taxDollars = (taxFcfa / 600).toFixed(2);
+                document.getElementById('taxAmount').textContent = "$" + taxDollars;
+
+                // Total final (en FCFA puis converti en USD)
+                const totalFcfa = subtotal + shippingFcfa + taxFcfa;
+                const totalDollars = (totalFcfa / 600).toFixed(2);
+                document.getElementById("summaryTotal").textContent = "$" + totalDollars;
+                document.getElementById("summaryTotal").dataset.totalFcfa = totalFcfa;
+
+                // Mettre à jour le compteur du panier
+                if (typeof updateCartCount === "function") updateCartCount();
+            })
+            .catch(error => console.error("Error:", error));
         }
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (!data.success) return;
-
-        // Supprimer la ligne de l'item
-        const itemElement = document.querySelector(`.cart-item[data-item-id="${itemId}"]`);
-        if (itemElement) itemElement.remove();
-
-        // Mettre à jour le sous-total et le total
-        const subtotal = data.cart_total;
-        document.getElementById("summarySubtotal").textContent = subtotal + " FCFA";
-
-        // Shipping: 0 si subtotal > 50000 FCFA, sinon 1500
-        const shipping = subtotal > 50000 ? 0 : 1500;
-        document.getElementById('shippingCost').textContent = shipping + " FCFA";
-
-        // Tax: 18%
-        const tax = subtotal * 0.18;
-        document.getElementById('taxAmount').textContent = tax.toFixed(2) + " FCFA";
-
-        // Total final
-        const total = subtotal + shipping + tax;
-        document.getElementById("summaryTotal").textContent = total.toFixed(2) + " FCFA";
-
-        // Optionnel : mettre à jour le compteur du panier
-        if (typeof updateCartCount === "function") updateCartCount();
-    })
-    .catch(error => console.error("Error:", error));
-}
 
         // Apply discount code
         function applyDiscount() {
@@ -1074,32 +1005,32 @@
             });
         }
 
-        // Update order summary
+        // Update order summary (fonction de secours si nécessaire)
         function updateOrderSummary() {
-            // Calculate totals
-            let subtotal = 0;
+            // Calculate totals from displayed values
+            let subtotalDollars = 0;
             document.querySelectorAll('.subtotal').forEach(element => {
-                subtotal += parseFloat(element.textContent.replace(' FCFA', ''));
+                subtotalDollars += parseFloat(element.textContent.replace('$', ''));
             });
             
             // Update summary
-            document.getElementById('summarySubtotal').textContent = subtotal.toFixed(2) + ' FCFA';
+            document.getElementById('summarySubtotal').textContent = '$' + subtotalDollars.toFixed(2);
             
-            // Calculate shipping (free over 50000)
-            const shipping = subtotal > 50000 ? 0 : 1500;
-            document.getElementById('shippingCost').textContent = shipping + ' FCFA';
+            // Calculate shipping (free over $83.33 which is 50000 FCFA)
+            const shippingDollars = subtotalDollars > 83.33 ? 0 : 2.50; // 1500 FCFA = $2.50
+            document.getElementById('shippingCost').textContent = '$' + shippingDollars.toFixed(2);
             
             // Calculate tax (18%)
-            const tax = subtotal * 0.18;
-            document.getElementById('taxAmount').textContent = tax.toFixed(2) + ' FCFA';
+            const taxDollars = subtotalDollars * 0.18;
+            document.getElementById('taxAmount').textContent = '$' + taxDollars.toFixed(2);
             
             // Calculate total
-            const total = subtotal + shipping + tax - cartData.discount;
-            document.getElementById('summaryTotal').textContent = total.toFixed(2) + ' FCFA';
+            const totalDollars = subtotalDollars + shippingDollars + taxDollars - cartData.discount;
+            document.getElementById('summaryTotal').textContent = '$' + totalDollars.toFixed(2);
             
             // Update checkout button
             const checkoutBtn = document.querySelector('.checkout-btn');
-            if (subtotal === 0) {
+            if (subtotalDollars === 0) {
                 checkoutBtn.classList.add('disabled');
                 checkoutBtn.style.opacity = '0.5';
                 checkoutBtn.style.cursor = 'not-allowed';
@@ -1112,87 +1043,43 @@
             }
         }
 
-        // Load recommended products
-        function loadRecommendedProducts() {
-            const container = document.getElementById('recommendedProducts');
-            if (!container) return;
-            
-            // Simulate loading products
-            const products = [
-                {
-                    id: 1,
-                    name: "Wireless Earbuds",
-                    price: 29900,
-                    image: "/static/img/products/earbuds.jpg",
-                    category: "Electronics"
-                },
-                {
-                    id: 2,
-                    name: "Smart Watch",
-                    price: 45900,
-                    image: "/static/img/products/watch.jpg",
-                    category: "Electronics"
-                },
-                {
-                    id: 3,
-                    name: "Laptop Bag",
-                    price: 12900,
-                    image: "/static/img/products/bag.jpg",
-                    category: "Accessories"
-                },
-                {
-                    id: 4,
-                    name: "Phone Case",
-                    price: 5900,
-                    image: "/static/img/products/case.jpg",
-                    category: "Accessories"
-                }
-            ];
-            
-            container.innerHTML = products.map(product => `
-                <div class="product-card">
-                    <img src="${product.image}" alt="${product.name}" class="product-img">
-                    <div class="product-card-content">
-                        <h3 class="product-card-title">${product.name}</h3>
-                        <div class="product-card-price">${product.price.toLocaleString()} FCFA</div>
-                        <button class="product-card-btn" onclick="addToCart(${product.id})">
-                            <i class="fas fa-cart-plus"></i> Add to Cart
-                        </button>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        // Add to cart from recommendations
-        function addToCart(productId) {
-            fetch(`/cart/add/${productId}/`, {
-                method: 'POST',
-                headers: {
-                    'X-CSRFToken': '{{ csrf_token }}'
-                }
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    // Show success message
-                    alert('Product added to cart!');
-                    // Reload page to show updated cart
-                    location.reload();
-                }
-            })
-            .catch(error => console.error('Error:', error));
-        }
-
         // Initialize on page load
         document.addEventListener('DOMContentLoaded', function() {
             updateCartCount();
-            updateOrderSummary();
-            loadRecommendedProducts();
-        });
-
-        // Add animation to cart items
-        document.querySelectorAll('.cart-item').forEach(item => {
-            item.style.animation = 'fadeInUp 0.5s ease-out';
+            
+            // Initial conversion of all FCFA values to USD
+            document.querySelectorAll('.price').forEach(priceElement => {
+                const fcfaValue = parseFloat(priceElement.dataset.priceFcfa || priceElement.textContent.match(/\d+/)[0]);
+                const dollarValue = (fcfaValue / 600).toFixed(2);
+                priceElement.textContent = "$" + dollarValue;
+            });
+            
+            document.querySelectorAll('.subtotal').forEach(subtotalElement => {
+                const fcfaValue = parseFloat(subtotalElement.dataset.subtotalFcfa || subtotalElement.textContent.match(/\d+/)[0]);
+                const dollarValue = (fcfaValue / 600).toFixed(2);
+                subtotalElement.textContent = "$" + dollarValue;
+            });
+            
+            // Convert main totals
+            const summarySubtotal = document.getElementById('summarySubtotal');
+            const summaryTotal = document.getElementById('summaryTotal');
+            
+            if (summarySubtotal && summarySubtotal.dataset.subtotalFcfa) {
+                const subtotalFcfa = parseFloat(summarySubtotal.dataset.subtotalFcfa);
+                const subtotalDollars = (subtotalFcfa / 600).toFixed(2);
+                summarySubtotal.textContent = "$" + subtotalDollars;
+            }
+            
+            if (summaryTotal && summaryTotal.dataset.totalFcfa) {
+                const totalFcfa = parseFloat(summaryTotal.dataset.totalFcfa);
+                const totalDollars = (totalFcfa / 600).toFixed(2);
+                summaryTotal.textContent = "$" + totalDollars;
+            }
+            
+            // Add animation to cart items
+            document.querySelectorAll('.cart-item').forEach(item => {
+                item.style.animation = 'fadeInUp 0.5s ease-out';
+            });
         });
     </script>
 </body>
