@@ -6,3 +6,6 @@ from .models import *
 
 admin.site.register(Utilisateur)
 admin.site.register(Product)
+admin.site.register(Cart)
+admin.site.register(CartItem)
+

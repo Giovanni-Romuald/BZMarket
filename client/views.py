@@ -1,7 +1,9 @@
+import json
+from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, render,redirect
 from django.contrib import messages
 
-from client.models import Product, Utilisateur
+from client.models import Cart, CartItem, Product, Utilisateur
 from django.utils import timezone
 from datetime import datetime
 from django.contrib.auth import authenticate, login, logout
@@ -188,3 +190,76 @@ def gerer_profil(request):
 
     # GET : afficher le formulaire avec les valeurs actuelles
     return render(request, "services/gererProfil.html", {"user": user})
+
+
+def dashboard(request):
+    return render(request, 'services/dashboard_client.html')
+
+
+
+def get_cart(user):
+    cart, created = Cart.objects.get_or_create(user=user)
+    return cart
+
+
+def add_to_cart(request, slug):
+    product = get_object_or_404(Product, slug=slug)
+    cart = get_cart(request.user)
+
+    item, created = CartItem.objects.get_or_create(cart=cart, product=product)
+
+    if not created:
+        item.quantity += 1
+    item.save()
+
+    return redirect("shopping")
+
+
+def cart_detail(request):
+    cart, _ = Cart.objects.get_or_create(user=request.user)
+    return render(request, "services/panier.html", {"cart": cart})
+
+
+def remove_from_cart(request, item_id):
+    try:
+        item = CartItem.objects.get(id=item_id, cart__user=request.user)
+        item.delete()
+
+        # Calcul du total après suppression
+        cart_total = sum(i.subtotal() for i in item.cart.items.all())
+
+        return JsonResponse({
+            "success": True,
+            "cart_total": cart_total
+        })
+    except CartItem.DoesNotExist:
+        return JsonResponse({"success": False, "error": "Item not found"}, status=404)
+
+def update_cart_item(request, item_id):
+    try:
+        data = json.loads(request.body)
+        quantity = int(data.get("quantity", 1))
+
+        item = CartItem.objects.select_related("product","cart").get(
+            id=item_id, cart__user=request.user
+        )
+
+        # Sécurité stock
+        if quantity < 1:
+            quantity = 1
+        if quantity > item.product.stock:
+            quantity = item.product.stock
+
+        item.quantity = quantity
+        item.save()
+
+        cart = item.cart
+
+        return JsonResponse({
+            "success": True,
+            "subtotal": float(item.subtotal()),
+            "cart_total": float(cart.total())
+        })
+
+    except Exception:
+        return JsonResponse({"success": False}, status=400)

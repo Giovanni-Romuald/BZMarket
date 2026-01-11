@@ -2,21 +2,25 @@
 {% load static %}
 <html lang="en">
 <head>
+    <!-- SECTION: Métadonnées et liens -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BZMarket - Seller Dashboard</title>
     <link rel="shortcut icon" href="{% static 'img/Logo@.png' %}" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- SECTION: Styles CSS -->
     <style>
+        /* SECTION: Variables CSS */
         :root {
-            --primary: #FF6B35; /* Bright orange */
+            --primary: #FF6B35;
             --primary-dark: #E65100;
             --primary-light: #FFA726;
-            --secondary: #2C3E50; /* Dark blue */
+            --secondary: #2C3E50;
             --secondary-light: #34495E;
             --accent: #FF5722;
-            --light: #FFFFFF; /* White background */
+            --light: #FFFFFF;
             --light-bg: #F9F9F9;
             --text-dark: #333333;
             --text-gray: #666666;
@@ -35,6 +39,7 @@
             --info: #2196F3;
         }
         
+        /* SECTION: Reset et base */
         * {
             margin: 0;
             padding: 0;
@@ -65,13 +70,14 @@
             color: inherit;
         }
         
+        /* SECTION: Structure principale */
         .dashboard-container {
             display: grid;
             grid-template-columns: 280px 1fr;
             min-height: 100vh;
         }
         
-        /* Sidebar Styles */
+        /* SECTION: Sidebar */
         .sidebar {
             background: var(--gradient-light);
             padding: 30px 0;
@@ -224,13 +230,14 @@
             border-top: 1px solid rgba(255, 107, 53, 0.1);
         }
         
-        /* Main Content Styles */
+        /* SECTION: Contenu principal */
         .main-content {
             padding: 30px;
             overflow-y: auto;
             background: transparent;
         }
         
+        /* SECTION: Header */
         .header {
             display: flex;
             justify-content: space-between;
@@ -259,6 +266,7 @@
             gap: 15px;
         }
         
+        /* SECTION: Boutons */
         .btn {
             display: inline-flex;
             align-items: center;
@@ -332,6 +340,7 @@
             box-shadow: var(--shadow-hover);
         }
         
+        /* SECTION: Notifications */
         .notification-bell {
             position: relative;
             cursor: pointer;
@@ -370,7 +379,7 @@
             box-shadow: 0 2px 5px rgba(255, 107, 53, 0.3);
         }
         
-        /* Stats Cards */
+        /* SECTION: Cartes de statistiques */
         .stats-cards {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -408,7 +417,6 @@
             font-size: 24px;
             color: white;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            background: var(--gradient-primary);
         }
         
         .revenue-icon { 
@@ -457,7 +465,7 @@
             color: var(--danger);
         }
         
-        /* Loading Spinner */
+        /* SECTION: Loading Spinner */
         .loading-spinner {
             display: none;
             text-align: center;
@@ -479,7 +487,7 @@
             100% { transform: rotate(360deg); }
         }
         
-        /* Floating Elements */
+        /* SECTION: Éléments flottants */
         .floating-shapes {
             position: fixed;
             width: 100%;
@@ -512,7 +520,7 @@
             75% { transform: translateY(20px) rotate(270deg); }
         }
         
-        /* Section Content Styles */
+        /* SECTION: Contenu des sections */
         .section-content {
             opacity: 1;
             transform: translateY(0);
@@ -540,6 +548,7 @@
             font-size: 14px;
         }
         
+        /* SECTION: Tableaux */
         .table-container {
             background: var(--white);
             border-radius: var(--border-radius);
@@ -581,6 +590,7 @@
             background: rgba(255, 107, 53, 0.03);
         }
         
+        /* SECTION: Badges de statut */
         .status-badge {
             padding: 5px 12px;
             border-radius: 20px;
@@ -615,7 +625,7 @@
             border: 2px solid rgba(255, 107, 53, 0.1);
         }
         
-        /* Charts Container */
+        /* SECTION: Graphiques */
         .charts-container {
             display: grid;
             grid-template-columns: 2fr 1fr;
@@ -648,13 +658,13 @@
             color: var(--text-dark);
         }
         
-        /* Rating Stars */
+        /* SECTION: Étoiles de notation */
         .rating-stars {
             color: #FFC107;
             font-size: 14px;
         }
         
-        /* Quick Stats */
+        /* SECTION: Statistiques rapides */
         .quick-stats {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -702,7 +712,7 @@
             color: var(--text-gray);
         }
         
-        /* Pagination */
+        /* SECTION: Pagination */
         .pagination {
             display: flex;
             justify-content: center;
@@ -735,7 +745,7 @@
             transform: translateY(-2px);
         }
         
-        /* Order Filters */
+        /* SECTION: Filtres de commandes */
         .order-filters {
             display: flex;
             gap: 10px;
@@ -761,7 +771,7 @@
             transform: translateY(-2px);
         }
         
-        /* Mobile Menu */
+        /* SECTION: Menu mobile */
         .menu-toggle {
             display: none;
             font-size: 24px;
@@ -799,7 +809,157 @@
             display: block;
         }
         
-        /* Responsive */
+        /* SECTION: Notifications personnalisées */
+        .custom-notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--gradient-primary);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            z-index: 10000;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            animation: slideIn 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            max-width: 400px;
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        @keyframes slideOut {
+            from { transform: translateX(0); opacity: 1; }
+            to { transform: translateX(100%); opacity: 0; }
+        }
+        
+        /* SECTION: Actions sur les produits */
+        .product-actions {
+            display: flex;
+            gap: 5px;
+        }
+        
+        .action-btn {
+            width: 35px;
+            height: 35px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 107, 53, 0.1);
+            color: var(--primary);
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .action-btn:hover {
+            background: var(--primary);
+            color: white;
+            transform: scale(1.1);
+        }
+        
+        /* SECTION: Barre de progression du stock */
+        .stock-progress {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .progress-bar {
+            width: 80px;
+            height: 6px;
+            background: #f0f0f0;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            border-radius: 3px;
+            background: var(--success);
+            transition: width 0.3s ease;
+        }
+        
+        .progress-fill.warning {
+            background: var(--warning);
+        }
+        
+        .progress-fill.danger {
+            background: var(--danger);
+        }
+        
+        /* SECTION: Tooltip */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .tooltip .tooltip-text {
+            visibility: hidden;
+            width: 200px;
+            background-color: var(--secondary);
+            color: white;
+            text-align: center;
+            padding: 8px 12px;
+            border-radius: 8px;
+            position: absolute;
+            z-index: 1000;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 12px;
+            font-weight: normal;
+            box-shadow: var(--shadow);
+        }
+        
+        .tooltip:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
+        
+        /* SECTION: Bannière de bienvenue */
+        .welcome-banner {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            margin-bottom: 40px;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .welcome-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+        }
+        
+        .welcome-banner h2 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            color: white;
+        }
+        
+        .welcome-banner p {
+            opacity: 0.9;
+            max-width: 600px;
+        }
+        
+        /* SECTION: Responsive */
         @media (max-width: 1200px) {
             .dashboard-container {
                 grid-template-columns: 250px 1fr;
@@ -892,160 +1052,11 @@
                 justify-content: center;
             }
         }
-        
-        /* Custom notification styles */
-        .custom-notification {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: var(--gradient-primary);
-            color: white;
-            padding: 15px 25px;
-            border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            z-index: 10000;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 500;
-            animation: slideIn 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            max-width: 400px;
-        }
-        
-        @keyframes slideIn {
-            from { transform: translateX(100%); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
-        }
-        
-        @keyframes slideOut {
-            from { transform: translateX(0); opacity: 1; }
-            to { transform: translateX(100%); opacity: 0; }
-        }
-        
-        /* Product Actions */
-        .product-actions {
-            display: flex;
-            gap: 5px;
-        }
-        
-        .action-btn {
-            width: 35px;
-            height: 35px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(255, 107, 53, 0.1);
-            color: var(--primary);
-            border: none;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-        
-        .action-btn:hover {
-            background: var(--primary);
-            color: white;
-            transform: scale(1.1);
-        }
-        
-        /* Stock Progress Bar */
-        .stock-progress {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .progress-bar {
-            width: 80px;
-            height: 6px;
-            background: #f0f0f0;
-            border-radius: 3px;
-            overflow: hidden;
-        }
-        
-        .progress-fill {
-            height: 100%;
-            border-radius: 3px;
-            background: var(--success);
-            transition: width 0.3s ease;
-        }
-        
-        .progress-fill.warning {
-            background: var(--warning);
-        }
-        
-        .progress-fill.danger {
-            background: var(--danger);
-        }
-        
-        /* Tooltip */
-        .tooltip {
-            position: relative;
-            display: inline-block;
-        }
-        
-        .tooltip .tooltip-text {
-            visibility: hidden;
-            width: 200px;
-            background-color: var(--secondary);
-            color: white;
-            text-align: center;
-            padding: 8px 12px;
-            border-radius: 8px;
-            position: absolute;
-            z-index: 1000;
-            bottom: 125%;
-            left: 50%;
-            transform: translateX(-50%);
-            opacity: 0;
-            transition: opacity 0.3s;
-            font-size: 12px;
-            font-weight: normal;
-            box-shadow: var(--shadow);
-        }
-        
-        .tooltip:hover .tooltip-text {
-            visibility: visible;
-            opacity: 1;
-        }
-        
-        /* Welcome Banner */
-        .welcome-banner {
-            background: var(--gradient-primary);
-            color: white;
-            padding: 30px;
-            border-radius: var(--border-radius);
-            margin-bottom: 40px;
-            box-shadow: var(--shadow);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .welcome-banner::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 200px;
-            height: 200px;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-        }
-        
-        .welcome-banner h2 {
-            font-size: 28px;
-            margin-bottom: 10px;
-            color: white;
-        }
-        
-        .welcome-banner p {
-            opacity: 0.9;
-            max-width: 600px;
-        }
     </style>
 </head>
+
 <body>
-    <!-- Floating shapes -->
+    <!-- SECTION: Éléments flottants décoratifs -->
     <div class="floating-shapes">
         <div class="shape shape-1"><i class="fas fa-chart-line"></i></div>
         <div class="shape shape-2"><i class="fas fa-boxes"></i></div>
@@ -1053,8 +1064,9 @@
         <div class="shape shape-4"><i class="fas fa-shipping-fast"></i></div>
     </div>
     
+    <!-- SECTION: Conteneur principal du dashboard -->
     <div class="dashboard-container">
-        <!-- Sidebar -->
+        <!-- SECTION: Sidebar -->
         <aside class="sidebar" id="sidebar">
             <div class="logo">
                 <img src="{% static 'img/Logo@.png' %}" alt="BZMarket">
@@ -1063,7 +1075,7 @@
             
             <div class="seller-profile">
                 <div class="avatar">SM</div>
-                {%if user.is_authenticated%}
+                {% if user.is_authenticated %}
                 <h3>{{ user.username }}</h3>
                 <p>Seller Account</p>
                 <div class="seller-status">
@@ -1098,44 +1110,27 @@
                         <span>Profil</span>
                     </a>
                 </li>
+                
                 <li class="nav-item">
                     <a href="#analytics" class="nav-link" data-section="analytics">
                         <i class="fas fa-chart-bar"></i>
                         <span>Analytics</span>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="#reviews" class="nav-link" data-section="reviews">
-                        <i class="fas fa-star"></i>
-                        <span>Reviews</span>
-                        <span class="badge">8</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#messages" class="nav-link" data-section="messages">
-                        <i class="fas fa-comments"></i>
-                        <span>Messages</span>
-                        <span class="badge">5</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#settings" class="nav-link" data-section="settings">
-                        <i class="fas fa-cog"></i>
-                        <span>Settings</span>
-                    </a>
-                </li>
+              
                 <li class="nav-item logout">
-                    <a href="#" class="nav-link" id="logoutBtn">
+                    <a href="{% url 'logout' %}" class="nav-link" id="logoutBtn">
                         <i class="fas fa-sign-out-alt"></i>
                         <span>Logout</span>
                     </a>
                 </li>
+                {% endif %}
             </ul>
         </aside>
         
-        <!-- Main Content -->
+        <!-- SECTION: Contenu principal -->
         <main class="main-content">
-            <!-- Header -->
+            <!-- SECTION: Header -->
             <div class="header">
                 <div class="menu-toggle" id="menuToggle">
                     <i class="fas fa-bars"></i>
@@ -1153,7 +1148,6 @@
                         <i class="fas fa-user"></i> my profile
                     </a>
 
-                
                     <div class="notification-bell tooltip" id="notificationBell">
                         <i class="fas fa-bell"></i>
                         <span class="notification-badge">5</span>
@@ -1162,27 +1156,24 @@
                 </div>
             </div>
             
-            <!-- Welcome Banner -->
+            <!-- SECTION: Bannière de bienvenue -->
             <div class="welcome-banner" id="welcomeBanner">
                 <h2>Welcome back, {{ user.username }}</h2>
-                {% endif %}
-                
                 <p>Hello morning</p>
             </div>
             
-            <!-- Content will be loaded here -->
+            <!-- SECTION: Conteneur de contenu dynamique -->
             <div id="content-container">
-                <!-- Loading spinner -->
                 <div class="loading-spinner" id="loadingSpinner">
                     <div class="spinner"></div>
                     <p>Loading content...</p>
                 </div>
                 
-                <!-- Content will be injected here -->
                 <div id="section-content">
-                    <!-- Dashboard Content (Default Section) -->
+                    <!-- SECTION: Contenu Dashboard (par défaut) -->
                     <div class="section-content" id="dashboard-content">
                         <div class="stats-cards">
+                            <!-- Carte: Revenue -->
                             <div class="stat-card">
                                 <div class="stat-icon revenue-icon">
                                     <i class="fas fa-money-bill-wave"></i>
@@ -1196,6 +1187,7 @@
                                 </div>
                             </div>
                             
+                            <!-- Carte: Commandes -->
                             <div class="stat-card">
                                 <div class="stat-icon orders-icon">
                                     <i class="fas fa-shopping-bag"></i>
@@ -1209,29 +1201,27 @@
                                 </div>
                             </div>
                             
-                           <div class="stat-card">
-    <div class="stat-icon products-icon">
-        <i class="fas fa-box"></i>
-    </div>
-    <div class="stat-info">
-        <h3>Active Products</h3>
-        <!-- Nombre dynamique de produits actifs -->
-        <div class="number" data-count="{{ active_products_count }}">{{ active_products_count }}</div>
-
-        <!-- Tendance par rapport au mois dernier -->
-        {% if trend >= 0 %}
-            <div class="trend up">
-                <i class="fas fa-arrow-up"></i> {{ trend }} from last month
-            </div>
-        {% else %}
-            <div class="trend down">
-                <i class="fas fa-arrow-down"></i> {{ trend }} from last month
-            </div>
-        {% endif %}
-    </div>
-</div>
-
+                           <!-- Carte: Produits actifs -->
+                            <div class="stat-card">
+                                <div class="stat-icon products-icon">
+                                    <i class="fas fa-box"></i>
+                                </div>
+                                <div class="stat-info">
+                                    <h3>Active Products</h3>
+                                    <div class="number" data-count="{{ active_products_count }}">{{ active_products_count }}</div>
+                                    {% if trend >= 0 %}
+                                        <div class="trend up">
+                                            <i class="fas fa-arrow-up"></i> {{ trend }} from last month
+                                        </div>
+                                    {% else %}
+                                        <div class="trend down">
+                                            <i class="fas fa-arrow-down"></i> {{ trend }} from last month
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
                             
+                            <!-- Carte: Note moyenne -->
                             <div class="stat-card">
                                 <div class="stat-icon rating-icon">
                                     <i class="fas fa-star"></i>
@@ -1246,7 +1236,7 @@
                             </div>
                         </div>
                         
-                        <!-- Quick Stats -->
+                        <!-- SECTION: Statistiques rapides -->
                         <div class="quick-stats">
                             <div class="quick-stat">
                                 <div class="quick-stat-icon">
@@ -1278,7 +1268,7 @@
                             </div>
                         </div>
                         
-                        <!-- Charts -->
+                        <!-- SECTION: Graphiques -->
                         <div class="charts-container">
                             <div class="chart-card">
                                 <div class="chart-header">
@@ -1334,85 +1324,81 @@
                             </div>
                         </div>
                         
-                       
-                    
-                  <!-- Products Table -->
-<div class="table-container">
-    <table>
-        <thead>
-            <tr>
-                <th>Product</th>
-                <th>Category</th>
-                <th>Price</th>
-                <th>Stock</th>
-                <th>Status</th>
-                <th>Sales</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for product in products %}
-            <tr>
-                <td>
-                    <div style="display: flex; align-items: center;">
-                        <div class="product-image">
-                            {% if product.image %}
-                                <img src="{{ product.image.url }}" alt="{{ product.title }}" style="width:40px; height:40px; object-fit:cover; border-radius:4px;">
-                            {% else %}
-                                <i class="fas fa-box"></i>
-                            {% endif %}
+                        <!-- SECTION: Tableau des produits -->
+                        <div class="table-container">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Product</th>
+                                        <th>Category</th>
+                                        <th>Price</th>
+                                        <th>Stock</th>
+                                        <th>Status</th>
+                                        <th>Sales</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for product in products %}
+                                    <tr>
+                                        <td>
+                                            <div style="display: flex; align-items: center;">
+                                                <div class="product-image">
+                                                    {% if product.image %}
+                                                        <img src="{{ product.image.url }}" alt="{{ product.title }}" style="width:40px; height:40px; object-fit:cover; border-radius:4px;">
+                                                    {% else %}
+                                                        <i class="fas fa-box"></i>
+                                                    {% endif %}
+                                                </div>
+                                                <div style="margin-left: 15px;">
+                                                    <div style="font-weight: 600;">{{ product.title }}</div>
+                                                    <div style="font-size: 13px; color: var(--text-light);">SKU: {{ product.id }}</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>{{ product.category|title }}</td>
+                                        <td>€{{ product.price }}</td>
+                                        <td>
+                                            <div class="stock-progress">
+                                                <div class="progress-bar">
+                                                    {% with stock_percent=product.stock|floatformat:"0"|add:"0" %}
+                                                    <div class="progress-fill" style="width: {{ stock_percent }}%;"></div>
+                                                    {% endwith %}
+                                                </div>
+                                                <span>{{ product.stock }} left</span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            {% if product.is_active %}
+                                                <span class="status-badge status-active">Active</span>
+                                            {% else %}
+                                                <span class="status-badge status-inactive">Inactive</span>
+                                            {% endif %}
+                                        </td>
+                                        <td>{{ product.rating_count }}</td>
+                                        <td>
+                                            <div class="product-actions">
+                                                <a href="{% url 'edit_product' product.id %}" class="action-btn tooltip">
+                                                    <i class="fas fa-edit"></i>
+                                                    <span class="tooltip-text">Edit Product</span>
+                                                </a>
+                                                <a href="{% url 'delete_product' product.id %}" class="action-btn tooltip">
+                                                    <i class="fas fa-trash"></i>
+                                                    <span class="tooltip-text">Delete Product</span>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    {% empty %}
+                                    <tr>
+                                        <td colspan="7" style="text-align:center;">You have no products yet.</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
                         </div>
-                        <div style="margin-left: 15px;">
-                            <div style="font-weight: 600;">{{ product.title }}</div>
-                            <div style="font-size: 13px; color: var(--text-light);">SKU: {{ product.id }}</div>
-                        </div>
-                    </div>
-                </td>
-                <td>{{ product.category|title }}</td>
-                <td>€{{ product.price }}</td>
-                <td>
-                    <div class="stock-progress">
-                        <div class="progress-bar">
-                            {% with stock_percent=product.stock|floatformat:"0"|add:"0" %}
-                            <div class="progress-fill" style="width: {{ stock_percent }}%;"></div>
-                            {% endwith %}
-                        </div>
-                        <span>{{ product.stock }} left</span>
-                    </div>
-                </td>
-                <td>
-                    {% if product.is_active %}
-                        <span class="status-badge status-active">Active</span>
-                    {% else %}
-                        <span class="status-badge status-inactive">Inactive</span>
-                    {% endif %}
-                </td>
-                <td>{{ product.rating_count }}</td>
-                <td>
-                    <div class="product-actions">
-                        <a href="{% url 'edit_product' product.id %}" class="action-btn tooltip">
-                            <i class="fas fa-edit"></i>
-                            <span class="tooltip-text">Edit Product</span>
-                        </a>
-                        <!-- Preview Product -->
-                   
-                        <a href="{% url 'delete_product' product.id %}" class="action-btn tooltip">
-                            <i class="fas fa-trash"></i>
-                            <span class="tooltip-text">Delete Product</span>
-                        </a>
-                    </div>
-                </td>
-            </tr>
-            {% empty %}
-            <tr>
-                <td colspan="7" style="text-align:center;">You have no products yet.</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-</div>
 
-                        <!-- Pagination -->
+                        <!-- SECTION: Pagination -->
                         <div class="pagination">
                             <button class="pagination-btn active">1</button>
                             <button class="pagination-btn">2</button>
@@ -1424,7 +1410,7 @@
                         </div>
                     </div>
                     
-                    <!-- Orders Content -->
+                    <!-- SECTION: Contenu Commandes (caché par défaut) -->
                     <div class="section-content" id="orders-content" style="display: none;">
                         <div class="section-header">
                             <div>
@@ -1438,7 +1424,7 @@
                             </div>
                         </div>
                         
-                        <!-- Order Filters -->
+                        <!-- SECTION: Filtres de commandes -->
                         <div class="order-filters">
                             <button class="filter-btn active">All Orders (12)</button>
                             <button class="filter-btn">Pending (4)</button>
@@ -1448,7 +1434,7 @@
                             <button class="filter-btn">Cancelled (1)</button>
                         </div>
                         
-                        <!-- Orders Table -->
+                        <!-- SECTION: Tableau des commandes -->
                         <div class="table-container">
                             <table>
                                 <thead>
@@ -1483,94 +1469,28 @@
                                             </div>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td>#ORD-78950</td>
-                                        <td>Nov 17, 2023</td>
-                                        <td>Sarah Williams</td>
-                                        <td>€179.99</td>
-                                        <td>
-                                            <span class="status-badge status-shipped">Shipped</span>
-                                        </td>
-                                        <td>
-                                            <div class="product-actions">
-                                                <button class="action-btn tooltip" onclick="trackOrder('ORD-78950')">
-                                                    <i class="fas fa-truck"></i>
-                                                    <span class="tooltip-text">Track Shipment</span>
-                                                </button>
-                                                <button class="action-btn tooltip" onclick="viewOrder('ORD-78950')">
-                                                    <i class="fas fa-eye"></i>
-                                                    <span class="tooltip-text">View Details</span>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>#ORD-78949</td>
-                                        <td>Nov 16, 2023</td>
-                                        <td>Michael Brown</td>
-                                        <td>€1,099.99</td>
-                                        <td>
-                                            <span class="status-badge status-delivered">Delivered</span>
-                                        </td>
-                                        <td>
-                                            <div class="product-actions">
-                                                <button class="action-btn tooltip" onclick="completeOrder('ORD-78949')">
-                                                    <i class="fas fa-check-double"></i>
-                                                    <span class="tooltip-text">Mark Complete</span>
-                                                </button>
-                                                <button class="action-btn tooltip" onclick="viewOrder('ORD-78949')">
-                                                    <i class="fas fa-eye"></i>
-                                                    <span class="tooltip-text">View Details</span>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>#ORD-78948</td>
-                                        <td>Nov 15, 2023</td>
-                                        <td>Emma Davis</td>
-                                        <td>€249.99</td>
-                                        <td>
-                                            <span class="status-badge status-pending">Pending</span>
-                                        </td>
-                                        <td>
-                                            <div class="product-actions">
-                                                <button class="action-btn tooltip" onclick="processOrder('ORD-78948')">
-                                                    <i class="fas fa-cogs"></i>
-                                                    <span class="tooltip-text">Process Order</span>
-                                                </button>
-                                                <button class="action-btn tooltip" onclick="viewOrder('ORD-78948')">
-                                                    <i class="fas fa-eye"></i>
-                                                    <span class="tooltip-text">View Details</span>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                    <!-- Lignes supplémentaires... -->
                                 </tbody>
                             </table>
                         </div>
                     </div>
-                    
-                    <!-- Other sections would go here -->
-                    <!-- For brevity, I've shown the most important sections -->
-                    
                 </div>
             </div>
         </main>
     </div>
     
-    <!-- Overlay for mobile -->
+    <!-- SECTION: Overlay mobile -->
     <div class="overlay" id="overlay"></div>
     
+    <!-- SECTION: Scripts JavaScript -->
     <script>
-        // Store current section
+        // SECTION: Variables globales
         let currentSection = 'dashboard';
         
-        // Navigation between sections
+        // SECTION: Navigation entre sections
         document.querySelectorAll('.nav-link').forEach(link => {
             link.addEventListener('click', function(e) {
                 if(this.id === 'logoutBtn') {
-                    // Logout action
                     e.preventDefault();
                     showNotification('Logged out successfully!', 'success');
                     setTimeout(() => {
@@ -1580,23 +1500,19 @@
                 }
                 
                 e.preventDefault();
-                
                 const sectionId = this.getAttribute('data-section');
                 switchSection(sectionId);
             });
         });
         
-        // Function to switch between sections
+        // SECTION: Fonction pour changer de section
         function switchSection(sectionId) {
-            // Don't reload if already on this section
             if (sectionId === currentSection) return;
             
-            // Update active nav link
             document.querySelectorAll('.nav-link').forEach(item => {
                 item.classList.remove('active');
             });
             
-            // Update title
             const sectionTitle = document.getElementById('sectionTitle');
             const titles = {
                 'dashboard': 'Seller Dashboard',
@@ -1609,36 +1525,28 @@
             };
             sectionTitle.textContent = titles[sectionId] || 'Seller Dashboard';
             
-            // Hide all sections
             document.querySelectorAll('.section-content').forEach(section => {
                 section.style.display = 'none';
             });
             
-            // Show selected section
             const targetSection = document.getElementById(`${sectionId}-content`);
             if (targetSection) {
                 targetSection.style.display = 'block';
             } else {
-                // If section doesn't exist yet, show dashboard
                 document.getElementById('dashboard-content').style.display = 'block';
                 document.querySelector('[data-section="dashboard"]').classList.add('active');
                 sectionTitle.textContent = 'Seller Dashboard';
                 sectionId = 'dashboard';
             }
             
-            // Close mobile menu if open
             if(window.innerWidth <= 992) {
                 document.getElementById('sidebar').classList.remove('active');
                 document.getElementById('overlay').classList.remove('active');
             }
             
-            // Initialize section-specific functionality
             initializeSection(sectionId);
-            
-            // Update current section
             currentSection = sectionId;
             
-            // Add animation
             const activeSection = document.getElementById(`${sectionId}-content`);
             if (activeSection) {
                 activeSection.style.opacity = '0';
@@ -1652,7 +1560,7 @@
             }
         }
         
-        // Initialize section-specific functionality
+        // SECTION: Initialisation des sections
         function initializeSection(sectionId) {
             switch(sectionId) {
                 case 'dashboard':
@@ -1667,12 +1575,10 @@
             }
         }
         
-        // Dashboard initialization
+        // SECTION: Initialisation du dashboard
         function initializeDashboard() {
-            // Start counters
             startCounters();
             
-            // Add event listeners to dashboard buttons
             document.querySelectorAll('#dashboard-content button').forEach(btn => {
                 btn.addEventListener('click', function(e) {
                     e.stopPropagation();
@@ -1693,14 +1599,12 @@
             });
         }
         
-        // Products initialization
+        // SECTION: Initialisation des produits
         function initializeProducts() {
-            // Add product button
             document.getElementById('addNewProduct').addEventListener('click', function() {
                 showAddProductModal();
             });
             
-            // Filter buttons
             document.querySelectorAll('.order-filters .filter-btn').forEach(btn => {
                 btn.addEventListener('click', function() {
                     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
@@ -1710,9 +1614,8 @@
             });
         }
         
-        // Orders initialization
+        // SECTION: Initialisation des commandes
         function initializeOrders() {
-            // Filter buttons
             document.querySelectorAll('.order-filters .filter-btn').forEach(btn => {
                 btn.addEventListener('click', function() {
                     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
@@ -1723,7 +1626,7 @@
             });
         }
         
-        // Order action functions
+        // SECTION: Fonctions pour les commandes
         function viewOrder(orderId) {
             showNotification(`Viewing order ${orderId} details`, 'info');
         }
@@ -1751,7 +1654,7 @@
             }, 1000);
         }
         
-        // Product action functions
+        // SECTION: Fonctions pour les produits
         function editProduct(sku) {
             showNotification(`Editing product ${sku}`, 'info');
         }
@@ -1765,458 +1668,446 @@
                 showNotification(`Product ${sku} deleted successfully!`, 'success');
             }
         }
-  function showAddProductModal() {
-    const modalHtml = `
-    <div id="addProductModal" class="modal-overlay">
-        <div class="modal-container">
-            <div class="modal-header">
-                <h3 class="modal-title">Add New Product</h3>
-                <button type="button" class="modal-close-btn" onclick="closeModal()">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M18 6L6 18M6 6l12 12"/>
-                    </svg>
-                </button>
-            </div>
+        
+        // SECTION: Modal d'ajout de produit
+        function showAddProductModal() {
+            const modalHtml = `
+            <div id="addProductModal" class="modal-overlay">
+                <div class="modal-container">
+                    <div class="modal-header">
+                        <h3 class="modal-title">Add New Product</h3>
+                        <button type="button" class="modal-close-btn" onclick="closeModal()">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 6L6 18M6 6l12 12"/>
+                            </svg>
+                        </button>
+                    </div>
 
-            <form method="POST" action="{% url 'add_product' %}" enctype="multipart/form-data" class="modal-form">
-                <input type="hidden" name="csrfmiddlewaretoken" value="${getCSRFToken()}">
+                    <form method="POST" action="{% url 'add_product' %}" enctype="multipart/form-data" class="modal-form">
+                        <input type="hidden" name="csrfmiddlewaretoken" value="${getCSRFToken()}">
 
-                <div class="modal-body">
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label class="form-label">Product Name *</label>
-                            <input type="text" name="title" required class="form-input" placeholder="Enter product name">
-                        </div>
+                        <div class="modal-body">
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label class="form-label">Product Name *</label>
+                                    <input type="text" name="title" required class="form-input" placeholder="Enter product name">
+                                </div>
 
-                       <div class="form-group">
-                            <label class="form-label">Category *</label>
-                            <select name="category" class="form-select" required>
-                                <option value="">Select a category</option>
-                                <option value="fashion">👗 Fashion & Clothing</option>
-                                <option value="home">🏠 Home & Decor</option>
-                                <option value="art">🎨 Art & Crafts</option>
-                                <option value="tech">📱 Electronics</option>
-                                <option value="food">🍎 Food & Beverages</option>
-                                <option value="beauty">💄 Beauty & Care</option>
-                            </select>
-                        </div>
+                               <div class="form-group">
+                                    <label class="form-label">Category *</label>
+                                    <select name="category" class="form-select" required>
+                                        <option value="">Select a category</option>
+                                        <option value="fashion">👗 Fashion & Clothing</option>
+                                        <option value="home">🏠 Home & Decor</option>
+                                        <option value="art">🎨 Art & Crafts</option>
+                                        <option value="tech">📱 Electronics</option>
+                                        <option value="food">🍎 Food & Beverages</option>
+                                        <option value="beauty">💄 Beauty & Care</option>
+                                    </select>
+                                </div>
 
+                                <div class="form-group">
+                                    <label class="form-label">Price (€) *</label>
+                                    <input type="number" step="0.01" name="price" required class="form-input" placeholder="0.00" min="0">
+                                </div>
 
-                        <div class="form-group">
-                            <label class="form-label">Price (€) *</label>
-                            <input type="number" step="0.01" name="price" required class="form-input" placeholder="0.00" min="0">
-                        </div>
+                                <div class="form-group">
+                                    <label class="form-label">Old Price (€)</label>
+                                    <input type="number" step="0.01" name="old_price" class="form-input" placeholder="0.00" min="0">
+                                </div>
 
-                        <div class="form-group">
-                            <label class="form-label">Old Price (€)</label>
-                            <input type="number" step="0.01" name="old_price" class="form-input" placeholder="0.00" min="0">
-                        </div>
+                                <div class="form-group">
+                                    <label class="form-label">Stock</label>
+                                    <input type="number" name="stock" value="1" class="form-input" min="0" placeholder="Quantity available">
+                                </div>
 
-                        <div class="form-group">
-                            <label class="form-label">Stock</label>
-                            <input type="number" name="stock" value="1" class="form-input" min="0" placeholder="Quantity available">
-                        </div>
+                                <div class="form-group">
+                                    <label class="form-label">Badge</label>
+                                    <select name="badge" class="form-select">
+                                        <option value="">-- None --</option>
+                                        <option value="new">New</option>
+                                        <option value="hot">Hot</option>
+                                        <option value="sale">Sale</option>
+                                    </select>
+                                </div>
 
-                        <div class="form-group">
-                            <label class="form-label">Badge</label>
-                            <select name="badge" class="form-select">
-                                <option value="">-- None --</option>
-                                <option value="new">New</option>
-                                <option value="hot">Hot</option>
-                                <option value="sale">Sale</option>
-                            </select>
-                        </div>
+                                <div class="form-group full-width">
+                                    <label class="form-label">Description</label>
+                                    <textarea name="description" class="form-textarea" rows="4" placeholder="Enter product description"></textarea>
+                                </div>
 
-                        <div class="form-group full-width">
-                            <label class="form-label">Description</label>
-                            <textarea name="description" class="form-textarea" rows="4" placeholder="Enter product description"></textarea>
-                        </div>
-
-                        <div class="form-group full-width">
-                            <label class="form-label">Product Image *</label>
-                            <div class="file-upload-container">
-                                <input type="file" name="image" required class="form-file" accept="image/*">
-                                <div class="file-upload-hint">Supported formats: JPG, PNG, WebP. Max 5MB</div>
+                                <div class="form-group full-width">
+                                    <label class="form-label">Product Image *</label>
+                                    <div class="file-upload-container">
+                                        <input type="file" name="image" required class="form-file" accept="image/*">
+                                        <div class="file-upload-hint">Supported formats: JPG, PNG, WebP. Max 5MB</div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+                            <button type="submit" class="btn btn-primary">
+                                <span>Add Product</span>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M12 5v14M5 12h14"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </form>
                 </div>
+            </div>
 
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" onclick="closeModal()">Cancel</button>
-                    <button type="submit" class="btn btn-primary">
-                        <span>Add Product</span>
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M12 5v14M5 12h14"/>
-                        </svg>
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
+            <style>
+                .modal-overlay {
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: rgba(0, 0, 0, 0.5);
+                    backdrop-filter: blur(4px);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    z-index: 10000;
+                    padding: 20px;
+                    animation: fadeIn 0.3s ease;
+                }
 
-    <style>
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(4px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 10000;
-            padding: 20px;
-            animation: fadeIn 0.3s ease;
-        }
+                .modal-container {
+                    background: white;
+                    border-radius: 16px;
+                    width: 100%;
+                    max-width: 800px;
+                    max-height: 90vh;
+                    display: flex;
+                    flex-direction: column;
+                    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+                    animation: slideUp 0.3s ease;
+                    overflow: hidden;
+                }
 
-        .modal-container {
-            background: white;
-            border-radius: 16px;
-            width: 100%;
-            max-width: 800px;
-            max-height: 90vh;
-            display: flex;
-            flex-direction: column;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            animation: slideUp 0.3s ease;
-            overflow: hidden; /* Important pour contenir le contenu */
-        }
+                .modal-header {
+                    padding: 24px 30px;
+                    border-bottom: 1px solid #e5e7eb;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    flex-shrink: 0;
+                }
 
-        .modal-header {
-            padding: 24px 30px;
-            border-bottom: 1px solid #e5e7eb;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-shrink: 0; /* Empêche le header de rétrécir */
-        }
+                .modal-title {
+                    font-size: 26px;
+                    font-weight: 600;
+                    color: #1f2937;
+                    margin: 0;
+                }
 
-        .modal-title {
-            font-size: 26px;
-            font-weight: 600;
-            color: #1f2937;
-            margin: 0;
-        }
+                .modal-close-btn {
+                    background: none;
+                    border: none;
+                    cursor: pointer;
+                    padding: 8px;
+                    border-radius: 8px;
+                    color: #6b7280;
+                    transition: all 0.2s ease;
+                }
 
-        .modal-close-btn {
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 8px;
-            border-radius: 8px;
-            color: #6b7280;
-            transition: all 0.2s ease;
-        }
+                .modal-close-btn:hover {
+                    background: #f3f4f6;
+                    color: #1f2937;
+                }
 
-        .modal-close-btn:hover {
-            background: #f3f4f6;
-            color: #1f2937;
-        }
+                .modal-body {
+                    padding: 30px;
+                    overflow-y: auto;
+                    flex: 1;
+                    max-height: calc(90vh - 140px);
+                }
 
-        .modal-body {
-            padding: 30px;
-            overflow-y: auto; /* Permet le défilement vertical */
-            flex: 1; /* Prend tout l'espace disponible */
-            max-height: calc(90vh - 140px); /* Calcule la hauteur maximale */
-        }
+                .modal-form {
+                    display: flex;
+                    flex-direction: column;
+                    height: 100%;
+                }
 
-        .modal-form {
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-        }
+                .form-grid {
+                    display: grid;
+                    grid-template-columns: repeat(2, 1fr);
+                    gap: 20px;
+                }
 
-        .form-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-        }
+                .form-group {
+                    margin-bottom: 0;
+                }
 
-        .form-group {
-            margin-bottom: 0;
-        }
+                .form-group.full-width {
+                    grid-column: span 2;
+                }
 
-        .form-group.full-width {
-            grid-column: span 2;
-        }
+                .form-label {
+                    display: block;
+                    font-size: 14px;
+                    font-weight: 500;
+                    color: #374151;
+                    margin-bottom: 8px;
+                }
 
-        .form-label {
-            display: block;
-            font-size: 14px;
-            font-weight: 500;
-            color: #374151;
-            margin-bottom: 8px;
-        }
+                .form-label:after {
+                    content: " *";
+                    color: #ef4444;
+                    opacity: 0;
+                }
 
-        .form-label:after {
-            content: " *";
-            color: #ef4444;
-            opacity: 0;
-        }
+                .form-label[for*="required"]:after,
+                input[required] + .form-label:after,
+                select[required] + .form-label:after {
+                    opacity: 1;
+                }
 
-        .form-label[for*="required"]:after,
-        input[required] + .form-label:after,
-        select[required] + .form-label:after {
-            opacity: 1;
-        }
+                .form-input,
+                .form-select,
+                .form-textarea {
+                    width: 100%;
+                    padding: 12px 16px;
+                    border: 2px solid #e5e7eb;
+                    border-radius: 10px;
+                    font-size: 15px;
+                    transition: all 0.2s ease;
+                    background: white;
+                }
 
-        .form-input,
-        .form-select,
-        .form-textarea {
-            width: 100%;
-            padding: 12px 16px;
-            border: 2px solid #e5e7eb;
-            border-radius: 10px;
-            font-size: 15px;
-            transition: all 0.2s ease;
-            background: white;
-        }
+                .form-input:focus,
+                .form-select:focus,
+                .form-textarea:focus {
+                    outline: none;
+                    border-color: #3b82f6;
+                    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+                }
 
-        .form-input:focus,
-        .form-select:focus,
-        .form-textarea:focus {
-            outline: none;
-            border-color: #3b82f6;
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-        }
+                .form-input::placeholder,
+                .form-textarea::placeholder {
+                    color: #9ca3af;
+                }
 
-        .form-input::placeholder,
-        .form-textarea::placeholder {
-            color: #9ca3af;
-        }
+                .form-textarea {
+                    resize: vertical;
+                    min-height: 100px;
+                }
 
-        .form-textarea {
-            resize: vertical;
-            min-height: 100px;
-        }
+                .form-file {
+                    width: 100%;
+                    padding: 12px;
+                    border: 2px dashed #d1d5db;
+                    border-radius: 10px;
+                    background: #f9fafb;
+                    cursor: pointer;
+                }
 
-        .form-file {
-            width: 100%;
-            padding: 12px;
-            border: 2px dashed #d1d5db;
-            border-radius: 10px;
-            background: #f9fafb;
-            cursor: pointer;
-        }
+                .form-file:hover {
+                    border-color: #9ca3af;
+                }
 
-        .form-file:hover {
-            border-color: #9ca3af;
-        }
+                .form-file:focus {
+                    outline: none;
+                    border-color: #3b82f6;
+                    border-style: solid;
+                }
 
-        .form-file:focus {
-            outline: none;
-            border-color: #3b82f6;
-            border-style: solid;
-        }
+                .file-upload-hint {
+                    font-size: 13px;
+                    color: #6b7280;
+                    margin-top: 6px;
+                }
 
-        .file-upload-hint {
-            font-size: 13px;
-            color: #6b7280;
-            margin-top: 6px;
-        }
+                .modal-footer {
+                    padding: 24px 30px;
+                    border-top: 1px solid #e5e7eb;
+                    display: flex;
+                    justify-content: flex-end;
+                    gap: 12px;
+                    background: #f9fafb;
+                    border-radius: 0 0 16px 16px;
+                    flex-shrink: 0;
+                }
 
-        .modal-footer {
-            padding: 24px 30px;
-            border-top: 1px solid #e5e7eb;
-            display: flex;
-            justify-content: flex-end;
-            gap: 12px;
-            background: #f9fafb;
-            border-radius: 0 0 16px 16px;
-            flex-shrink: 0; /* Empêche le footer de rétrécir */
-        }
+                .btn {
+                    padding: 12px 24px;
+                    border-radius: 10px;
+                    font-size: 15px;
+                    font-weight: 500;
+                    border: none;
+                    cursor: pointer;
+                    transition: all 0.2s ease;
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 8px;
+                }
 
-        .btn {
-            padding: 12px 24px;
-            border-radius: 10px;
-            font-size: 15px;
-            font-weight: 500;
-            border: none;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
+                .btn-secondary {
+                    background: white;
+                    color: #374151;
+                    border: 2px solid #d1d5db;
+                }
 
-        .btn-secondary {
-            background: white;
-            color: #374151;
-            border: 2px solid #d1d5db;
-        }
+                .btn-secondary:hover {
+                    background: #f3f4f6;
+                    border-color: #9ca3af;
+                }
 
-        .btn-secondary:hover {
-            background: #f3f4f6;
-            border-color: #9ca3af;
-        }
+                .btn-primary {
+                    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+                    color: white;
+                }
 
-        .btn-primary {
-            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
-            color: white;
-        }
+                .btn-primary:hover {
+                    background: linear-gradient(135deg, #2563eb, #1e40af);
+                    transform: translateY(-1px);
+                    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+                }
 
-        .btn-primary:hover {
-            background: linear-gradient(135deg, #2563eb, #1e40af);
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
-        }
+                .btn-primary:active {
+                    transform: translateY(0);
+                }
 
-        .btn-primary:active {
-            transform: translateY(0);
-        }
+                .modal-overlay {
+                    cursor: pointer;
+                }
+                
+                .modal-container {
+                    cursor: default;
+                }
 
-        /* Fermer le modal en cliquant sur l'overlay */
-        .modal-overlay {
-            cursor: pointer;
-        }
-        
-        .modal-container {
-            cursor: default;
-        }
+                @keyframes fadeIn {
+                    from { opacity: 0; }
+                    to { opacity: 1; }
+                }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
+                @keyframes slideUp {
+                    from {
+                        opacity: 0;
+                        transform: translateY(20px);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                }
 
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+                .modal-body::-webkit-scrollbar {
+                    width: 8px;
+                }
+                
+                .modal-body::-webkit-scrollbar-track {
+                    background: #f1f1f1;
+                    border-radius: 4px;
+                }
+                
+                .modal-body::-webkit-scrollbar-thumb {
+                    background: #c1c1c1;
+                    border-radius: 4px;
+                }
+                
+                .modal-body::-webkit-scrollbar-thumb:hover {
+                    background: #a8a8a8;
+                }
 
-        /* Scrollbar personnalisée pour le modal-body */
-        .modal-body::-webkit-scrollbar {
-            width: 8px;
-        }
-        
-        .modal-body::-webkit-scrollbar-track {
-            background: #f1f1f1;
-            border-radius: 4px;
-        }
-        
-        .modal-body::-webkit-scrollbar-thumb {
-            background: #c1c1c1;
-            border-radius: 4px;
-        }
-        
-        .modal-body::-webkit-scrollbar-thumb:hover {
-            background: #a8a8a8;
-        }
+                @media (max-width: 768px) {
+                    .modal-container {
+                        max-width: 95%;
+                        max-height: 85vh;
+                    }
+                    
+                    .modal-body {
+                        max-height: calc(85vh - 140px);
+                    }
+                    
+                    .form-grid {
+                        grid-template-columns: 1fr;
+                    }
+                    
+                    .form-group.full-width {
+                        grid-column: span 1;
+                    }
+                    
+                    .modal-header,
+                    .modal-body,
+                    .modal-footer {
+                        padding: 20px;
+                    }
+                }
 
-        @media (max-width: 768px) {
-            .modal-container {
-                max-width: 95%;
-                max-height: 85vh;
-            }
+                @media (max-width: 480px) {
+                    .modal-container {
+                        max-height: 90vh;
+                    }
+                    
+                    .modal-body {
+                        max-height: calc(90vh - 140px);
+                    }
+                    
+                    .form-grid {
+                        gap: 16px;
+                    }
+                    
+                    .modal-footer {
+                        flex-direction: column-reverse;
+                    }
+                    
+                    .btn {
+                        width: 100%;
+                    }
+                }
+            </style>
+            `;
             
-            .modal-body {
-                max-height: calc(85vh - 140px);
-            }
+            document.body.insertAdjacentHTML('beforeend', modalHtml);
             
-            .form-grid {
-                grid-template-columns: 1fr;
-            }
+            document.addEventListener('keydown', handleEscapeKey);
             
-            .form-group.full-width {
-                grid-column: span 1;
-            }
-            
-            .modal-header,
-            .modal-body,
-            .modal-footer {
-                padding: 20px;
+            const overlay = document.getElementById('addProductModal');
+            overlay.addEventListener('click', function(e) {
+                if (e.target === overlay) {
+                    closeModal();
+                }
+            });
+        }
+
+        function handleEscapeKey(e) {
+            if (e.key === 'Escape') {
+                closeModal();
             }
         }
 
-        @media (max-width: 480px) {
-            .modal-container {
-                max-height: 90vh;
-            }
-            
-            .modal-body {
-                max-height: calc(90vh - 140px);
-            }
-            
-            .form-grid {
-                gap: 16px;
-            }
-            
-            .modal-footer {
-                flex-direction: column-reverse;
-            }
-            
-            .btn {
-                width: 100%;
-            }
-        }
-    </style>
-    `;
-    
-    document.body.insertAdjacentHTML('beforeend', modalHtml);
-    
-    // Ajouter l'écouteur pour fermer avec la touche Échap
-    document.addEventListener('keydown', handleEscapeKey);
-    
-    // Ajouter l'écouteur pour fermer en cliquant sur l'overlay
-    const overlay = document.getElementById('addProductModal');
-    overlay.addEventListener('click', function(e) {
-        if (e.target === overlay) {
-            closeModal();
-        }
-    });
-}
-
-function handleEscapeKey(e) {
-    if (e.key === 'Escape') {
-        closeModal();
-    }
-}
-
-function closeModal() {
-    const modal = document.getElementById('addProductModal');
-    if (modal) {
-        // Animation de fermeture
-        modal.style.animation = 'fadeOut 0.2s ease forwards';
-        
-        setTimeout(() => {
-            modal.remove();
-            // Supprimer l'écouteur d'événement
-            document.removeEventListener('keydown', handleEscapeKey);
-        }, 200);
-    }
-}
-
-// Ajouter les animations CSS si elles n'existent pas
-if (!document.querySelector('#modal-animations')) {
-    const style = document.createElement('style');
-    style.id = 'modal-animations';
-    style.textContent = `
-        @keyframes fadeOut {
-            from { 
-                opacity: 1;
-            }
-            to { 
-                opacity: 0;
-            }
-        }
-    `;
-    document.head.appendChild(style);
-}
-
-        
         function closeModal() {
-            const modal = document.querySelector('div[style*="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5)"]');
-            if (modal) modal.remove();
+            const modal = document.getElementById('addProductModal');
+            if (modal) {
+                modal.style.animation = 'fadeOut 0.2s ease forwards';
+                
+                setTimeout(() => {
+                    modal.remove();
+                    document.removeEventListener('keydown', handleEscapeKey);
+                }, 200);
+            }
+        }
+
+        if (!document.querySelector('#modal-animations')) {
+            const style = document.createElement('style');
+            style.id = 'modal-animations';
+            style.textContent = `
+                @keyframes fadeOut {
+                    from { 
+                        opacity: 1;
+                    }
+                    to { 
+                        opacity: 0;
+                    }
+                }
+            `;
+            document.head.appendChild(style);
         }
         
         function submitProduct() {
@@ -2224,24 +2115,21 @@ if (!document.querySelector('#modal-animations')) {
             showNotification('Product added successfully!', 'success');
         }
         
-        // Counter animations
+        // SECTION: Animation des compteurs
         function animateCounter(element, start, end, duration) {
             let startTimestamp = null;
             const step = (timestamp) => {
                 if (!startTimestamp) startTimestamp = timestamp;
                 const progress = Math.min((timestamp - startTimestamp) / duration, 1);
                 
-                // For decimal numbers (like ratings)
                 if (element.textContent.includes('.')) {
                     const value = (progress * (end - start) + start).toFixed(1);
                     element.textContent = value;
                 } 
-                // For currency
                 else if (element.textContent.includes('€')) {
                     const value = Math.floor(progress * (end - start) + start);
                     element.textContent = '€' + value.toLocaleString();
                 } 
-                // For regular numbers
                 else {
                     const value = Math.floor(progress * (end - start) + start);
                     element.textContent = value;
@@ -2259,7 +2147,6 @@ if (!document.querySelector('#modal-animations')) {
             counters.forEach(counter => {
                 const target = parseFloat(counter.getAttribute('data-count'));
                 if(!isNaN(target)) {
-                    // Reset based on type
                     if(counter.textContent.includes('€')) {
                         counter.textContent = '€0';
                     } else if(counter.textContent.includes('.')) {
@@ -2275,9 +2162,8 @@ if (!document.querySelector('#modal-animations')) {
             });
         }
         
-        // Show notification
+        // SECTION: Fonctions de notification
         function showNotification(message, type = 'success') {
-            // Remove existing notifications
             document.querySelectorAll('.custom-notification').forEach(n => n.remove());
             
             const notification = document.createElement('div');
@@ -2316,7 +2202,7 @@ if (!document.querySelector('#modal-animations')) {
             }, 3000);
         }
         
-        // Mobile menu toggle
+        // SECTION: Gestion du menu mobile
         document.getElementById('menuToggle').addEventListener('click', function() {
             const sidebar = document.getElementById('sidebar');
             const overlay = document.getElementById('overlay');
@@ -2325,28 +2211,24 @@ if (!document.querySelector('#modal-animations')) {
             overlay.classList.add('active');
         });
         
-        // Close menu by clicking overlay
         document.getElementById('overlay').addEventListener('click', function() {
             this.classList.remove('active');
             document.getElementById('sidebar').classList.remove('active');
         });
         
-        // Notifications bell click
+        // SECTION: Événements des boutons
         document.getElementById('notificationBell').addEventListener('click', function() {
             showNotification('You have 5 unread notifications', 'info');
         });
         
-        // Add product button
         document.getElementById('addProductBtn').addEventListener('click', function() {
             showAddProductModal();
         });
         
-        // Initialize dashboard on load
+        // SECTION: Initialisation au chargement
         document.addEventListener('DOMContentLoaded', function() {
-            // Start dashboard counters
             startCounters();
             
-            // Add typewriter effect to welcome banner
             const banner = document.getElementById('welcomeBanner');
             if (banner) {
                 const text = "Welcome back, Sarah!";
@@ -2361,7 +2243,6 @@ if (!document.querySelector('#modal-animations')) {
                 setTimeout(typeWriter, 1000);
             }
             
-            // Add animation to welcome banner
             banner.style.opacity = '0';
             banner.style.transform = 'translateY(-20px)';
             setTimeout(() => {
@@ -2371,13 +2252,12 @@ if (!document.querySelector('#modal-animations')) {
             }, 500);
         });
 
-
+        // SECTION: Fonction utilitaire pour le CSRF token
         function getCSRFToken() {
             return document.cookie.split('; ')
             .find(row => row.startsWith('csrftoken='))
             ?.split('=')[1];
-}
-
+        }
     </script>
 </body>
 </html>

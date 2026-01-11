@@ -26,5 +26,12 @@ urlpatterns = [
     path('shopping/', views.shopping, name='shopping'),
     path('register_seller/', views.register_seller, name='register_seller'),
     path('profil/', views.gerer_profil, name='gerer_profil'),
+    path('dashboard/', views.dashboard, name='dashboardClient'),
+    path("cart-detail/", views.cart_detail, name="cart_detail"),
+    path("add/<slug:slug>/", views.add_to_cart, name="add_to_cart"),
+    path("remove/<int:item_id>/", views.remove_from_cart, name="remove_from_cart"),
+    path("update/<int:item_id>/", views.update_cart_item, name="update_cart_item"),
+
+
 
 ]
