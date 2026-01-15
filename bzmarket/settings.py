@@ -29,7 +29,7 @@ SECRET_KEY='django-insecure-!8g058$$$e&dd8u^d4d#q-*h5mu=2(ha(k-k5*sl+dita!7sq#'
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -124,17 +124,16 @@ USE_TZ = True
 
 AUTH_USER_MODEL = 'client.Utilisateur'
 # URL pour accéder aux fichiers statiques depuis le navigateur
-STATIC_URL = "/static/"
+STATIC_URL = "static/"
 
 # Dossier où Django va collecter tous les fichiers statiques pour la prod
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles_build")
-
-# Dossiers sources de fichiers statiques (dev)
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),
+    BASE_DIR / "static",  # ton dossier global "static" à la racine du projet
 ]
 
-# Crée automatiquement le dossier source s'il n'existe pas (évite W004)
-for directory in STATICFILES_DIRS:
-    if not os.path.exists(directory):
-        os.makedirs(directory)
+# Répertoire où collectstatic copiera tous les fichiers statiques pour production
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles_build")
+
+
+# Default primary key field type
+# https://docs.djangoproject.com/en/6.0/ref/settings/#default-auto-field
