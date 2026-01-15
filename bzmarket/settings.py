@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 from pathlib import Path
 
 import dj_database_url
+from decouple import config
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -75,27 +77,15 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'bzmarket.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 import os
-import dj_database_url
 
 DATABASES = {
-    'default': dj_database_url.config(
-        default=os.environ.get("DATABASE_URL"),
+    "default": dj_database_url.config(
+        default=config("DATABASE_URL"),
         conn_max_age=600,
         ssl_require=True
     )
 }
-
-# Forcer SSL Railway / Neon / Supabase
-DATABASES['default']['OPTIONS'] = {
-    'sslmode': 'require'
-}
-
-
-
 
 # Password validation
 # https://docs.djangoproject.com/en/6.0/ref/settings/#auth-password-validators
@@ -131,14 +121,18 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
-STATIC_URL = 'static/'
 
 AUTH_USER_MODEL = 'client.Utilisateur'
 
-# Répertoire où Django cherchera les fichiers statiques des apps
+
+STATIC_URL = "static/"
+
+# Dossier où collecter tous les fichiers statiques pour la production
+
 STATICFILES_DIRS = [
-    BASE_DIR / "static",  # ton dossier global "static" à la racine du projet
+    os.path.join(BASE_DIR, "bzmarket", "static")
 ]
+
 
 # Répertoire où collectstatic copiera tous les fichiers statiques pour production
 STATIC_ROOT = BASE_DIR / "staticfiles_build" / "static"
