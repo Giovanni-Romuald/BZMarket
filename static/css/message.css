@@ -1,0 +1,235 @@
+/* messages_styles.css */
+:root {
+    --primary: #FF6B35;
+    --primary-dark: #E65100;
+    --primary-light: #FFA726;
+    --secondary: #2C3E50;
+    --secondary-light: #34495E;
+    --accent: #FF5722;
+    --light: #FFFFFF;
+    --light-bg: #F9F9F9;
+    --text-dark: #333333;
+    --text-gray: #666666;
+    --text-light: #777777;
+    --white: #FFFFFF;
+    --shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    --shadow-hover: 0 12px 35px rgba(255, 107, 53, 0.15);
+    --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    --border-radius: 12px;
+    
+    /* Couleurs pour les types de messages */
+    --success: #4CAF50;
+    --info: #2196F3;
+    --warning: #FF9800;
+    --error: #F44336;
+    --debug: #9C27B0;
+}
+
+/* Conteneur des messages */
+.messages-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 400px;
+    width: 100%;
+}
+
+/* Styles de base pour les alertes */
+.alert {
+    padding: 16px 20px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    animation: slideInRight 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    border: none;
+    opacity: 0;
+    transform: translateX(100%);
+    transition: var(--transition);
+}
+
+.alert.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Barre de progression pour la disparition */
+.alert::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    width: 100%;
+    background: currentColor;
+    opacity: 0.3;
+    transform-origin: left;
+}
+
+.alert.auto-dismiss::before {
+    animation: countdown 6s linear forwards;
+}
+
+/* Animation d'entrée */
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Animation de sortie */
+@keyframes slideOutRight {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+}
+
+/* Animation du compte à rebours */
+@keyframes countdown {
+    from {
+        transform: scaleX(1);
+    }
+    to {
+        transform: scaleX(0);
+    }
+}
+
+/* Icône des alertes */
+.alert-icon {
+    font-size: 1.3rem;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+}
+
+/* Contenu du message */
+.alert-content {
+    flex-grow: 1;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: white;
+}
+
+/* Bouton de fermeture */
+.btn-close {
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: var(--transition);
+    flex-shrink: 0;
+    margin-left: 8px;
+}
+
+.btn-close:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    transform: rotate(90deg);
+}
+
+/* Styles spécifiques pour chaque type de message */
+.alert-success {
+    background: linear-gradient(135deg, var(--success) 0%, #388E3C 100%);
+    color: white;
+}
+
+.alert-info {
+    background: linear-gradient(135deg, var(--info) 0%, #1976D2 100%);
+    color: white;
+}
+
+.alert-warning {
+    background: linear-gradient(135deg, var(--warning) 0%, #F57C00 100%);
+    color: white;
+}
+
+.alert-error {
+    background: linear-gradient(135deg, var(--error) 0%, #D32F2F 100%);
+    color: white;
+}
+
+.alert-debug {
+    background: linear-gradient(135deg, var(--debug) 0%, #7B1FA2 100%);
+    color: white;
+}
+
+/* Types par défaut de Django */
+.alert-debug {
+    background: linear-gradient(135deg, var(--debug) 0%, #7B1FA2 100%);
+}
+
+/* Fallback pour les tags non standard */
+.alert-primary {
+    background: var(--gradient-primary);
+    color: white;
+}
+
+.alert-secondary {
+    background: var(--gradient-secondary);
+    color: white;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .messages-container {
+        top: 10px;
+        right: 10px;
+        left: 10px;
+        max-width: none;
+    }
+    
+    .alert {
+        padding: 14px 16px;
+    }
+}
+
+/* Pour les messages sans container fixe (dans le flux) */
+.messages-container-static {
+    margin: 20px 0;
+    max-width: 100%;
+}
+
+.messages-container-static .alert {
+    max-width: 100%;
+    animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY ='django-insecure-!8g058$$$e&dd8u^d4d#q-*h5mu=2(ha(k-k5*sl+dita!7sq#'
+SECRET_KEY='django-insecure-!8g058$$$e&dd8u^d4d#q-*h5mu=2(ha(k-k5*sl+dita!7sq#'
 
 
 
@@ -123,16 +123,18 @@ USE_TZ = True
 
 
 AUTH_USER_MODEL = 'client.Utilisateur'
+# URL pour accéder aux fichiers statiques depuis le navigateur
+STATIC_URL = "/static/"
 
+# Dossier où Django va collecter tous les fichiers statiques pour la prod
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles_build")
 
-STATIC_URL = "static/"
-
-# Dossier où collecter tous les fichiers statiques pour la production
-
+# Dossiers sources de fichiers statiques (dev)
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "bzmarket", "static")
+    os.path.join(BASE_DIR, "static"),
 ]
 
-
-# Répertoire où collectstatic copiera tous les fichiers statiques pour production
-STATIC_ROOT = BASE_DIR / "staticfiles_build" / "static"
+# Crée automatiquement le dossier source s'il n'existe pas (évite W004)
+for directory in STATICFILES_DIRS:
+    if not os.path.exists(directory):
+        os.makedirs(directory)
