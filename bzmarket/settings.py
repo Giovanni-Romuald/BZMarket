@@ -20,26 +20,30 @@ import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+
+# URL pour accéder aux fichiers statiques depuis le navigateur
 STATIC_URL = "/static/"
 
-# Dossier où tu mets TES fichiers statiques en développement
+# Dossier où Django va collecter tous les fichiers statiques pour la prod
 STATICFILES_DIRS = [
-    BASE_DIR / "static",
+    BASE_DIR / "static",  # ton dossier global "static" à la racine du projet
 ]
 
-# Dossier généré automatiquement par collectstatic (PRODUCTION)
-STATIC_ROOT = BASE_DIR / "staticfiles"
+# Répertoire où collectstatic copiera tous les fichiers statiques pour production
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles_build")
+
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY='django-insecure-!8g058$$$e&dd8u^d4d#q-*h5mu=2(ha(k-k5*sl+dita!7sq#'
+SECRET_KEY=config("SECRET_KEY")
 
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -92,11 +96,7 @@ WSGI_APPLICATION = 'bzmarket.wsgi.application'
 import os
 
 DATABASES = {
-    "default": dj_database_url.config(
-        default=config("DATABASE_URL"),
-        conn_max_age=600,
-        ssl_require=True
-    )
+    'default': dj_database_url.parse(config('DATABASE_URL'))
 }
 
 # Password validation
