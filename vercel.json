@@ -5,18 +5,26 @@
       "src": "bzmarket/wsgi.py",
       "use": "@vercel/python",
       "config": {
-        "runtime": "python3.12"
+        "runtime": "python3.12",
+        "maxLambdaSize": "15mb"
+      }
+    },
+    {
+      "src": "build.sh",
+      "use": "@vercel/staticfiles",
+      "config": {
+        "distDir": "staticfiles"
       }
     }
   ],
   "routes": [
     {
       "src": "^/static/(.*)$",
-      "dest": "/staticfiles/$1"
+      "dest": "/static/$1"
     },
     {
       "src": "^(.*)$",
-      "dest": "bzmarket/wsgi.py"
+      "dest": "/bzmarket/wsgi.py"
     }
   ]
 }
