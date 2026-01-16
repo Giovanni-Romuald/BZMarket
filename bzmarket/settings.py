@@ -20,19 +20,15 @@ import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+STATIC_URL = "/static/"
 
-# URL pour accéder aux fichiers statiques depuis le navigateur
-STATIC_URL = "static/"
-
-# Dossier où Django va collecter tous les fichiers statiques pour la prod
+# Dossier où tu mets TES fichiers statiques en développement
 STATICFILES_DIRS = [
-    BASE_DIR / "static",  # ton dossier global "static" à la racine du projet
+    BASE_DIR / "static",
 ]
 
-# Répertoire où collectstatic copiera tous les fichiers statiques pour production
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles_build")
-
-
+# Dossier généré automatiquement par collectstatic (PRODUCTION)
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
@@ -43,7 +39,7 @@ SECRET_KEY='django-insecure-!8g058$$$e&dd8u^d4d#q-*h5mu=2(ha(k-k5*sl+dita!7sq#'
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -70,6 +66,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # IMPORTANT
+
 ]
 
 ROOT_URLCONF = 'bzmarket.urls'
@@ -137,6 +135,9 @@ USE_TZ = True
 
 
 AUTH_USER_MODEL = 'client.Utilisateur'
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 
 
 # Default primary key field type
