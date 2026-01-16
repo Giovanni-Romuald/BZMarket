@@ -1,31 +1,30 @@
 {
-    "version": 2,
-    "builds": [
-        {
-            "src": "bzmarket/wsgi.py",
-            "use": "@vercel/python",
-            "config": {
-                "maxLambdaSize": "15mb",
-                "runtime": "python3.12.1"
-            }
-        },
-        {
-            "src": "build.sh",
-            "use": "@vercel/static-build",
-            "config": {
-                "distDir": "staticfiles_build"
-            }
-        }
-    ],
-    "routes": [
-        {
-            "src": "/static/(.*)",
-            "dest": "/static/$1"
-        },
-        {
-            "src": "/(.*)",
-            "dest": "bzmarket/wsgi.py"
-        }
-    ]
-
+  "version": 2,
+  "builds": [
+    {
+      "src": "bzmarket/wsgi.py",
+      "use": "@vercel/python",
+      "config": {
+        "runtime": "python3.12",
+        "maxLambdaSize": "15mb"
+      }
+    },
+    {
+      "src": "build.sh",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "staticfiles_build"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "^/static/(.*)$",
+      "dest": "/static/$1"
+    },
+    {
+      "src": "^(.*)$",
+      "dest": "/bzmarket/wsgi.py"
+    }
+  ]
 }

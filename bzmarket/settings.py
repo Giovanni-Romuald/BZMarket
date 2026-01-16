@@ -15,9 +15,23 @@ from pathlib import Path
 import dj_database_url
 from decouple import config
 import dj_database_url
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+
+# URL pour accéder aux fichiers statiques depuis le navigateur
+STATIC_URL = "static/"
+
+# Dossier où Django va collecter tous les fichiers statiques pour la prod
+STATICFILES_DIRS = [
+    BASE_DIR / "static",  # ton dossier global "static" à la racine du projet
+]
+
+# Répertoire où collectstatic copiera tous les fichiers statiques pour production
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles_build")
+
 
 
 # Quick-start development settings - unsuitable for production
@@ -123,16 +137,6 @@ USE_TZ = True
 
 
 AUTH_USER_MODEL = 'client.Utilisateur'
-# URL pour accéder aux fichiers statiques depuis le navigateur
-STATIC_URL = "static/"
-
-# Dossier où Django va collecter tous les fichiers statiques pour la prod
-STATICFILES_DIRS = [
-    BASE_DIR / "static",  # ton dossier global "static" à la racine du projet
-]
-
-# Répertoire où collectstatic copiera tous les fichiers statiques pour production
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles_build")
 
 
 # Default primary key field type
